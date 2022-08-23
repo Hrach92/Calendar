@@ -9,9 +9,9 @@ export default function Week() {
     <div className={styles.container} style={state.openBar.leftBarOpen?null:{width:'1225px',marginLeft:'10px'}}>
         {state.sampleData.count.week.days.map(day=>{
             return <div className={styles.weekDay} style={state.openBar.leftBarOpen?{width:'150px'}:null}>
-                {state.sampleData.count.week.dayHours.map(hour=>{
+                {/* {state.sampleData.count.week.dayHours.map(hour=>{
                     return <div className={styles.dayHours}>{hour}</div>
-                })}</div>
+                })} */}</div>
         })}
     </div>
   )

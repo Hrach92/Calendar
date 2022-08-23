@@ -18,5 +18,5 @@ export let count = {
         dayHours:[...Array(24).fill('').map((item,i)=>item=i)]
     },
     month:[...Array(42).fill('').map((item,i)=>item=i)],
-    year:[...Array(12).fill('').map((item,i)=>item=i)]
+    year:[...Array(12).fill('').map((item,i)=>item=i+1)]
 }

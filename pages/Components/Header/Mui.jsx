@@ -13,7 +13,7 @@ export default function SelectAutoWidth() {
   };
 
   return (
-    <div style={{position:'absolute',right:'100px',top:5}}>
+    <div style={{position:'absolute',right:'60px',top:5}}>
       <FormControl>
         <InputLabel id="demo-simple-select-autowidth-label"></InputLabel>
         <Select sx={{height:30,minWidth:100}}
