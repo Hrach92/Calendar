@@ -1,17 +1,17 @@
 import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
-import {addEvents, setNotesOpen} from "../../store/reducer/sampleReducer";
-import day_style from "./Day.module.css";
-import {dayList, host} from "../../Components/Instance";
+import {addEvents, setNotesOpen} from "../../../../store/reducer/sampleReducer";
+import day_style from "../../Day.module.css";
+import {dayList, host} from "../../../../Components/Instance";
 import React, {useEffect, useMemo, useState} from "react";
-import MyNotes from "../../Components/MyNotes";
-import {descriptionOpen} from "../../store/reducer/tabReducer";
-import ChangeEvent from "../../Components/ChangeEvent";
+import MyNotes from "../../../../Components/MyNotes";
+import {descriptionOpen} from "../../../../store/reducer/tabReducer";
+import ChangeEvent from "../../../../Components/ChangeEvent";
 export default function Day () {
     const state = useSelector((state) => state.sampleData),
         tabs = useSelector((state) => state.tabs),
         bars = useSelector((state) => state.openBar),
-        events = useSelector((state) =>state.sampleData.events)
+        events = useSelector((state) =>state.sampleData.events),
         dispatch = useDispatch(),
         [
             description,

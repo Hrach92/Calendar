@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
-import year from "./Year.module.css";
+import year from "../../Year.module.css";
 import React from "react";
-import YearComponent from "../../Components/YearComponent";
+import YearComponent from "../../../../Components/YearComponent";
 
 
 export default function Year () {

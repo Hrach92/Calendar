@@ -1,0 +1,14 @@
++clean up  - move side effects(non ui related) functions from jsx
++linter (run and fix)
++prettier
++get rid of inline styles
++custom hook
++react memo
+use material UI makeStyles/useStyles
++-next js specifications(page folder, api folder)
++redux toolkid
+vercel
+
+events ordering
+repeat feature
+Video conference (google meet url generation) * 

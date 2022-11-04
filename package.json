@@ -6,25 +6,44 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ./pages",
+    "lint-fix": "eslint ./pages --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.1",
+    "@mui/x-date-pickers": "^5.0.5",
+    "@mui/x-date-pickers-pro": "^5.0.5",
+    "@reduxjs/toolkit": "^1.8.6",
+    "axios": "^0.27.2",
+    "luxon": "^2.5.0",
     "material-ui-popup-state": "^4.0.2",
+    "moment": "^2.29.4",
     "next": "12.2.5",
+    "next-images": "^1.8.4",
     "next-redux-wrapper": "^7.0.5",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
-    "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.2.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.1",
+    "prettier": "^2.7.1"
   }
 }

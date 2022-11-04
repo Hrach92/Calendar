@@ -1,0 +1,32 @@
+.container{
+    box-sizing: border-box;
+    width: 1145px;
+    margin: 32px 0 0 70px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 580px;
+    overflow: auto;
+  }
+  .container::-webkit-scrollbar{
+    width: 0px;
+  }
+  .containerWithBarOpen{
+    box-sizing: border-box;
+    width: 979px;
+    margin: 32px 0 0 230px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 580px;
+    overflow: auto;
+  }
+  .containerWithBarOpen::-webkit-scrollbar{
+    width: 0px;
+  }
+  .yearComponent{
+    width: 285px;
+    height: 285px;
+  }
+  .yearComponentWithBarOpen{
+    width: 240px;
+    height: 255px;
+  }

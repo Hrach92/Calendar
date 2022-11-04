@@ -1,28 +1,22 @@
-import { LMBOPEN, RMBOPEN } from "../types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     rightBarOpen: false,
     leftBarOpen: false
 }
 
-
-const menuReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LMBOPEN:
-            return {
-                ...state,
-                leftBarOpen: action.left
-
-            }
-        case RMBOPEN:
-            return {
-                ...state,
-                rightBarOpen: action.right
-
-            }
-        default:
-            return state;
+export const BarReducer = createSlice({
+    name:'bars',
+    initialState,
+    reducers:{
+        leftMenuBarOpen:(state,action) =>{
+            state.leftBarOpen = action.payload
+        },
+        rightMenuBarOpen:(state,action) =>{
+            state.rightBarOpen = action.payload
+        }
     }
-}
-
-export default menuReducer
+})
+export const {leftMenuBarOpen,rightMenuBarOpen} = BarReducer.actions
+export const BarOpen = (state) => state.openBar;
+export default BarReducer

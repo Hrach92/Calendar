@@ -2,42 +2,278 @@
 .body{
   padding: 0;
   margin: 0;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
 }
 .container{
   box-sizing: border-box;
-  width: 1050px;
-  margin: 30px 0 0 185px;
+  width: 979px;
+  margin: 32px 0 0 256px;
   display: flex;
   flex-wrap: wrap;
-  height: 564px;
+  height: 580px;
   overflow: auto;
 }
 .container::-webkit-scrollbar{
   width: 0px;
 }
+.dayContainer::-webkit-scrollbar{
+  width: 0px;
+}
+.leftLine{
+  position: absolute;
+  top: 67px;
+  width: 1px;
+  margin-top: 0;
+  height: 597px;
+  background-color:rgb(221, 221, 236);;
+}
 .day{
   box-sizing: border-box;
   width: 175px;
-  height: 94px;
+  height: 116px;
   border: 1px solid rgb(221, 221, 236);
+  border-style: none solid solid none;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: rgb(143, 143, 151);
+  padding-top:5px ;
+  z-index: 0;
+}
+.number{
+  position: absolute;
+  color:black;
+  min-width: 24px;
+  height: 24px;
+  padding-top: 4px;
+  margin:5px 0 0 75px;
+  border-radius:12px;
+  font-size: 14px;
+  text-align: center;
+}
+.currentDay{
+  position: absolute;
+  color:rgb(208, 208, 230);
+  min-width: 24px;
+  height: 24px;
+  padding-top: 4px;
+  font-size: 14px;
+  text-align: center;
+  margin-left: 75px;
+  margin-top: 7px;
+  border-radius: 12px;
+  background-color: #1a73e8;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2),0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+.weekdays{
+  box-sizing: border-box;
+  top: 66px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+}
+.weekday{
+  font-size: 14px;
+  padding-top: 3px;
+  width: 175px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid rgb(221, 221, 236);
+  border-style: none solid none none;
+  color:rgb(92, 92, 95);
+}
+.number:hover{
+  background-color:#dadce0;
+  cursor: pointer;
 }
 .weekDay{
   box-sizing: border-box;
   width: 175px;
-  border: 1px solid rgb(221, 221, 236);
 }
 .hour{
-  height: 40px;
-  width: 1050px;
-  border: 1px solid rgb(221, 221, 236);
+  box-sizing: border-box;
+  font-size: 10px;
+  text-align: center;
+  color: rgb(136, 129, 129);
+  padding-top: 10px;
+  height: 48px;
+  width: 50px;
+  border:1px solid rgb(221, 221, 236);
+  border-style: none solid solid none;
+}
+.hourNotes{
+  box-sizing: border-box;
+  height: 48px;
+  width:900px;
+  border:1px solid rgb(221, 221, 236);
+  border-style: none none solid none;
 }
 .dayHours{
   height: 40px;
   width: 1050px;
-  border: 1px solid rgb(221, 221, 236);
 }
 .year{
-  border: 1px solid rgb(221, 221, 236);
-  width: 306px;
-  height: 306px;
+  width: 285px;
+  height: 285px;
+}
+.current{
+  position: absolute;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  right: 100px;
+  margin-top: 20px;
+  left: 100px;
+  font-size: 18px;
+  padding-top: 8px;
+}
+.weekDays{
+  position: absolute;
+  top: 105px;
+  margin-left: 110px;
+  width: 50px;
+  height: 50px;
+  font-size: 0.9em;
+  border-radius: 50%;
+  padding-top: 15px;;
+  background-color: rgb(229, 229, 241);
+  text-align: center;
+}
+.weekDays:hover{
+  color: white;
+  background-color: rgb(117, 107, 192);
+}
+.dayProps{
+  font-size: 0.7em;
+  padding: 10px 0 0 5px;
+  height: 48px;
+  border:1px solid rgb(221, 221, 236);
+  border-style: none solid solid none;
+}
+.dayContainer{
+  position: relative;
+}
+.dayEvent{
+  width: 175px;
+  height: 16px;
+  margin: 1px 0 0 0px;
+  padding:2px 0 0 5px;
+  font-size: 12px;
+  background-color: rgb(117, 117, 226);
+  color: white;
+}
+.dayEvents{
+  margin-top: 42px;
+}
+.allEvents{
+  position: absolute;
+  width: 600px;
+  margin:85px 0 0 185px;
+}
+.eventTitle{
+  margin: 10px 0 0 5px;
+  background-color: rgb(221, 206, 206);
+  width: 150px;
+  border-radius: 5px;
+  text-align: center;
+}
+.eventDate{
+  text-align: center;
+  width: 150px;
+  position: absolute;
+  right: 150px;
+  color: whitesmoke;
+  border-radius: 5px;
+  background-color: rgb(101, 101, 221);
+  margin: 10px;
+}
+.roomBtn{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 17px;
+  top: 25px;
+  background-color: rgba(60, 60, 236, 0.815);
+  border-radius: 50%;
+  border: 0;
+  font-weight: 600;
+  color: black;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.roomBtn:hover{
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.deleteBtn{
+  position: absolute;
+  right: 35px;
+  top: 10px;
+  font-size: 24px;
+  z-index: 7;
+  color:rgb(130, 130, 136);
+  cursor: pointer;
+}
+@media screen and (max-width:700px){
+  .roomBtn{
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    right: 7px;
+    top: 60px;
+    background-color: rgba(60, 60, 236, 0.815);
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+.description{
+  position: absolute;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.19);
+  height: 150px;
+  top:150px;
+  background-color: white;
+  left: 250px;
+  z-index: 10;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.edit{
+  position: absolute;
+  right: 65px;
+  top: 11px;
+  font-size: 22px;
+  z-index: 7;
+  color:rgb(130, 130, 136);
+  cursor: pointer;
+}
+.changeBtn{
+  position:absolute;
+  right:105px;
+  cursor:pointer;
+}
+.closeDes{
+  position: absolute;
+  right: 8px;
+  top: 12px;
+  font-size: 22px;
+  z-index: 7;
+  color:rgb(130, 130, 136);
+  cursor: pointer;
+}
+.createEvent input{
+  width: 50px;
+  margin-left: 5px;
+  padding-left: 5px;
+  border: 0;
+  border-bottom:1px solid rgb(69, 69, 241);
+  outline-offset: 0;
+  outline: 1px;
 }

@@ -1,8 +1,8 @@
 import moment, {weekdaysShort} from "moment";
 import {useSelector} from "react-redux";
-import week from "./Week.module.css";
+import week from "../../Week.module.css";
 import React, { useMemo } from "react";
-import { weekDays } from "../../Components/Instance";
+import { weekDays } from "../../../../Components/Instance";
 
 
 export default function Week () {
