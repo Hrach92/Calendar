@@ -14,10 +14,10 @@ function MyApp ({Component, pageProps}) {
     </Provider>
   </>
 
-}/* 
+}
 MyApp.propTypes = {
     "Component": PropTypes.object.isRequired,
     "pageProps": PropTypes.object.isRequired
-}; */
+};
 
 export default MyApp;

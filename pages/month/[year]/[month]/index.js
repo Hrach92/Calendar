@@ -21,10 +21,6 @@ function Month() {
             description,
             setDescription
         ] = useState({}),
-        [
-            table,
-            setTable
-        ] = useState(""),
         dispatch = useDispatch(),
         [
             dayDate,
@@ -70,7 +66,7 @@ className={bar.leftBarOpen?month_style.weekdayWithBaropen:month_style.weekday}>
             (<div onClick={() => dispatch(setNotesOpen( false))} className={month_style.dayEvents}>
               {events.dayEvents.filter(v => v.date_id === id).map(v => {
                 return <div onClick={()=>{
-                  return tabs.description?(setDescription({}),setTable(''),dispatch(descriptionOpen(false))):(setDescription(v),dispatch(descriptionOpen(true)),setTable('event'))
+                  return tabs.description?(setDescription({}),dispatch(descriptionOpen(false))):(setDescription(v),dispatch(descriptionOpen(true)))
                 }} key={Math.random()} className={month_style.dayEvent} style={v.eventDayStart?{borderRadius:`${v.date_range===1?'6px':'6px 0 0 6px'}`,backgroundColor:state.color.color,width:`${bar.leftBarOpen?139:175}px`}
                 :(v.eventDayEnd?{borderRadius:'0 6px 6px 0',width:'135px',backgroundColor:state.color.color}:{backgroundColor:state.color.color,width:`${bar.leftBarOpen?139:175}px`})}>
                   {v.title}</div>
@@ -78,7 +74,7 @@ className={bar.leftBarOpen?month_style.weekdayWithBaropen:month_style.weekday}>
                       {events.hourEvents.find(v=>v.date_id===id)!==undefined?<div className={month_style.hourEventList}>
                         {events.hourEvents.filter(({date_id})=>date_id===id).map(i=>{
             return <div className={month_style.hourEvents} style={{backgroundColor:state.color.color}} onClick={()=>{
-              return tabs.description?(setDescription({}),dispatch(descriptionOpen(false),setTable(''))):(setDescription(i),dispatch(descriptionOpen(true)),setTable('hour'))
+              return tabs.description?(setDescription({}),dispatch(descriptionOpen(false))):(setDescription(i),dispatch(descriptionOpen(true)))
             }} key={Math.random()}>
               </div>
           })}</div>:null}

@@ -11,7 +11,7 @@ export default function Day () {
     const state = useSelector((state) => state.sampleData),
         tabs = useSelector((state) => state.tabs),
         bars = useSelector((state) => state.openBar),
-        events = useSelector((state) =>state.sampleData.events)
+        events = useSelector((state) =>state.sampleData.events),
         dispatch = useDispatch(),
         [
             description,
