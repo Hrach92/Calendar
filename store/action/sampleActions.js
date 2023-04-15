@@ -1,10 +1,10 @@
-import { GET_MONTH, GET_DATA_ERROR,GET_SAMPLE_ERROR, GET_YEAR } from "../types";
+/* example import { SET_MONTH, GET_SAMPLE_ERROR} from "../types";
 
-export const getMonth = async (dispatch,date) =>{
+export const setMonth = async (dispatch,id) =>{
     try{
         dispatch({
-            type:GET_MONTH,
-            date
+            type:SET_MONTH,
+            id
         })
     }
     catch (error){
@@ -13,17 +13,4 @@ export const getMonth = async (dispatch,date) =>{
             payload:'some error'
         })
     }
-}
-export const getYear = async (dispatch,year) =>{
-    try{
-        dispatch({
-            type:GET_YEAR,
-            year
-        })
-    }
-    catch {
-        dispatch({
-            type:GET_DATA_ERROR
-        })
-    }
-}
+} */

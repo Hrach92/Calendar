@@ -1,17 +1,17 @@
 import Link from "next/link";
 import React, { useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addEvents, getEventDate, setDay, setMode, setMonth, setNotesOpen} from "../store/reducer/sampleReducer";
-import month_style from './month/Month.module.css'
+import {addEvents, getEventDate, setDay, setMode, setMonth, setNotesOpen} from "../../../../store/reducer/sampleReducer";
+import month_style from '../../Month.module.css'
 
 /* Import io from 'socket.io-client' */
 
 /* Const socket = io.connect("http://localhost:3001") */
 import moment, {weekdaysShort} from "moment";
-import {closeSmall, descriptionOpen} from "../store/reducer/tabReducer";
-import MyNotes from "../Components/MyNotes";
-import ChangeEvent from "../Components/ChangeEvent";
-import { dayList,host } from "../Components/Instance";
+import {closeSmall, descriptionOpen} from "../../../../store/reducer/tabReducer";
+import MyNotes from "../../../../Components/MyNotes";
+import ChangeEvent from "../../../../Components/ChangeEvent";
+import { dayList,host } from "../../../../Components/Instance";
 function Month() {
     const state = useSelector((state) => state.sampleData)
     const tabs = useSelector((state) => state.tabs)
