@@ -17,6 +17,7 @@
     "@mui/x-date-pickers": "^5.0.5",
     "@mui/x-date-pickers-pro": "^5.0.5",
     "@reduxjs/toolkit": "^1.8.6",
+    "@types/react": "^18.2.30",
     "axios": "^0.27.2",
     "luxon": "^2.5.0",
     "material-ui-popup-state": "^4.0.2",
@@ -44,6 +45,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "typescript": "^5.2.2"
   }
 }
