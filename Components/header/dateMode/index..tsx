@@ -4,12 +4,14 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import styles from "./styles.module.css";
+import { Box } from "@mui/material";
+import sxStyle from "./sxStyle.sx";
 
 function StaticDatePickerDemo(): JSX.Element {
   const [value, setValue] = useState<Date | null>(new Date());
 
   return (
-    <div className={styles.dateMode}>
+    <Box sx={sxStyle.dateMode}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
@@ -21,7 +23,7 @@ function StaticDatePickerDemo(): JSX.Element {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-    </div>
+    </Box>
   );
 }
 

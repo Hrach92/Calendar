@@ -80,7 +80,7 @@ export const Features = createSlice({
         hourEvents: hourEvents.length > 0 ? [...hourEvents] : [],
       };
     },
-    getLocaleDate: (state, action) => {
+    getLocaleDate: (state) => {
       state.month = {
         ...state.months.find((v) => v.id === new Date().getMonth() + 1),
       };

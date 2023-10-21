@@ -187,3 +187,20 @@ export const useInput = (initialInput: any) => {
 export const onOpenBar = (state?: boolean) => {
   return !state;
 };
+
+export const dateConverter = (
+  year: number,
+  monthNumber: number,
+  day: number
+) => {
+  return () => {
+    const newId = moment(
+      `${year}${monthNumber}${day > 9 ? day : `0${day}`}`
+    ).format("YYYYMMDD");
+    const currentDay =
+      moment(newId).format("YYYYMMDD") === moment().format("YYYYMMDD");
+    const days = dayList(year, monthNumber);
+
+    return { newId, currentDay, days };
+  };
+};

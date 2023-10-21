@@ -1,0 +1,51 @@
+const sxStyle = {
+  description: {
+    position: "absolute",
+    width: "300px",
+    borderRadius: "5px",
+    boxShadow: "0 0 5px rgba(0, 0, 0, 0.19)",
+    height: "150px",
+    top: "150px",
+    backgroundColor: "white",
+    left: "250px",
+    zIndex: "10",
+    fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+  },
+  edit: {
+    position: "absolute",
+    right: "65px",
+    top: "11px",
+    fontSize: "22px",
+    zIndex: "7",
+    color: "rgb(130, 130, 136)",
+    cursor: "pointer",
+  },
+  deleteBtn: {
+    position: "absolute",
+    right: "35px",
+    top: "10px",
+    fontSize: "24px",
+    zIndex: "7",
+    color: "rgb(130, 130, 136)",
+    cursor: "pointer",
+  },
+  closeDes: {
+    position: "absolute",
+    right: "8px",
+    top: "12px",
+    fontSize: "22px",
+    zIndex: "7",
+    color: "rgb(130, 130, 136)",
+    cursor: "pointer",
+  },
+  changeBtn: {
+    position: "absolute",
+    right: "105px",
+    cursor: "pointer",
+  },
+  title: {
+    margin: "10px",
+    width: "200px",
+  },
+};
+export default sxStyle;
