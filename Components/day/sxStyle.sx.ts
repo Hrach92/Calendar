@@ -7,7 +7,7 @@ const sxStyle = {
     flexWrap: "wrap",
     height: "580px",
     overflow: "auto",
-    "&::webkit_scrollbar": {
+    "&::-webkit-scrollbar": {
       width: "0px",
     },
   },
@@ -20,7 +20,7 @@ const sxStyle = {
     flexWrap: "wrap",
     height: "580px",
     overflow: "auto",
-    "&::webkit_scrollbar": {
+    "&::-webkit-scrollbar": {
       width: "0px",
     },
   },
@@ -37,6 +37,14 @@ const sxStyle = {
     right: "65px",
     backgroundColor: "rgb(221, 221, 236)",
     zIndex: "-5",
+  },
+  dayContainer: {
+    position: "relative",
+    marginTop: "40px",
+    left: "20px",
+    "&::-webkit-scrollbar": {
+      width: "0px",
+    },
   },
 };
 export default sxStyle;

@@ -46,7 +46,7 @@ function Header() {
       >
         <Image src={"/icons8-add-67.png"} height={52} width={52} />
       </Box>
-      {open ? (
+      {/*       {open ? (
         <Box className={table.lnbEvents}>
           <Link href={"/events"}>
             <Box
@@ -67,7 +67,7 @@ function Header() {
             Tasks
           </Box>
         </Box>
-      ) : null}
+      ) : null} */}
       <Box className={styles.logo}>
         <Image src={"/icons8-google-calendar-48.png"} height={60} width={60} />
         <Box className={styles.logoCurrent}>{new Date().getDate()}</Box>

@@ -204,3 +204,4 @@ export const dateConverter = (
     return { newId, currentDay, days };
   };
 };
+export const margin = `${parseInt(moment().format("mm")) * 0.8}px`;
