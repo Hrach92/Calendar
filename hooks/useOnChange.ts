@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface UseOnChangeTypes {
   text?: string;
@@ -7,7 +7,11 @@ interface UseOnChangeTypes {
 }
 
 const useOnChange = (defaultValue = ""): UseOnChangeTypes => {
-  const [text, setText] = useState(defaultValue);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    setText(defaultValue);
+  }, [setText, defaultValue]);
 
   const onChange = useCallback(({ target }: any) => setText(target.value), []);
 
