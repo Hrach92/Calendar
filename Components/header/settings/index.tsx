@@ -5,7 +5,7 @@ import sxStyle from "./sxStyle.sx";
 
 function Settings(): JSX.Element {
   return (
-    <Box sx={sxStyle.settingsComponent}>
+    <Box sx={sxStyle.container}>
       <SettingsIcon sx={sxStyle.settings} />
     </Box>
   );

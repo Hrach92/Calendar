@@ -10,9 +10,9 @@ interface UseBooleanTypes {
 const useBoolean = (defaultValue = false): UseBooleanTypes => {
   const [open, setOpen] = useState(defaultValue);
 
-  const onOpen = useCallback(() => setOpen(true), []);
-  const onClose = useCallback(() => setOpen(false), []);
-  const setToggle = useCallback(() => setOpen((prev) => !prev), []);
+  const onOpen = useCallback(() => setOpen(true), [setOpen]);
+  const onClose = useCallback(() => setOpen(false), [setOpen]);
+  const setToggle = useCallback(() => setOpen((prev) => !prev), [setOpen]);
 
   return {
     open,

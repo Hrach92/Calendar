@@ -1,8 +1,6 @@
 const sxStyle = {
-  supportComponent: {
-    position: "absolute",
-    top: "10px",
-    right: "275px",
+  container: {
+    height: "24px",
   },
   support: {
     color: "rgb(92, 83, 83)",

@@ -1,8 +1,6 @@
 const sxStyle = {
-  searchComponent: {
-    position: "absolute",
-    top: "10px",
-    right: "320px",
+  container: {
+    height: "24px",
   },
   search: {
     color: "rgb(92, 83, 83)",

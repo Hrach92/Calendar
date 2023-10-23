@@ -1,11 +1,8 @@
 const sxStyle = {
   leftRight: {
-    position: "absolute",
     display: "flex",
     flexDirection: "row",
-    margin: "8px 335px",
     "@media screen and (width<=700px)": {
-      position: "absolute",
       margin: "6px 180px",
     },
   },

@@ -6,7 +6,7 @@ import sxStyle from "./sxStyle.sx";
 
 function Support() {
   return (
-    <Box sx={sxStyle.supportComponent}>
+    <Box sx={sxStyle.container}>
       <HelpOutlineIcon sx={sxStyle.support} />
     </Box>
   );

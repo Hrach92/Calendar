@@ -13,7 +13,7 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import React, { memo, useEffect, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { dayList, host } from "./instance";
+import { currentDay, dayList, host } from "./instance";
 import moment, { weekdaysMin } from "moment";
 import { AiOutlineCheck } from "react-icons/ai";
 import { closeColor, closeCreate } from "../store/reducer/tabReducer";
@@ -132,8 +132,8 @@ function LeftNavBar() {
           })}
         </div>
         {days.map(({ dayNumber, id, monthNumber, monthId }) => {
-          let current =
-            moment(`${id}`).format("YYYYMMDD") === moment().format("YYYYMMDD");
+          let current = currentDay(id);
+
           return (
             <Link
               key={id}
@@ -165,7 +165,7 @@ function LeftNavBar() {
           );
         })}
       </div>
-      <div className={table.mycalendar}>
+      <div className={table.myCalendar}>
         <div
           className={table.myCalendarSettings}
           onClick={() => {

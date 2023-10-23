@@ -1,45 +1,49 @@
 import moment, { weekdaysMin } from "moment";
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.css";
 import { dayList } from "../../instance";
 import {
+  SampleData,
   setDay,
   setMode,
   setMonth,
 } from "../../../store/reducer/sampleReducer";
+import WeekDays from "../../smallCalendar/weekDays";
+import { Box } from "@mui/material";
+import sxStyle from "./sxStyle.sx";
 
-function YearComponent({ numberOfMonth, title }: any): JSX.Element {
-  const state = useSelector((state) => (state as any).sampleData) /*
-    Const tabs = useSelector(state => state.tabs)*/,
-    bar = useSelector((state) => (state as any).openBar),
-    dispatch = useDispatch(),
-    days = useMemo(() => {
-      return dayList(state.year, numberOfMonth);
-    }, [state.month, numberOfMonth]);
+function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
+  const { month, year } = useSelector(SampleData);
+  const dispatch = useDispatch();
+
+  const days = useMemo(() => {
+    return dayList(year, numberOfMonth);
+  }, [month, numberOfMonth]);
+
+  const dayStyle = useCallback(
+    (id: string, dayNumber: number) => {
+      const date = new Date();
+      return year === date.getFullYear() &&
+        moment(id).format("MM") === `${date.getMonth() + 1}` &&
+        dayNumber === date.getDate()
+        ? sxStyle.currentDay
+        : sxStyle.monthDay;
+    },
+    [year]
+  );
+
   return (
-    <div style={bar.leftBarOpen ? { margin: "0" } : {}}>
-      <div className={styles.monthTitle}>{title}</div>
-      <div className={styles.monthWeekDay}>
-        {weekdaysMin().map((day, i) => {
-          return (
-            <div style={{ width: "30px" }} key={i}>
-              {day}
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.monthDaysForYear}>
+    <Box sx={sxStyle.container} key={key}>
+      <Box sx={sxStyle.title}>{title}</Box>
+      <WeekDays />
+      <Box sx={sxStyle.month}>
         {days.map(({ dayNumber, id, monthId }) => {
+          const sx = dayStyle(id, dayNumber);
           return (
-            <div
+            <Box
               key={id}
-              style={
-                moment(`${id}`).format("MM") !== numberOfMonth
-                  ? { color: "grey", margin: `0 ${bar.leftBarOpen ? 2 : 3}px` }
-                  : { margin: `0 ${bar.leftBarOpen ? 2 : 3}px` }
-              }
               onClick={() => {
                 return (
                   dispatch(setDay(dayNumber)),
@@ -47,22 +51,16 @@ function YearComponent({ numberOfMonth, title }: any): JSX.Element {
                   dispatch(setMode("day"))
                 );
               }}
-              className={
-                state.year === new Date().getFullYear() &&
-                moment(id).format("MM") === `${new Date().getMonth() + 1}` &&
-                dayNumber === new Date().getDate()
-                  ? styles.currentDay
-                  : styles.monthDay
-              }
+              sx={sx}
             >
-              <Link href={`/day/${state.year}/${monthId}/${dayNumber}`}>
+              <Link href={`/day/${year}/${monthId}/${dayNumber}`}>
                 {dayNumber}
               </Link>
-            </div>
+            </Box>
           );
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

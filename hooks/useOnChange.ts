@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 interface UseOnChangeTypes {
   text?: string;
   onChange?: ({ target }: any) => void;
-  setText?: (state: string | ((initialState: string) => string)) => void;
+  setText: (state: string | ((initialState: string) => string)) => void;
 }
 
 const useOnChange = (defaultValue = ""): UseOnChangeTypes => {

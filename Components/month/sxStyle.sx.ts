@@ -1,7 +1,8 @@
 const sxStyle = {
-  cntainer: {
+  container: {
     display: "flex",
     flexDirection: "column",
+    height: "calc(100vh - 54px)",
   },
   box: {
     display: "grid",

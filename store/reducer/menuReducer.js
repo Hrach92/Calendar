@@ -10,7 +10,6 @@ export const BarReducer = createSlice({
   initialState,
   reducers: {
     leftMenuBarOpen: (state, action) => {
-      console.log(action.payload, 455);
       state.leftBarOpen = action.payload;
     },
     rightMenuBarOpen: (state, action) => {

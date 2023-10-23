@@ -2,28 +2,30 @@ import styles from "../Table.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setNotesOpen } from "../../store/reducer/sampleReducer";
-import { host, setEvents, useInput } from "../instance";
+import { SampleData, setNotesOpen } from "../../store/reducer/sampleReducer";
+import { host, setEvents } from "../instance";
 import SelectHour from "../selectionOfHours/hours";
 import RightSelection from "../selectionOfHours/rightSelection";
 import { IoTimeOutline } from "react-icons/io5";
 
 import moment from "moment";
 import SmallCalendar from "../smallCalendar";
+import useOnChange from "../../hooks/useOnChange";
+import { Input } from "@mui/material";
 
 function MyNotes({ date }: any) {
-  const state = useSelector((state) => (state as any).sampleData),
-    dispatch = useDispatch(),
-    [hourModeDis, setHourModeDis] = useState(false),
-    [dateRange, setDateRange] = useState(false),
-    [dates, setDates] = useState({
-      year: date.year,
-      month: date.monthNumber,
-      monthShortName: "",
-      day: date.dayNumber,
-      dayName: "",
-    }),
-    input = useInput("");
+  const { time, openNotes } = useSelector(SampleData);
+  const dispatch = useDispatch();
+  const [hourModeDis, setHourModeDis] = useState(false);
+  const [dateRange, setDateRange] = useState(false);
+  const [dates, setDates] = useState({
+    year: date.year,
+    month: date.monthNumber,
+    monthShortName: "",
+    day: date.dayNumber,
+    dayName: "",
+  });
+  const { text, onChange } = useOnChange();
 
   const postEvents = (e: any, post: any) => {
     e.preventDefault();
@@ -35,10 +37,7 @@ function MyNotes({ date }: any) {
     );
   };
   return (
-    <div
-      className={styles.notes}
-      style={state.openNotes ? {} : { display: "none" }}
-    >
+    <div className={styles.notes} style={openNotes ? {} : { display: "none" }}>
       <div
         className={styles.closeBtn}
         onClick={() => {
@@ -51,9 +50,10 @@ function MyNotes({ date }: any) {
       >
         <IoCloseSharp />
       </div>
-      <input
+      <Input
         type={"text"}
-        {...input}
+        value={text}
+        onChange={onChange}
         className={styles.noteInput}
         placeholder={"Add Title and Time"}
       />
@@ -115,7 +115,7 @@ function MyNotes({ date }: any) {
                   start_time: "",
                   time: 0,
                   hour_mode: false,
-                  title: input.value ? input.value : "No title",
+                  title: text ? text : "No title",
                   date_id: date.id,
                   year: date.year,
                   month: date.month,
@@ -128,19 +128,19 @@ function MyNotes({ date }: any) {
                 })
               : postEvents(e, {
                   hour_mode: true,
-                  title: input.value ? input.value : "No title",
+                  title: text || "No title",
                   date_id: date.id,
                   year: date.year,
                   month: date.month,
-                  eventstart: Math.min(state.time.rightId, state.time.leftId)
-                    ? Math.min(state.time.rightId, state.time.leftId)
+                  eventstart: Math.min(time.rightId, time.leftId)
+                    ? Math.min(time.rightId, time.leftId)
                     : 9,
-                  time: state.time.hour ? state.time.hour : 9,
-                  start_time: state.time.left
-                    ? `${state.time.left}${state.time.leftFormat}`
+                  time: time.hour ? time.hour : 9,
+                  start_time: time.left
+                    ? `${time.left}${time.leftFormat}`
                     : "9AM",
-                  end_time: state.time.right
-                    ? `${state.time.right}${state.time.rightFormat}`
+                  end_time: time.right
+                    ? `${time.right}${time.rightFormat}`
                     : "6PM",
                   date_range: 1,
                   data: {},

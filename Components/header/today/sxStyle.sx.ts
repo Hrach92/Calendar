@@ -1,9 +1,7 @@
 const sxStyle = {
   btn: {
-    position: "absolute",
     width: "65px",
     height: "32px",
-    margin: "6px 250px",
     border: "1px solid rgba(151, 133, 133, 0.5)",
     borderRadius: "3px",
     backgroundColor: "rgba(255, 253, 253, 0.5)",

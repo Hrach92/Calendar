@@ -2,29 +2,19 @@ import { memo } from "react";
 import { useSelector } from "react-redux";
 import YearComponent from "./component";
 import styles from "./styles.module.css";
+import { Box } from "@mui/material";
+import sxStyle from "./sxStyle.sx";
+import { SampleData } from "../../store/reducer/sampleReducer";
 
 function Year(): JSX.Element {
-  const bar = useSelector((state) => (state as any).openBar),
-    state = useSelector((state) => (state as any).sampleData);
+  const { months } = useSelector(SampleData);
+
   return (
-    <div
-      className={
-        bar.leftBarOpen ? styles.containerWithBarOpen : styles.container
-      }
-    >
-      {state.months.map(({ title, id, monthNumber }: any) => (
-        <div
-          key={id}
-          className={
-            bar.leftBarOpen
-              ? styles.yearComponentWithBarOpen
-              : styles.yearComponent
-          }
-        >
-          <YearComponent numberOfMonth={monthNumber} title={title} />
-        </div>
+    <Box sx={sxStyle.container}>
+      {months.map(({ title, id, monthNumber }: any) => (
+        <YearComponent numberOfMonth={monthNumber} title={title} key={id} />
       ))}
-    </div>
+    </Box>
   );
 }
 export default memo(Year);

@@ -1,6 +1,6 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dayList, host } from "../instance";
+import { currentDay, dayList, host } from "../instance";
 import {
   SampleData,
   addEvents,
@@ -43,41 +43,19 @@ function Month(): JSX.Element {
   }, [year, month.monthNumber]);
 
   return (
-    <Box onClick={() => dispatch(closeSmall(false))} sx={sxStyle.cntainer}>
+    <Box onClick={() => dispatch(closeSmall(false))} sx={sxStyle.container}>
       {openNotes && dayDate && <MyNotes date={dayDate} />}
       <WeekDays />
       <Box sx={sxStyle.box}>
-        {days.map(
-          ({ dayNumber, id, month, monthNumber, monthId, nameOfDay, year }) => {
-            let current =
-              moment(`${id}`).format("YYYYMMDD") ===
-              moment().format("YYYYMMDD");
-            return (
-              <Box
-                key={id}
-                onClick={() => {
-                  return (
-                    openNotes
-                      ? dispatch(setNotesOpen(false))
-                      : dispatch(setNotesOpen(true)),
-                    dispatch(descriptionOpen(false)),
-                    setDayDate({
-                      dayNumber,
-                      id,
-                      month,
-                      monthNumber,
-                      monthId,
-                      nameOfDay,
-                      year,
-                    })
-                  );
-                }}
-                sx={sxStyle.day}
-              >
-                <Link href={`/day/${year}/${+monthId}/${dayNumber}`}>
-                  <Box sx={sxStyle.dayContainer}>
-                    <Box
-                      /*                       onClick={() => {
+        {days.map(({ dayNumber, id, month, monthId, year }) => {
+          let current = currentDay(id);
+
+          return (
+            <Box key={id} sx={sxStyle.day}>
+              <Link href={`/day/${year}/${+monthId}/${dayNumber}`}>
+                <Box sx={sxStyle.dayContainer}>
+                  <Box
+                    /*                       onClick={() => {
                         return (
                           dispatch(setDay(+dayNumber)),
                           dispatch(setMonth(+monthId)),
@@ -96,16 +74,15 @@ function Month(): JSX.Element {
                         );
                       }} */
 
-                      sx={[current && sxStyle.currentDay, sxStyle.number]}
-                    >
-                      {dayNumber === 1 && month} {dayNumber}
-                    </Box>
+                    sx={[current && sxStyle.currentDay, sxStyle.number]}
+                  >
+                    {dayNumber === 1 && month} {dayNumber}
                   </Box>
-                </Link>
-              </Box>
-            );
-          }
-        )}
+                </Box>
+              </Link>
+            </Box>
+          );
+        })}
       </Box>
 
       {description && <ChangeEvents description={descriptions} />}

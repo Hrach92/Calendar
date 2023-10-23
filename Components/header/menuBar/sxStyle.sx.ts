@@ -1,6 +1,5 @@
 const sxStyle = {
   menu: {
-    position: "absolute",
     top: " 0px",
     left: "10px",
     width: "44px",

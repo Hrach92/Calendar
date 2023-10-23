@@ -11,7 +11,7 @@ function Search(): JSX.Element {
    *     const dispatch = useDispatch()
    */
   return (
-    <Box sx={sxStyle.searchComponent}>
+    <Box sx={sxStyle.container}>
       <SearchIcon sx={sxStyle.search} />
     </Box>
   );
