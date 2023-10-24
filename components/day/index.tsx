@@ -54,7 +54,7 @@ function Day(): JSX.Element {
           />
         )}
       </Box>
-      {openNotes && <MyNotes date={currentDate} />}
+      {openNotes && <MyNotes />}
       <Box sx={sxStyle.rightLine} />
       <Box sx={sxStyle.dayContainer}>
         <DayEvents

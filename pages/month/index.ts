@@ -1,2 +1,2 @@
-import Month from "../../Components/month";
+import Month from "../../components/month";
 export default Month;

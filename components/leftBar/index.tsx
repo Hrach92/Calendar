@@ -1,91 +1,64 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  SampleData,
   setColor,
   setColors,
   setDay,
   setMode,
   setMonth,
   setYear,
-} from "../store/reducer/sampleReducer";
-import table from "./Table.module.css";
+} from "../../store/reducer/sampleReducer";
+import table from "../Table.module.css";
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import React, { memo, useEffect, useState } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { currentDay, dayList, host } from "./instance";
+import { currentDay, dayList, host } from "../instance";
 import moment, { weekdaysMin } from "moment";
 import { AiOutlineCheck } from "react-icons/ai";
-import { closeColor, closeCreate } from "../store/reducer/tabReducer";
+import { Tabs, closeColor, closeCreate } from "../../store/reducer/tabReducer";
 import { useMemo } from "react";
+import { BarOpen } from "../../store/reducer/menuReducer";
+import { Box, Button } from "@mui/material";
 
-function LeftNavBar() {
-  const state = useSelector((state) => (state as any).sampleData),
-    tabs = useSelector((state) => (state as any).tabs),
-    bars = useSelector((state) => (state as any).openBar),
-    dispatch = useDispatch(),
-    [date, setDate] = useState({
-      year: state.year,
-      month: state.month.monthNumber,
-    }),
-    days = useMemo(() => {
-      return dayList(date.year, date.month);
-    }, [date.year, date.month]);
-  useEffect(() => {
-    host.get("/color").then((res) => dispatch(setColors(res.data)));
-  }, [state.color.color]);
-  const setCurrentColor = (e: any, id: any) => {
-    e.preventDefault();
-    host
-      .get(`/color/${id}`)
-      .then(
-        (res) => (dispatch(setColor(res.data)), dispatch(closeColor(false)))
-      );
-  };
+function LeftBar() {
+  const { month, year, color, colors } = useSelector(SampleData);
+  const { create } = useSelector(Tabs);
+  const bars = useSelector(BarOpen);
+  const dispatch = useDispatch();
+
+  const [date, setDate] = useState({
+    year: year,
+    month: month.monthNumber,
+  });
+
+  const days = useMemo(() => {
+    return dayList(date.year, date.month);
+  }, [date.year, date.month]);
+
   return (
-    <div
-      className={table.lnb}
-      onClick={() => {
-        tabs.create ? dispatch(closeCreate(false)) : null;
-      }}
-      style={bars.leftBarOpen ? {} : { display: "none" }}
-    >
-      <button
-        className={table.lnbBtn}
-        onClick={() => {
-          return tabs.create
-            ? dispatch(closeCreate(false))
-            : dispatch(closeCreate(true));
-        }}
-      >
-        Create
-      </button>
-      {tabs.create ? (
-        <div className={table.lnbEvents}>
+    <Box className={table.lnb}>
+      <Button className={table.lnbBtn}>Create</Button>
+      {create ? (
+        <Box className={table.lnbEvents}>
           <Link href={"/events"}>
-            <div
-              onClick={() => {
-                return dispatch(closeCreate(false));
-              }}
-              className={table.lnbEvent}
-            >
-              Events
-            </div>
+            <Box className={table.lnbEvent}>Events</Box>
           </Link>
-          <div
+          <Box
             onClick={() => {
               return dispatch(closeCreate(false));
             }}
             className={table.lnbEvent}
           >
             Tasks
-          </div>
-        </div>
+          </Box>
+        </Box>
       ) : null}
-      <div className={table.lmbTitle}>
+      <Box className={table.lmbTitle}>
         {moment(`${date.year}${date.month}`).format("MMMM")} {date.year}
-      </div>
-      <div
+      </Box>
+      <Box
         className={table.lnbLeftBtn}
         onClick={() => {
           return setDate({
@@ -102,8 +75,8 @@ function LeftNavBar() {
         }}
       >
         <ChevronLeftOutlinedIcon />
-      </div>
-      <div
+      </Box>
+      <Box
         className={table.lnbRightBtn}
         onClick={() => {
           return setDate({
@@ -120,26 +93,23 @@ function LeftNavBar() {
         }}
       >
         <ChevronRightOutlinedIcon />
-      </div>
-      <div className={table.leftBarMonth}>
-        <div className={table.smallWeekDays}>
+      </Box>
+      <Box className={table.leftBarMonth}>
+        <Box className={table.smallWeekDays}>
           {weekdaysMin().map((day) => {
             return (
-              <div key={Math.random()} className={table.smallWeekDay}>
+              <Box key={Math.random()} className={table.smallWeekDay}>
                 {day}
-              </div>
+              </Box>
             );
           })}
-        </div>
+        </Box>
         {days.map(({ dayNumber, id, monthNumber, monthId }) => {
           let current = currentDay(id);
 
           return (
-            <Link
-              key={id}
-              href={`/${"day"}/${state.year}/${monthId}/${dayNumber}`}
-            >
-              <div
+            <Link key={id} href={`/${"day"}/${year}/${monthId}/${dayNumber}`}>
+              <Box
                 onClick={() => {
                   return (
                     dispatch(setDay(dayNumber)),
@@ -160,51 +130,50 @@ function LeftNavBar() {
                 }
               >
                 {dayNumber}
-              </div>
+              </Box>
             </Link>
           );
         })}
-      </div>
-      <div className={table.myCalendar}>
-        <div
+      </Box>
+      <Box className={table.myCalendar}>
+        <Box
           className={table.myCalendarSettings}
           onClick={() => {
-            return tabs.color
+            return color
               ? dispatch(closeColor(false))
               : dispatch(closeColor(true));
           }}
         >
-          <div
+          <Box
             className={table.calendarColor}
-            style={{ backgroundColor: state.color.color }}
-          ></div>
-          <div className={table.myCalendarTitle}>My Calendar</div>
+            style={{ backgroundColor: color.color }}
+          ></Box>
+          <Box className={table.myCalendarTitle}>My Calendar</Box>
           <BiDotsVerticalRounded className={table.dots} />
-        </div>
-      </div>
-      {tabs.color ? (
-        <div className={table.palette}>
-          {state.colors.map(({ color, id }: any, i: number) => {
+        </Box>
+      </Box>
+      {color ? (
+        <Box className={table.palette}>
+          {colors.map(({ color, id }: any, i: number) => {
             return (
-              <div
+              <Box
                 key={i}
                 className={table.colors}
-                onClick={(e) => setCurrentColor(e, id)}
                 style={{ backgroundColor: color }}
               >
-                {state.color.color === color ? (
+                {color.color === color ? (
                   <AiOutlineCheck
                     style={{ margin: "3px 2px", color: "white" }}
                   />
                 ) : (
                   ""
                 )}
-              </div>
+              </Box>
             );
           })}
-        </div>
+        </Box>
       ) : null}
-    </div>
+    </Box>
   );
 }
-export default memo(LeftNavBar);
+export default memo(LeftBar);

@@ -4,7 +4,7 @@ import {
   hoursOfDay,
   months,
   years,
-} from "../../Components/instance";
+} from "../../components/instance";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -22,6 +22,7 @@ const initialState = {
     { img: "/notes.png", title: "Notes", id: 2 },
     { img: "/contact.png", title: "Contacts", id: 3 },
     { img: "/google-maps.png", title: "Maps", id: 4 },
+    { img: "/button.png", title: "Add", id: 5 },
   ],
   events: {
     dayEvents: [],

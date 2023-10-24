@@ -44,7 +44,7 @@ function Month(): JSX.Element {
 
   return (
     <Box onClick={() => dispatch(closeSmall(false))} sx={sxStyle.container}>
-      {openNotes && dayDate && <MyNotes date={dayDate} />}
+      {openNotes && dayDate && <MyNotes />}
       <WeekDays />
       <Box sx={sxStyle.box}>
         {days.map(({ dayNumber, id, month, monthId, year }) => {
@@ -54,28 +54,7 @@ function Month(): JSX.Element {
             <Box key={id} sx={sxStyle.day}>
               <Link href={`/day/${year}/${+monthId}/${dayNumber}`}>
                 <Box sx={sxStyle.dayContainer}>
-                  <Box
-                    /*                       onClick={() => {
-                        return (
-                          dispatch(setDay(+dayNumber)),
-                          dispatch(setMonth(+monthId)),
-                          dispatch(setMode("day")),
-                          dispatch(
-                            getEventDate({
-                              dayNumber,
-                              id,
-                              month,
-                              monthNumber,
-                              monthId,
-                              nameOfDay,
-                              year,
-                            })
-                          )
-                        );
-                      }} */
-
-                    sx={[current && sxStyle.currentDay, sxStyle.number]}
-                  >
+                  <Box sx={[current && sxStyle.currentDay, sxStyle.number]}>
                     {dayNumber === 1 && month} {dayNumber}
                   </Box>
                 </Box>

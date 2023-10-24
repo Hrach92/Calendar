@@ -2,5 +2,5 @@
 
 /* Const socket = io.connect("http://localhost:3001") */
 
-import Month from "../Components/month";
+import Month from "../components/month";
 export default Month;

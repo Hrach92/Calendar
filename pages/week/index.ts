@@ -1,2 +1,2 @@
-import Week from "../../Components/week";
+import Week from "../../components/week";
 export default Week;

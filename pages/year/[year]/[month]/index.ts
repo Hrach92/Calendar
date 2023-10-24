@@ -1,2 +1,2 @@
-import Year from "../../../../Components/year";
+import Year from "../../../../components/year";
 export default Year;

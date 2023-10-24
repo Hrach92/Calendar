@@ -1,14 +1,14 @@
-import LeftNavBar from "./LeftNavBar";
+import LeftBar from "./leftBar";
 import React, { memo } from "react";
 import Header from "./header";
-import RightNavBar from "./rightNavBar";
+import RightBar from "./rightBar";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <LeftNavBar />
-      <RightNavBar />
+      <LeftBar />
+      <RightBar />
       {children}
     </>
   );
