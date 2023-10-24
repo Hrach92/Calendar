@@ -2,9 +2,10 @@ import { Box, Typography } from "@mui/material";
 import { memo, useCallback, useMemo } from "react";
 import sxStyle from "./sxStyle.sx";
 import moment from "moment";
-import { useSelector } from "react-redux";
+
 import { SampleData } from "../../../store/reducer/sampleReducer";
-import { weekDays } from "../../instance";
+import { weekDays } from "../../../dependencies/instance";
+import { useSelector } from "../../../hooks/redux";
 
 type HourTypes = {
   days: any;

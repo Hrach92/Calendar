@@ -1,21 +1,16 @@
-import { useSelector } from "react-redux";
 import { SampleData } from "../../store/reducer/sampleReducer";
 
 import React, { memo, useState } from "react";
-import { dayList } from "../instance";
+import { dayList } from "../../dependencies/instance";
 import { useMemo } from "react";
 import { Box, Modal } from "@mui/material";
 import Header from "./header";
 import sxStyle from "./sxStyle.sx";
 import WeekDays from "./weekDays";
 import MonthDays from "./monthDays";
+import { useSelector } from "../../hooks/redux";
 
-type CalendarTypes = {
-  open?: boolean;
-  onClose?: () => void;
-};
-
-function SmallCalendar({ open = false, onClose }: CalendarTypes) {
+function SmallCalendar({ sx }: any) {
   const { month, year } = useSelector(SampleData);
 
   const [date, setDate] = useState({
@@ -28,15 +23,13 @@ function SmallCalendar({ open = false, onClose }: CalendarTypes) {
   }, [date.year, date.month]);
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box sx={sxStyle.container}>
-        <Header date={date} setDate={setDate} />
-        <Box sx={sxStyle.month}>
-          <WeekDays />
-          <MonthDays days={days} year={year} date={date} />
-        </Box>
+    <Box sx={[sxStyle.container, sx]}>
+      <Header date={date} setDate={setDate} />
+      <Box sx={sxStyle.month}>
+        <WeekDays />
+        <MonthDays days={days} year={year} date={date} />
       </Box>
-    </Modal>
+    </Box>
   );
 }
 export default memo(SmallCalendar);

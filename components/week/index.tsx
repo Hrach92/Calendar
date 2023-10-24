@@ -1,7 +1,7 @@
 import moment, { weekdaysShort } from "moment";
-import { useSelector } from "react-redux";
+
 import React, { memo, useCallback, useMemo } from "react";
-import { weekDays } from "../instance";
+import { weekDays } from "../../dependencies/instance";
 import { SampleData } from "../../store/reducer/sampleReducer";
 import { Box, Typography } from "@mui/material";
 import sxStyle from "./sxStyle.sx";

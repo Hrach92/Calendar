@@ -1,19 +1,10 @@
-import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
-import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
-import Link from "next/link";
 import React, { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./styles.module.css";
-import {
-  SampleData,
-  setDay,
-  setMonth,
-  setYear,
-} from "../../../store/reducer/sampleReducer";
+import { SampleData } from "../../../store/reducer/sampleReducer";
 import Month from "./month";
 import Day from "./day";
 import Week from "./week";
 import Year from "./year";
+import { useSelector } from "../../../hooks/redux";
 
 function LeftNRight(): JSX.Element {
   const { mode } = useSelector(SampleData);

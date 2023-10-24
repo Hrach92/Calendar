@@ -2,8 +2,9 @@ import { Box, Typography } from "@mui/material";
 import { memo, useCallback } from "react";
 import sxStyle from "./sxStyle.sx";
 import moment, { weekdaysShort } from "moment";
-import { useSelector } from "react-redux";
+
 import { SampleData } from "../../../store/reducer/sampleReducer";
+import { useSelector } from "../../../hooks/redux";
 
 function Days() {
   const { year, day, month } = useSelector(SampleData);

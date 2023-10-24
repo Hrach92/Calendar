@@ -1,7 +1,7 @@
-import { memo, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { dateConverter, host } from "../instance";
-import { SampleData, addEvents } from "../../store/reducer/sampleReducer";
+import { memo, useMemo, useState } from "react";
+
+import { dateConverter } from "../../dependencies/instance";
+import { SampleData } from "../../store/reducer/sampleReducer";
 import { Tabs } from "../../store/reducer/tabReducer";
 import MyNotes from "../myNotes";
 import ChangeEvents from "../changeEvents";
@@ -12,6 +12,7 @@ import Events from "./events";
 import CurrentDay from "./currentDay";
 import DayEvents from "./container";
 import Hours from "./hours";
+import { useSelector } from "../../hooks/redux";
 
 function Day(): JSX.Element {
   const { day, month, year, events, openNotes, color, hoursOfDay } =
@@ -19,11 +20,10 @@ function Day(): JSX.Element {
   const { description } = useSelector(Tabs);
   const { leftBarOpen } = useSelector(BarOpen);
 
-  const dispatch = useDispatch();
   const [descriptions, setDescriptions] = useState({});
 
   const { newId, currentDay, days } = useMemo(
-    dateConverter(year, month.monthNumber, day),
+    dateConverter(year, month.monthNumber as number, day),
     []
   );
 
@@ -36,12 +36,6 @@ function Day(): JSX.Element {
     () => days.find((v) => v.id === newId) || {},
     [days, newId]
   );
-
-  useEffect(() => {
-    host.get("event").then((res) => {
-      dispatch(addEvents(res.data));
-    });
-  }, [openNotes, description]);
 
   return (
     <Box sx={style}>
@@ -60,7 +54,7 @@ function Day(): JSX.Element {
         <DayEvents
           events={events.hourEvents}
           newId={newId}
-          color={color.color}
+          color={color.color as string}
           setDescriptions={setDescriptions}
         />
         <Hours currentDay={currentDay} hours={hoursOfDay} />

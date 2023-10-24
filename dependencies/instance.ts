@@ -210,3 +210,19 @@ export const margin = `${parseInt(moment().format("mm")) * 0.8}px`;
 export const currentDay = (id: string) => {
   return moment(`${id}`).format("YYYYMMDD") === moment().format("YYYYMMDD");
 };
+
+export const prev = (month: any, year: any) => ({
+  year: month === "01" ? year - 1 : year,
+  month:
+    month === "01"
+      ? "12"
+      : `${+month - 1 > 9 ? +month - 1 : "0" + (+month - 1)}`,
+});
+
+export const next = (month: any, year: any) => ({
+  year: month === "12" ? year + 1 : year,
+  month:
+    month === "12"
+      ? "01"
+      : `${+month + 1 > 9 ? +month + 1 : "0" + (+month + 1)}`,
+});

@@ -5,6 +5,7 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import sxStyle from "./sxStyle.sx";
 import moment from "moment";
+import { next, prev } from "../../../dependencies/instance";
 
 type ButtonTypes = {
   date?: any;
@@ -13,24 +14,14 @@ type ButtonTypes = {
 function Header({ date, setDate }: ButtonTypes) {
   const { month, year } = date;
 
-  const prev = useCallback(() => {
-    setDate({
-      year: month === "01" ? year - 1 : year,
-      month:
-        month === "01"
-          ? "12"
-          : `${+month - 1 > 9 ? +month - 1 : "0" + (+month - 1)}`,
-    });
+  const prevMonth = useCallback(() => {
+    const state = prev(month, year);
+    setDate(state);
   }, [month, year]);
 
-  const next = useCallback(() => {
-    setDate({
-      year: month === "12" ? year + 1 : year,
-      month:
-        month === "12"
-          ? "01"
-          : `${+month + 1 > 9 ? +month + 1 : "0" + (+month + 1)}`,
-    });
+  const nextMonth = useCallback(() => {
+    const state = next(month, year);
+    setDate(state);
   }, [month, year]);
 
   const monthName = moment(`${year}${month}`).format("MMMM");
@@ -42,10 +33,10 @@ function Header({ date, setDate }: ButtonTypes) {
       </Box>
 
       <Box sx={sxStyle.buttons}>
-        <Box sx={sxStyle.btn} onClick={prev}>
+        <Box sx={sxStyle.btn} onClick={prevMonth}>
           <ChevronLeftOutlinedIcon />
         </Box>
-        <Box sx={sxStyle.btn} onClick={next}>
+        <Box sx={sxStyle.btn} onClick={nextMonth}>
           <ChevronRightOutlinedIcon />
         </Box>
       </Box>

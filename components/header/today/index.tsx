@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback } from "react";
 import {
   SampleData,
@@ -8,6 +7,7 @@ import {
 import { Button } from "@mui/material";
 
 import sxStyle from "./sxStyle.sx";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 function Today() {
   const dispatch = useDispatch();

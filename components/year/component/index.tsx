@@ -1,9 +1,7 @@
-import moment, { weekdaysMin } from "moment";
+import moment from "moment";
 import React, { memo, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./styles.module.css";
-import { dayList } from "../../instance";
+import { dayList } from "../../../dependencies/instance";
 import {
   SampleData,
   setDay,
@@ -13,6 +11,7 @@ import {
 import WeekDays from "../../smallCalendar/weekDays";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
   const { month, year } = useSelector(SampleData);

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const initialState = {
   rightBarOpen: false,
@@ -18,5 +19,5 @@ export const BarReducer = createSlice({
   },
 });
 export const { leftMenuBarOpen, rightMenuBarOpen } = BarReducer.actions;
-export const BarOpen = (state) => state.openBar;
-export default BarReducer;
+export const BarOpen = (state: RootState) => state.openBar;
+export default BarReducer.reducer;

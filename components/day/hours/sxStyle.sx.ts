@@ -1,4 +1,4 @@
-import { margin } from "../../instance";
+import { margin } from "../../../dependencies/instance";
 
 const sxStyle = {
   dayRow: {

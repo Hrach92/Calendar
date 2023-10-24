@@ -3,12 +3,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
 import { Box, Typography } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import useOnChange from "../../../hooks/useOnChange";
+import { useSelector } from "../../../hooks/redux";
 
 function SelectMode() {
   const { mode, day, month, year } = useSelector(SampleData);

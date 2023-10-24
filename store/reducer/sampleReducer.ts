@@ -4,14 +4,17 @@ import {
   hoursOfDay,
   months,
   years,
-} from "../../components/instance";
+} from "../../dependencies/instance";
 import { createSlice } from "@reduxjs/toolkit";
+import { MonthTypes, SampleReducerTypes } from "./types";
+import { RootState } from "../store";
 
-const initialState = {
+const initialState: SampleReducerTypes = {
   years: years,
   year: new Date().getFullYear(),
   months: months,
-  month: { ...months.find((v) => v.id === new Date().getMonth() + 1) },
+  month: (months.find((v) => v.id === new Date().getMonth() + 1) ||
+    {}) as MonthTypes,
   count: count,
   mode: "month",
   day: new Date().getDate(),
@@ -62,10 +65,12 @@ export const Features = createSlice({
       state.day = action.payload;
     },
     addEvents: (state, action) => {
-      let dayEvents = [];
-      let arr = action.payload.filter(({ hour_mode }) => hour_mode === false);
-      arr.map((v) => {
-        let eventWithId = v.data.events.map((item, i) => {
+      let dayEvents: any[] = [];
+      let arr = action.payload.filter(
+        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === false
+      );
+      arr.map((v: any) => {
+        let eventWithId = v.data.events.map((item: any, i: number) => {
           if (i === 0) {
             return { ...item, title: v.title, id: v.id, mainTitle: v.title };
           }
@@ -73,8 +78,8 @@ export const Features = createSlice({
         });
         dayEvents.push(...eventWithId);
       });
-      let hourEvents = action.payload.filter(
-        ({ hour_mode }) => hour_mode === true
+      let hourEvents: any[] = action.payload.filter(
+        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === true
       );
       state.events = {
         dayEvents: arr.length > 0 ? [...dayEvents] : [],
@@ -122,8 +127,8 @@ export const {
   setColors,
   setHourMode,
 } = Features.actions;
-export const SampleData = (state) => state.sampleData;
-export default Features;
+export const SampleData = (state: RootState) => state.sampleData;
+export default Features.reducer;
 /* const sampleReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MONTH:

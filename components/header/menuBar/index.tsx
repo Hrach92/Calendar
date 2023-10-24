@@ -1,12 +1,12 @@
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import styles from "./styles.module.css";
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { BarOpen, leftMenuBarOpen } from "../../../store/reducer/menuReducer";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import useBoolean from "../../../hooks/useBoolean";
-import { onOpenBar } from "../../instance";
+import { onOpenBar } from "../../../dependencies/instance";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 function MenuBar() {
   const { leftBarOpen } = useSelector(BarOpen);

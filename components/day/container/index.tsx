@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { memo, useCallback, useMemo } from "react";
 import sxStyle from "./sxStyle.sx";
-import { useDispatch, useSelector } from "react-redux";
 import { Tabs, descriptionOpen } from "../../../store/reducer/tabReducer";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 type DayEventsTypes = {
   events?: any;

@@ -1,9 +1,9 @@
 import { memo, useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Tabs, descriptionOpen } from "../../../store/reducer/tabReducer";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import sxStyle from "./sxStyle.sx";
 import { Box } from "@mui/material";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 type EventTypes = {
   events?: any;
@@ -35,7 +35,7 @@ function Events({
       key={id}
       onClick={onClick}
       sx={sxStyle.event}
-      style={{ backgroundColor: color }}
+      style={{ backgroundColor: color as string }}
     >
       {title}
     </Box>

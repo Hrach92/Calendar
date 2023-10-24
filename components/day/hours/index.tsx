@@ -1,10 +1,10 @@
 import { memo, useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { setNotesOpen } from "../../../store/reducer/sampleReducer";
 import { BarOpen } from "../../../store/reducer/menuReducer";
 import moment from "moment";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
+import { useDispatch, useSelector } from "../../../hooks/redux";
 
 type HourTypes = {
   hours?: any;

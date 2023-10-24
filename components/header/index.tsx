@@ -1,21 +1,17 @@
 import SelectMode from "./mode";
 import Search from "./search";
 import Settings from "./settings";
-import styles from "./styles.module.css";
 import MenuBar from "./menuBar";
 import Today from "./today";
 import LeftNRight from "./leftRight";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 import Title from "./title";
 import React, { memo } from "react";
 import Support from "./support";
-
-import { SampleData } from "../../store/reducer/sampleReducer";
-import { Tabs } from "../../store/reducer/tabReducer";
+import ModalContainer from "../modal";
 
 import SmallCalendar from "../smallCalendar";
-import { Box, Modal } from "@mui/material";
+import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import VisibleDate from "./date";
 import useBoolean from "../../hooks/useBoolean";
@@ -50,7 +46,11 @@ function Header() {
         <Settings />
         <SelectMode />
       </Box>
-      {open && <SmallCalendar open={open} onClose={onClose} />}
+      {open && (
+        <ModalContainer open={open} onClose={onClose}>
+          <SmallCalendar />
+        </ModalContainer>
+      )}
     </Box>
   );
 }

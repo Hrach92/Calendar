@@ -5,7 +5,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { MdOutlineCheck } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { descriptionOpen } from "../../store/reducer/tabReducer";
-import { host } from "../instance";
+import { host } from "../../dependencies/instance";
 import sxStyle from "./sxStyle.sx";
 import { Box, Input, Typography } from "@mui/material";
 import useBoolean from "../../hooks/useBoolean";

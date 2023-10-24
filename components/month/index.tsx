@@ -1,21 +1,7 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { currentDay, dayList, host } from "../instance";
-import {
-  SampleData,
-  addEvents,
-  getEventDate,
-  setDay,
-  setMode,
-  setMonth,
-  setNotesOpen,
-} from "../../store/reducer/sampleReducer";
-import {
-  Tabs,
-  closeSmall,
-  descriptionOpen,
-} from "../../store/reducer/tabReducer";
-import moment, { weekdaysShort } from "moment";
+import { memo, useEffect, useMemo, useState } from "react";
+import { currentDay, dayList, host } from "../../dependencies/instance";
+import { SampleData, addEvents } from "../../store/reducer/sampleReducer";
+import { Tabs, closeSmall } from "../../store/reducer/tabReducer";
 import Link from "next/link";
 import MyNotes from "../myNotes";
 import ChangeEvents from "../changeEvents";
@@ -23,14 +9,16 @@ import { Box } from "@mui/material";
 import { BarOpen } from "../../store/reducer/menuReducer";
 import WeekDays from "./weekDays";
 import sxStyle from "./sxStyle.sx";
+import { useDispatch, useSelector } from "../../hooks/redux";
+import { MonthTypes } from "../../store/reducer/types";
 
 function Month(): JSX.Element {
-  const { openNotes, year, month, color, events } = useSelector(SampleData);
+  const { openNotes, year, month } = useSelector(SampleData);
   const { description } = useSelector(Tabs);
-  const { leftBarOpen } = useSelector(BarOpen);
-  const [descriptions, setDescriptions] = useState({});
+  const [descriptions] = useState({});
   const dispatch = useDispatch();
-  const [dayDate, setDayDate] = useState({});
+  const [dayDate] = useState({});
+  const { monthNumber }: MonthTypes = month;
 
   useEffect(() => {
     host.get("event").then((res) => {
@@ -39,8 +27,8 @@ function Month(): JSX.Element {
   }, [openNotes, description]);
 
   const days = useMemo(() => {
-    return dayList(year, month.monthNumber);
-  }, [year, month.monthNumber]);
+    return dayList(year, monthNumber);
+  }, [year, monthNumber]);
 
   return (
     <Box onClick={() => dispatch(closeSmall(false))} sx={sxStyle.container}>
