@@ -5,13 +5,12 @@ export type ObjectTypes = {
 export type MonthTypes = {
   title: string;
   dayCount: number;
-  monthNumber: number;
+  monthNumber: string;
   id: number;
 };
 export type SampleReducerTypes = {
   years: any[];
   year: number;
-  months: any[];
   month: MonthTypes;
   count: ObjectTypes;
   mode: string;

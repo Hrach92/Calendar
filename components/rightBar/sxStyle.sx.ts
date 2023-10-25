@@ -1,4 +1,7 @@
 const sxStyle = {
+  bar: {
+    maxWidth: "50px",
+  },
   button: {
     position: "fixed",
     right: "10px",

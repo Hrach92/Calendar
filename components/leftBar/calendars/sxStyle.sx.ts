@@ -6,10 +6,9 @@ const sxStyle = {
     alignItems: "center",
     borderRadius: "10px",
     padding: "10px",
-    border: "1px solid red",
     background: "white",
-
     marginTop: "5px",
+    width: "100%",
   },
   color: {
     width: "15px",
@@ -20,7 +19,12 @@ const sxStyle = {
   title: {
     fontSize: "16px",
     fontWeight: "500",
+    color: "rgb(93, 93, 99)",
   },
-  dots: { fontSize: "18px", fontWeight: "500" },
+  dots: {
+    fontSize: "18px",
+    fontWeight: "500",
+    color: "rgb(93, 93, 99)",
+  },
 };
 export default sxStyle;

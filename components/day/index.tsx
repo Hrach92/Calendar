@@ -5,7 +5,6 @@ import { SampleData } from "../../store/reducer/sampleReducer";
 import { Tabs } from "../../store/reducer/tabReducer";
 import MyNotes from "../myNotes";
 import ChangeEvents from "../changeEvents";
-import { BarOpen } from "../../store/reducer/menuReducer";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import Events from "./events";
@@ -18,7 +17,6 @@ function Day(): JSX.Element {
   const { day, month, year, events, openNotes, color, hoursOfDay } =
     useSelector(SampleData);
   const { description } = useSelector(Tabs);
-  const { leftBarOpen } = useSelector(BarOpen);
 
   const [descriptions, setDescriptions] = useState({});
 
@@ -27,18 +25,13 @@ function Day(): JSX.Element {
     []
   );
 
-  const style = useMemo(
-    () => (leftBarOpen ? sxStyle.containerWithOpenBar : sxStyle.container),
-    [leftBarOpen]
-  );
-
   const currentDate = useMemo(
     () => days.find((v) => v.id === newId) || {},
     [days, newId]
   );
 
   return (
-    <Box sx={style}>
+    <Box sx={sxStyle.container}>
       <Box sx={sxStyle.eventList}>
         {events.dayEvents.length !== 0 && (
           <Events
@@ -49,7 +42,6 @@ function Day(): JSX.Element {
         )}
       </Box>
       {openNotes && <MyNotes />}
-      <Box sx={sxStyle.rightLine} />
       <Box sx={sxStyle.dayContainer}>
         <DayEvents
           events={events.hourEvents}

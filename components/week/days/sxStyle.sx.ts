@@ -17,6 +17,10 @@ const sxStyle = {
     margin: "0 5px",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.19)",
   },
+  current: {
+    color: "white",
+    backgroundColor: "rgb(117, 107, 192)",
+  },
   name: {
     width: "40px",
   },

@@ -5,9 +5,10 @@ const sxStyle = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    height: "44px",
+    height: "50px",
     padding: "0 10px",
     justifyContent: "space-between",
+    borderBottom: "1px solid rgb(221, 221, 236)",
   },
   item: {
     display: "flex",
@@ -21,12 +22,12 @@ const sxStyle = {
     height: "40px",
     color: "rgb(36, 36, 241)",
   },
-  logoCurrent: {
+  day: {
     position: "absolute",
     width: "14px",
     height: "16px",
     marginLeft: "13px",
-    top: "12px",
+    top: "16px",
     backgroundColor: "rgb(248, 244, 244)",
     fontSize: "12px",
     paddingTop: "1px",
@@ -49,9 +50,6 @@ const sxStyle = {
     left: "340px",
     borderRadius: "5px",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.19)",
-    animation: "small",
-    animationDuration: "0.1s",
-    animationIterationCount: "1",
   },
 };
 export default sxStyle;

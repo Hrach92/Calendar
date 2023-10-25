@@ -2,17 +2,23 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo, useCallback } from "react";
-import { SampleData, setYear } from "../../../../store/reducer/sampleReducer";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
 import sxStyle from "../sxStyle.sx";
 import { useDispatch, useSelector } from "../../../../hooks/redux";
 
 const Year = (): JSX.Element => {
-  const { month, mode, year } = useSelector(SampleData);
+  const { day, month, mode, year } = useSelector(SampleData);
   const dispatch = useDispatch();
 
-  const prev = useCallback(() => dispatch(setYear(year - 1)), [setYear, year]);
-  const next = useCallback(() => dispatch(setYear(year + 1)), [setYear, year]);
+  const prev = useCallback(
+    () => dispatch(setDate({ day, month, year: year - 1 })),
+    [setDate, year]
+  );
+  const next = useCallback(
+    () => dispatch(setDate({ day, month, year: year + 1 })),
+    [setDate, year]
+  );
 
   return (
     <Box sx={sxStyle.leftRight}>

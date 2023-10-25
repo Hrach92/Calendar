@@ -6,6 +6,7 @@ import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import styles from "./styles.module.css";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
+import { Mode } from "../../../dependencies/types";
 
 function StaticDatePickerDemo(): JSX.Element {
   const [value, setValue] = useState<Date | null>(new Date());
@@ -15,7 +16,7 @@ function StaticDatePickerDemo(): JSX.Element {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
           displayStaticWrapperAs="desktop"
-          openTo="year"
+          openTo={Mode.YEAR}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

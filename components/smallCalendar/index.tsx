@@ -10,7 +10,7 @@ import WeekDays from "./weekDays";
 import MonthDays from "./monthDays";
 import { useSelector } from "../../hooks/redux";
 
-function SmallCalendar({ sx }: any) {
+function SmallCalendar({ sx, onClose }: any) {
   const { month, year } = useSelector(SampleData);
 
   const [date, setDate] = useState({
@@ -27,7 +27,7 @@ function SmallCalendar({ sx }: any) {
       <Header date={date} setDate={setDate} />
       <Box sx={sxStyle.month}>
         <WeekDays />
-        <MonthDays days={days} year={year} date={date} />
+        <MonthDays days={days} year={year} date={date} onClose={onClose} />
       </Box>
     </Box>
   );

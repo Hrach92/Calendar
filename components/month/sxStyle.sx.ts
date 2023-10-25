@@ -7,6 +7,7 @@ const sxStyle = {
   box: {
     display: "grid",
     gridTemplateColumns: "auto auto auto auto auto auto auto",
+    height: "100%",
   },
   number: {
     color: "black",

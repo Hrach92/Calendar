@@ -9,7 +9,7 @@ import Images from "./images";
 function RightBar() {
   const { open, setToggle } = useBoolean();
   return (
-    <Box>
+    <Box sx={sxStyle.bar}>
       {open && <Images />}
       <Box sx={sxStyle.button} onClick={setToggle}>
         {open ? <ChevronRightOutlinedIcon /> : <ChevronLeftOutlinedIcon />}

@@ -5,18 +5,19 @@ import Day from "./day";
 import Week from "./week";
 import Year from "./year";
 import { useSelector } from "../../../hooks/redux";
+import { Mode } from "../../../dependencies/types";
 
 function LeftNRight(): JSX.Element {
   const { mode } = useSelector(SampleData);
 
   switch (mode) {
-    case "month":
+    case Mode.MONTH:
       return <Month />;
-    case "day":
+    case Mode.DAY:
       return <Day />;
-    case "week":
+    case Mode.WEEK:
       return <Week />;
-    case "year":
+    case Mode.YEAR:
       return <Year />;
     default:
       return <Month />;

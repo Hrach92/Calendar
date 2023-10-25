@@ -2,12 +2,7 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo } from "react";
-import {
-  SampleData,
-  setDay,
-  setMonth,
-  setYear,
-} from "../../../../store/reducer/sampleReducer";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
 import sxStyle from "../sxStyle.sx";
 import { useSelector, useDispatch } from "../../../../hooks/redux";
@@ -26,14 +21,17 @@ const Month = (): JSX.Element => {
         <Box
           onClick={() => {
             if (month.id === 1) {
-              return dispatch(setMonth(12)), dispatch(setYear(year - 1));
+              dispatch(setDate({ day, month: 12, year: year - 1 }));
             } else if (month.id === 3 && day > 28) {
-              return (
-                dispatch(setDay(new Date(year, month.id - 1, 0).getDate())),
-                dispatch(setMonth(month.id - 1))
+              dispatch(
+                setDate({
+                  day: new Date(year, month.id - 1, 0).getDate(),
+                  month: month.id - 1,
+                  year,
+                })
               );
             } else {
-              return dispatch(setMonth(month.id - 1));
+              return dispatch(setDate({ day, month: month.id - 1, year }));
             }
           }}
           sx={sxStyle.btn}
@@ -49,14 +47,17 @@ const Month = (): JSX.Element => {
         <Box
           onClick={() => {
             if (month.id === 12) {
-              return dispatch(setMonth(1)), dispatch(setYear(year + 1));
+              dispatch(setDate({ day, month: 1, year: year + 1 }));
             } else if (month.id === 1 && day > 28) {
-              return (
-                dispatch(setDay(new Date(year, month.id + 1, 0).getDate())),
-                dispatch(setMonth(month.id + 1))
+              dispatch(
+                setDate({
+                  day: new Date(year, month.id + 1, 0).getDate(),
+                  month: month.id + 1,
+                  year,
+                })
               );
             } else {
-              return dispatch(setMonth(month.id + 1));
+              return dispatch(setDate({ day, month: month.id + 1, year }));
             }
           }}
           sx={sxStyle.btn}

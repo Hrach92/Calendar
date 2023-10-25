@@ -6,16 +6,20 @@ import Link from "next/link";
 
 import { Box, Typography } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
-import { SampleData } from "../../../store/reducer/sampleReducer";
+import { SampleData, setMode } from "../../../store/reducer/sampleReducer";
 import useOnChange from "../../../hooks/useOnChange";
-import { useSelector } from "../../../hooks/redux";
+import { useDispatch, useSelector } from "../../../hooks/redux";
+import { Mode } from "../../../dependencies/types";
 
 function SelectMode() {
   const { mode, day, month, year } = useSelector(SampleData);
-
+  const dispatch = useDispatch();
   const { text: value, setText } = useOnChange(mode);
+
   const handleChange = (event: SelectChangeEvent) => {
-    setText(event.target.value as string);
+    const chosenMode = event.target.value || "";
+    setText(chosenMode);
+    dispatch(setMode(chosenMode));
   };
 
   return (
@@ -27,27 +31,27 @@ function SelectMode() {
           onChange={handleChange}
           autoWidth
         >
-          <MenuItem value={"Day"} sx={sxStyle.menu}>
-            <Link href={`/day/${year}/${month.id}/${day}`}>
-              <Typography sx={sxStyle.item}>Day</Typography>
+          <MenuItem value={Mode.DAY} sx={sxStyle.menu}>
+            <Link href={`/${Mode.DAY}/${year}/${month.id}/${day}`}>
+              <Typography sx={sxStyle.item}>day</Typography>
             </Link>
           </MenuItem>
 
-          <MenuItem value={"Week"} sx={sxStyle.menu}>
-            <Link href={`/week/${year}/${month.id}/${day}`}>
-              <Typography sx={sxStyle.item}>Week</Typography>
+          <MenuItem value={Mode.WEEK} sx={sxStyle.menu}>
+            <Link href={`/${Mode.WEEK}/${year}/${month.id}/${day}`}>
+              <Typography sx={sxStyle.item}>week</Typography>
             </Link>
           </MenuItem>
 
-          <MenuItem value={"Month"} sx={sxStyle.menu}>
-            <Link href={`/month/${year}/${month.id}`}>
-              <Typography sx={sxStyle.item}>Month</Typography>
+          <MenuItem value={Mode.MONTH} sx={sxStyle.menu}>
+            <Link href={`/${Mode.MONTH}/${year}/${month.id}`}>
+              <Typography sx={sxStyle.item}>month</Typography>
             </Link>
           </MenuItem>
 
-          <MenuItem value={"Year"} sx={sxStyle.menu}>
-            <Link href={`/year/${year}/${month.id}`}>
-              <Typography sx={sxStyle.item}>Year</Typography>
+          <MenuItem value={Mode.YEAR} sx={sxStyle.menu}>
+            <Link href={`/${Mode.YEAR}/${year}/${month.id}`}>
+              <Typography sx={sxStyle.item}>year</Typography>
             </Link>
           </MenuItem>
         </Select>

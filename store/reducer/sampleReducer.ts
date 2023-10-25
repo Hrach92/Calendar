@@ -1,6 +1,8 @@
 import {
   count,
+  currentMonth,
   dayCount,
+  getCurrentMonth,
   hoursOfDay,
   months,
   years,
@@ -8,15 +10,14 @@ import {
 import { createSlice } from "@reduxjs/toolkit";
 import { MonthTypes, SampleReducerTypes } from "./types";
 import { RootState } from "../store";
+import { Mode } from "../../dependencies/types";
 
 const initialState: SampleReducerTypes = {
   years: years,
   year: new Date().getFullYear(),
-  months: months,
-  month: (months.find((v) => v.id === new Date().getMonth() + 1) ||
-    {}) as MonthTypes,
+  month: currentMonth,
   count: count,
-  mode: "month",
+  mode: Mode.MONTH,
   day: new Date().getDate(),
   hoursOfDay: hoursOfDay,
   dayCount: dayCount,
@@ -48,21 +49,24 @@ const initialState: SampleReducerTypes = {
   rooms: [],
   room: "",
 };
+
 export const Features = createSlice({
   name: "features",
   initialState,
   reducers: {
-    setMonth: (state, action) => {
-      state.month = { ...state.months.find((v) => v.id === action.payload) };
-    },
     setMode: (state, action) => {
       state.mode = action.payload;
     },
-    setYear: (state, action) => {
-      state.year = action.payload;
+    setDate: (state, action) => {
+      const { day, monthId, year } = action.payload;
+      state.month = getCurrentMonth(+monthId);
+      state.day = day;
+      state.year = year;
     },
-    setDay: (state, action) => {
-      state.day = action.payload;
+    getLocaleDate: (state) => {
+      state.month = getCurrentMonth(new Date().getMonth() + 1);
+      state.year = new Date().getFullYear();
+      state.day = new Date().getDate();
     },
     addEvents: (state, action) => {
       let dayEvents: any[] = [];
@@ -86,13 +90,6 @@ export const Features = createSlice({
         hourEvents: hourEvents.length > 0 ? [...hourEvents] : [],
       };
     },
-    getLocaleDate: (state) => {
-      state.month = {
-        ...state.months.find((v) => v.id === new Date().getMonth() + 1),
-      };
-      state.year = new Date().getFullYear();
-      state.day = new Date().getDate();
-    },
     getEventDate: (state, action) => {
       state.eventDate = action.payload;
     },
@@ -114,12 +111,10 @@ export const Features = createSlice({
   },
 });
 export const {
-  setMonth,
   setMode,
-  setYear,
-  setDay,
-  addEvents,
+  setDate,
   getLocaleDate,
+  addEvents,
   getEventDate,
   setNotesOpen,
   setTimeRange,

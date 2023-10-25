@@ -14,7 +14,7 @@ const sxStyle = {
     textAlign: "center",
     boxSizing: "border-box",
     border: "1px solid rgb(221, 221, 236)",
-    borderStyle: "solid solid none none",
+    borderStyle: "none solid none none",
     color: "rgb(92, 92, 95)",
     minWidth: "45px",
   },

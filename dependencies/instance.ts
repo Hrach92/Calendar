@@ -1,26 +1,15 @@
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
+import { MonthTypes } from "../store/reducer/types";
+import { Mode } from "./types";
 
 export const years = [
   ...Array(100)
     .fill(1950)
     .map((i, index) => i + index),
 ];
-export const months = [
-  { title: "January", dayCount: 35, monthNumber: "01", id: 1 },
-  { title: "February", dayCount: 35, monthNumber: "02", id: 2 },
-  { title: "March", dayCount: 35, monthNumber: "03", id: 3 },
-  { title: "April", dayCount: 35, monthNumber: "04", id: 4 },
-  { title: "May", dayCount: 35, monthNumber: "05", id: 5 },
-  { title: "June", dayCount: 35, monthNumber: "06", id: 6 },
-  { title: "July", dayCount: 35, monthNumber: "07", id: 7 },
-  { title: "August", dayCount: 35, monthNumber: "08", id: 8 },
-  { title: "September", dayCount: 35, monthNumber: "09", id: 9 },
-  { title: "October", dayCount: 35, monthNumber: "10", id: 10 },
-  { title: "November", dayCount: 35, monthNumber: "11", id: 11 },
-  { title: "December", dayCount: 35, monthNumber: "12", id: 12 },
-];
+
 export const dayCount = Array(35)
   .fill({})
   .map((item, i) => {
@@ -83,8 +72,10 @@ export const host = axios.create({
   baseURL: "http://localhost:3001",
 });
 export function dayList(year: number, month: number) {
-  const startDay = moment(`${year}${month}`).startOf("month").startOf("week"),
-    endDay = moment(`${year}${month}`).endOf("month").endOf("week"),
+  const startDay = moment(`${year}${month}`)
+      .startOf(Mode.MONTH)
+      .startOf(Mode.WEEK),
+    endDay = moment(`${year}${month}`).endOf(Mode.MONTH).endOf(Mode.WEEK),
     arr = [];
   while (!startDay.isAfter(endDay)) {
     arr.push({
@@ -96,7 +87,7 @@ export function dayList(year: number, month: number) {
       year: startDay.date(startDay.date()).format("YYYY"),
       nameOfDay: startDay.date(startDay.date()).format("ddd"),
     });
-    startDay.add(1, "day");
+    startDay.add(1, Mode.DAY);
   }
   return arr;
 }
@@ -140,8 +131,8 @@ export function weekDays(year: number, month: number, day: number) {
       item.hour = hour;
       item.format = format;
       item.day = moment(`${year}${month}${day > 9 ? day : `0${day}`}`)
-        .startOf("week")
-        .add((i % 8) - 1, "day")
+        .startOf(Mode.WEEK)
+        .add((i % 8) - 1, Mode.DAY)
         .format("YYYYMMDD");
       item.id = i;
       return { ...item };
@@ -155,16 +146,16 @@ export function setEvents(post: any) {
       .fill(post)
       .map((v, i, w) => {
         if (i === 0) {
-          v.date_id = moment(v.date_id).add(0, "day").format("YYYYMMDD");
+          v.date_id = moment(v.date_id).add(0, Mode.DAY).format("YYYYMMDD");
           v.eventDayStart = true;
           return { ...v };
         } else if (i === w.length - 1) {
-          v.date_id = moment(v.date_id).add(1, "day").format("YYYYMMDD");
+          v.date_id = moment(v.date_id).add(1, Mode.DAY).format("YYYYMMDD");
           v.eventDayStart = false;
           v.eventDayEnd = true;
           return { ...v, title: "" };
         }
-        v.date_id = moment(v.date_id).add(1, "day").format("YYYYMMDD");
+        v.date_id = moment(v.date_id).add(1, Mode.DAY).format("YYYYMMDD");
         v.eventDayStart = false;
         return { ...v, title: "" };
       });
@@ -226,3 +217,26 @@ export const next = (month: any, year: any) => ({
       ? "01"
       : `${+month + 1 > 9 ? +month + 1 : "0" + (+month + 1)}`,
 });
+
+export const months = [
+  { title: "January", dayCount: 35, monthNumber: "01", id: 1 },
+  { title: "February", dayCount: 35, monthNumber: "02", id: 2 },
+  { title: "March", dayCount: 35, monthNumber: "03", id: 3 },
+  { title: "April", dayCount: 35, monthNumber: "04", id: 4 },
+  { title: "May", dayCount: 35, monthNumber: "05", id: 5 },
+  { title: "June", dayCount: 35, monthNumber: "06", id: 6 },
+  { title: "July", dayCount: 35, monthNumber: "07", id: 7 },
+  { title: "August", dayCount: 35, monthNumber: "08", id: 8 },
+  { title: "September", dayCount: 35, monthNumber: "09", id: 9 },
+  { title: "October", dayCount: 35, monthNumber: "10", id: 10 },
+  { title: "November", dayCount: 35, monthNumber: "11", id: 11 },
+  { title: "December", dayCount: 35, monthNumber: "12", id: 12 },
+];
+
+export const currentMonth = (months.find(
+  ({ id }) => id === new Date().getMonth() + 1
+) || {}) as MonthTypes;
+
+export const getCurrentMonth = (monthId: number) => {
+  return months.find(({ id }) => id === monthId) || currentMonth;
+};

@@ -29,15 +29,6 @@ function DayEvents({
     height: `${48 * time}px`,
   });
 
-  const onClick = useCallback(
-    (event: any) => {
-      return description
-        ? (setDescriptions({}), dispatch(descriptionOpen(false)))
-        : (setDescriptions(event), dispatch(descriptionOpen(true)));
-    },
-    [description, event]
-  );
-
   return (
     <Box sx={sxStyle.eventContainer}>
       {events.length !== 0 &&
@@ -45,7 +36,6 @@ function DayEvents({
           const { end_time, start_time, eventstart, time, title, id } = event;
           return (
             <Box
-              onClick={onClick}
               key={id}
               sx={sxStyle.hourEvents}
               style={style(eventstart, time)}

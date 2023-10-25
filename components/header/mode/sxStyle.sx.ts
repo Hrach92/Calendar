@@ -13,10 +13,12 @@ const sxStyle = {
     height: "100%",
     minWidth: "100%",
     padding: "6px 16px",
+    textTransform: "capitalize",
   },
   select: {
     height: 31,
     maxWidth: 85,
+    minWidth: "80px",
     borderRadius: "4px",
     boxSizing: "border box",
     paddingRight: "1px",

@@ -2,12 +2,7 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo, useMemo } from "react";
-import {
-  SampleData,
-  setDay,
-  setMonth,
-  setYear,
-} from "../../../../store/reducer/sampleReducer";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
 import sxStyle from "../sxStyle.sx";
 import { useSelector, useDispatch } from "../../../../hooks/redux";
@@ -45,21 +40,14 @@ const Week = (): JSX.Element => {
         <Box
           onClick={() => {
             if (currentDate <= 7 && month.id === 1) {
-              return (
-                dispatch(setMonth(12)),
-                dispatch(setDay(prevDate)),
-                dispatch(setYear(year - 1))
-              );
+              dispatch(setDate({ day: prevDate, month: 12, year: year - 1 }));
             } else if (prevDate > 21) {
-              return (
-                dispatch(setDay(prevDate)), dispatch(setMonth(month.id - 1))
-              );
+              dispatch(setDate({ day: prevDate, month: month.id - 1, year }));
             } else if (prevDate > 24) {
-              return (
-                dispatch(setDay(prevDate)), dispatch(setMonth(month.id - 1))
-              );
+              dispatch(setDate({ day: prevDate, month: month.id - 1, year }));
+            } else {
+              dispatch(setDate({ day: day - 7, month, year }));
             }
-            return dispatch(setDay(day - 7));
           }}
           sx={sxStyle.btn}
         >
@@ -76,17 +64,12 @@ const Week = (): JSX.Element => {
         <Box
           onClick={() => {
             if (currentDate > 24 && month.id === 12) {
-              return (
-                dispatch(setDay(nextDate)),
-                dispatch(setMonth(1)),
-                dispatch(setYear(year + 1))
-              );
+              dispatch(setDate({ day: nextDate, month: 1, year: year + 1 }));
             } else if (nextDate <= 7) {
-              return (
-                dispatch(setDay(nextDate)), dispatch(setMonth(month.id + 1))
-              );
+              dispatch(setDate({ day: nextDate, month: month.id + 1, year }));
+            } else {
+              dispatch(setDate({ day: day + 7, month, year }));
             }
-            return dispatch(setDay(day + 7));
           }}
           sx={sxStyle.btn}
         >

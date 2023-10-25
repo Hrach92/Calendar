@@ -14,7 +14,6 @@ const sxStyle = {
     position: "absolute",
     marginTop: `${parseInt(moment().format("mm")) * 0.8}px`,
     height: "1px",
-    border: "1px solid red",
   },
   hour: {
     boxSizing: "border-box",

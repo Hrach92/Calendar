@@ -2,6 +2,8 @@ const sxStyle = {
   container: {
     borderRadius: "10px",
     boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.2)",
+    maxWidth: "210px",
+    maxHeight: "185px",
   },
   title: {
     padding: "5px 0 0 10px",
