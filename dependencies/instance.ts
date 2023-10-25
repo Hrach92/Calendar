@@ -71,7 +71,7 @@ export const count = {
 export const host = axios.create({
   baseURL: "http://localhost:3001",
 });
-export function dayList(year: number, month: number) {
+export function dayList(year: number, month: string) {
   const startDay = moment(`${year}${month}`)
       .startOf(Mode.MONTH)
       .startOf(Mode.WEEK),
@@ -181,7 +181,7 @@ export const onOpenBar = (state?: boolean) => {
 
 export const dateConverter = (
   year: number,
-  monthNumber: number,
+  monthNumber: string,
   day: number
 ) => {
   return () => {
@@ -190,7 +190,7 @@ export const dateConverter = (
     ).format("YYYYMMDD");
     const currentDay =
       moment(newId).format("YYYYMMDD") === moment().format("YYYYMMDD");
-    const days = dayList(year, monthNumber);
+    const days = dayList(year, `${monthNumber}`);
 
     return { newId, currentDay, days };
   };

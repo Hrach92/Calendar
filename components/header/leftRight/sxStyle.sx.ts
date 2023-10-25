@@ -16,6 +16,7 @@ const sxStyle = {
     fontSize: "13px",
     borderRadius: "50%",
     border: "0",
+    cursor: "pointer",
     color: "rgb(60,64,67)",
     "&:hover": {
       backgroundColor: "rgb(233, 214, 214,0.5)",

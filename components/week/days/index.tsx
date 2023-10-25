@@ -9,24 +9,26 @@ import { Mode } from "../../../dependencies/types";
 
 function Days() {
   const { year, day, month } = useSelector(SampleData);
-  console.log(month);
 
-  const current = useCallback((i: number) => {
-    const dayShort = moment(
-      `${year}${month.monthNumber}${day > 9 ? day : `0${day}`}`
-    )
-      .startOf(Mode.WEEK)
-      .add(i, Mode.DAY)
-      .date();
+  const current = useCallback(
+    (i: number) => {
+      const dayShort = moment(
+        `${year}${month.monthNumber}${day > 9 ? day : `0${day}`}`
+      )
+        .startOf(Mode.WEEK)
+        .add(i, Mode.DAY)
+        .date();
 
-    const number = moment(
-      `${year}${month.monthNumber}${dayShort > 9 ? dayShort : `0${dayShort}`}`
-    ).format("YYYYMMDD");
-    return {
-      currentDay: number === moment().format("YYYYMMDD"),
-      day: dayShort,
-    };
-  }, []);
+      const number = moment(
+        `${year}${month.monthNumber}${dayShort > 9 ? dayShort : `0${dayShort}`}`
+      ).format("YYYYMMDD");
+      return {
+        currentDay: number === moment().format("YYYYMMDD"),
+        day: dayShort,
+      };
+    },
+    [day, year, month]
+  );
 
   const days = weekdaysShort();
 
@@ -34,7 +36,6 @@ function Days() {
     <Box sx={sxStyle.container}>
       {days.map((weekday: string, i: number) => {
         const isCurrent = current(i);
-        console.log(isCurrent);
 
         return (
           <Box

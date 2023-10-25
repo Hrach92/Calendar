@@ -14,12 +14,12 @@ const Day = (): JSX.Element => {
   const { id }: MonthTypes = month;
   const nextDay = useMemo(
     () => new Date(year, id - 1, day + 1).getDate(),
-    [day, month, year]
+    [day, id, year]
   );
 
   const nextMonth = useMemo(
     () => new Date(year, id - 1, day + 1).getMonth(),
-    [day, month, year]
+    [day, id, year]
   );
 
   return (
@@ -48,12 +48,15 @@ const Day = (): JSX.Element => {
                 })
               );
             } else if (day === 1) {
-              return setDate({
-                day: new Date(year, id - 1, 0).getDate(),
-                month: id - 1,
-              });
+              dispatch(
+                setDate({
+                  day: new Date(year, id - 1, 0).getDate(),
+                  month: id - 1,
+                  year,
+                })
+              );
             } else {
-              return dispatch(setDate({ day: day - 1, month, year }));
+              dispatch(setDate({ day: day - 1, month: id, year }));
             }
           }}
           sx={sxStyle.btn}
@@ -73,7 +76,7 @@ const Day = (): JSX.Element => {
             } else if (nextDay === 1) {
               dispatch(setDate({ day: 1, month: id + 1, year }));
             } else {
-              dispatch(setDate({ day: day + 1, month, year }));
+              dispatch(setDate({ day: day + 1, month: id, year }));
             }
           }}
           sx={sxStyle.btn}

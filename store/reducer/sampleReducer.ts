@@ -8,7 +8,7 @@ import {
   years,
 } from "../../dependencies/instance";
 import { createSlice } from "@reduxjs/toolkit";
-import { MonthTypes, SampleReducerTypes } from "./types";
+import { SampleReducerTypes } from "./types";
 import { RootState } from "../store";
 import { Mode } from "../../dependencies/types";
 
@@ -58,8 +58,10 @@ export const Features = createSlice({
       state.mode = action.payload;
     },
     setDate: (state, action) => {
-      const { day, monthId, year } = action.payload;
-      state.month = getCurrentMonth(+monthId);
+      const { day, month, year } = action.payload;
+      console.log(action.payload);
+
+      state.month = getCurrentMonth(+month);
       state.day = day;
       state.year = year;
     },

@@ -1,5 +1,5 @@
 const sxStyle = {
-  current: {
+  day: {
     position: "absolute",
     textAlign: "center",
     width: "50px",

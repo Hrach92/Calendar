@@ -26,7 +26,7 @@ function Month(): JSX.Element {
   const { monthNumber }: MonthTypes = month;
 
   const days = useMemo(() => {
-    return dayList(year, +monthNumber);
+    return dayList(year, monthNumber);
   }, [year, monthNumber]);
 
   const setChoseDate = useCallback(

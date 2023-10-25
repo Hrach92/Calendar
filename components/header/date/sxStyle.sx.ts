@@ -9,6 +9,7 @@ const sxStyle = {
     color: "rgb(60,64,67)",
     cursor: "pointer",
     fontFamily: "Google Sans,'Roboto Arial',sans-serif",
+    gap: "5px",
   },
 };
 export default sxStyle;

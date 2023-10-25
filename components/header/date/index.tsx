@@ -9,11 +9,15 @@ type CalendarTypes = {
   onOpen?: () => void;
 };
 function VisibleDate({ onOpen = () => {} }: CalendarTypes) {
-  const { day, month, year } = useSelector(SampleData);
+  const {
+    day,
+    month: { title } = { title: "" },
+    year,
+  } = useSelector(SampleData);
 
   return (
     <Box sx={sxStyle.showDate} onClick={onOpen}>
-      <Typography>{month.title as string}</Typography>
+      <Typography>{title}</Typography>
       <Typography>{day},</Typography>
       <Typography>{year}</Typography>
     </Box>

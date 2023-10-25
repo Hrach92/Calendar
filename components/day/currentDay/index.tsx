@@ -13,11 +13,9 @@ type DayTypes = {
 function CurrentDay({ currentDay, newId }: DayTypes) {
   const { day } = useSelector(SampleData);
 
-  const color = useMemo(() => (currentDay ? sxStyle.background : {}), []);
-
   const style = useMemo(() => {
-    return [sxStyle.current, color];
-  }, []);
+    return [sxStyle.day, currentDay ? sxStyle.background : {}];
+  }, [currentDay]);
 
   const dayName = useMemo(() => moment(newId).format("ddd"), []);
 

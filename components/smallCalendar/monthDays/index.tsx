@@ -1,9 +1,11 @@
-import { FC, memo } from "react";
+import { FC, memo, useCallback } from "react";
 import { currentDay } from "../../../dependencies/instance";
 import Link from "next/link";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import { Mode } from "../../../dependencies/types";
+import { useDispatch } from "../../../hooks/redux";
+import { setDate, setMode } from "../../../store/reducer/sampleReducer";
 
 type DayTypes = {
   days: any;
@@ -19,6 +21,16 @@ const MonthDays: FC<DayTypes> = ({
   onClose = () => {},
 }) => {
   const { month } = date;
+  const dispatch = useDispatch();
+
+  const goToChosenDay = useCallback(
+    (day: number, month: number, year: number) => {
+      dispatch(setDate({ day, month, year }));
+      dispatch(setMode(Mode.DAY));
+      onClose();
+    },
+    []
+  );
 
   return (
     <>
@@ -27,7 +39,7 @@ const MonthDays: FC<DayTypes> = ({
         return (
           <Link key={id} href={`/${Mode.DAY}/${year}/${monthId}/${dayNumber}`}>
             <Box
-              onClick={onClose}
+              onClick={() => goToChosenDay(dayNumber, monthNumber, year)}
               sx={[
                 sxStyle.day,
                 current && sxStyle.current,

@@ -31,7 +31,7 @@ const Month = (): JSX.Element => {
                 })
               );
             } else {
-              return dispatch(setDate({ day, month: month.id - 1, year }));
+              dispatch(setDate({ day, month: month.id - 1, year }));
             }
           }}
           sx={sxStyle.btn}
