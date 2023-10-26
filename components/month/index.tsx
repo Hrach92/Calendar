@@ -15,6 +15,7 @@ import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../hooks/redux";
 import { MonthTypes } from "../../store/reducer/types";
 import { Mode } from "../../dependencies/types";
+import Trans from "../trans";
 
 function Month(): JSX.Element {
   const { openNotes, year, month } = useSelector(SampleData);
@@ -53,7 +54,8 @@ function Month(): JSX.Element {
                   onClick={() => setChoseDate(dayNumber, monthId, year)}
                 >
                   <Box sx={[current && sxStyle.currentDay, sxStyle.number]}>
-                    {dayNumber === 1 && month} {dayNumber}
+                    {dayNumber === 1 && <Trans word={`monthsShort.${month}`} />}
+                    {dayNumber}
                   </Box>
                 </Box>
               </Link>

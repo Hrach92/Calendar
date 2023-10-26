@@ -10,6 +10,7 @@ import { SampleData, setMode } from "../../../store/reducer/sampleReducer";
 import useOnChange from "../../../hooks/useOnChange";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
+import Trans from "../../trans";
 
 function SelectMode() {
   const { mode, day, month, year } = useSelector(SampleData);
@@ -33,25 +34,33 @@ function SelectMode() {
         >
           <MenuItem value={Mode.DAY} sx={sxStyle.menu}>
             <Link href={`/${Mode.DAY}/${year}/${month.id}/${day}`}>
-              <Typography sx={sxStyle.item}>day</Typography>
+              <Typography sx={sxStyle.item}>
+                <Trans word={Mode.DAY} />
+              </Typography>
             </Link>
           </MenuItem>
 
           <MenuItem value={Mode.WEEK} sx={sxStyle.menu}>
             <Link href={`/${Mode.WEEK}/${year}/${month.id}/${day}`}>
-              <Typography sx={sxStyle.item}>week</Typography>
+              <Typography sx={sxStyle.item}>
+                <Trans word={Mode.WEEK} />
+              </Typography>
             </Link>
           </MenuItem>
 
           <MenuItem value={Mode.MONTH} sx={sxStyle.menu}>
             <Link href={`/${Mode.MONTH}/${year}/${month.id}`}>
-              <Typography sx={sxStyle.item}>month</Typography>
+              <Typography sx={sxStyle.item}>
+                <Trans word={Mode.MONTH} />
+              </Typography>
             </Link>
           </MenuItem>
 
           <MenuItem value={Mode.YEAR} sx={sxStyle.menu}>
             <Link href={`/${Mode.YEAR}/${year}/${month.id}`}>
-              <Typography sx={sxStyle.item}>year</Typography>
+              <Typography sx={sxStyle.item}>
+                <Trans word={Mode.YEAR} />
+              </Typography>
             </Link>
           </MenuItem>
         </Select>

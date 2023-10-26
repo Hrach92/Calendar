@@ -14,7 +14,7 @@ function Hours() {
   const { year, day, month } = useSelector(SampleData);
 
   const hours = useMemo(() => {
-    return weekDays(year, month.monthNumber, day);
+    return weekDays(year, +month.monthNumber, day);
   }, [year, month.monthNumber, day]);
 
   const dayTime = useCallback((hour: string, format: string, day: string) => {

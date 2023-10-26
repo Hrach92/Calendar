@@ -6,6 +6,7 @@ import moment, { weekdaysShort } from "moment";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import { useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
+import Trans from "../../trans";
 
 function Days() {
   const { year, day, month } = useSelector(SampleData);
@@ -42,7 +43,9 @@ function Days() {
             key={weekday}
             sx={[sxStyle.day, isCurrent.currentDay && sxStyle.current]}
           >
-            <Typography sx={sxStyle.name}>{weekday}</Typography>
+            <Typography sx={sxStyle.name}>
+              <Trans word={`days.${weekday}`} />
+            </Typography>
             <Typography>{isCurrent.day}</Typography>
           </Box>
         );

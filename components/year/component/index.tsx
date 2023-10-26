@@ -12,6 +12,7 @@ import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
 import { useRouter } from "next/router";
+import Trans from "../../trans";
 
 function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
   const { month, year, day } = useSelector(SampleData);
@@ -42,7 +43,9 @@ function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
 
   return (
     <Box sx={sxStyle.container} key={key} onClick={goToDayPage}>
-      <Box sx={sxStyle.title}>{title}</Box>
+      <Box sx={sxStyle.title}>
+        <Trans word={`months.${title}`} />
+      </Box>
       <WeekDays />
       <Box sx={sxStyle.month}>
         {days.map(({ dayNumber, id }) => {

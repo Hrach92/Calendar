@@ -6,6 +6,7 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import sxStyle from "./sxStyle.sx";
 import moment from "moment";
 import { next, prev } from "../../../dependencies/instance";
+import Trans from "../../trans";
 
 type ButtonTypes = {
   date?: any;
@@ -24,12 +25,13 @@ function Header({ date, setDate }: ButtonTypes) {
     setDate(state);
   }, [month, year]);
 
-  const monthName = moment(`${year}${month}`).format("MMMM");
+  const monthName = moment(`${year}${month}`).format("MMMM").toLowerCase();
+  console.log(monthName);
 
   return (
     <Box sx={sxStyle.container}>
       <Box sx={sxStyle.title}>
-        {monthName} {year}
+        <Trans word={`months.${monthName}`} /> {year}
       </Box>
 
       <Box sx={sxStyle.buttons}>

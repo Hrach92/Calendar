@@ -5,6 +5,7 @@ import sxStyle from "./sxStyle.sx";
 import moment from "moment";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import { useSelector } from "../../../hooks/redux";
+import Trans from "../../trans";
 
 type DayTypes = {
   currentDay?: boolean;
@@ -21,7 +22,9 @@ function CurrentDay({ currentDay, newId }: DayTypes) {
 
   return (
     <Box sx={style}>
-      <Box sx={sxStyle.dayName}>{dayName}</Box>
+      <Box sx={sxStyle.dayName}>
+        <Trans word={`days.${dayName}`} />
+      </Box>
       <Box>{day}</Box>
     </Box>
   );

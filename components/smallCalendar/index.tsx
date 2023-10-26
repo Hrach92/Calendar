@@ -19,7 +19,7 @@ function SmallCalendar({ sx, onClose }: any): JSX.Element {
   });
 
   const days = useMemo(() => {
-    return dayList(date.year, +date.month);
+    return dayList(date.year, date.month);
   }, [date.year, date.month]);
 
   return (

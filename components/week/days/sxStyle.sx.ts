@@ -19,7 +19,7 @@ const sxStyle = {
   },
   current: {
     color: "var(--color)",
-    backgroundColor: "rgb(117, 107, 192)",
+    backgroundColor: "var(--current)",
   },
   name: {
     width: "40px",

@@ -9,6 +9,7 @@ const sxStyle = {
     color: "rgb(60,64,67)",
     cursor: "pointer",
     fontFamily: "var(--font)",
+    gap: "5px",
   },
 };
 export default sxStyle;

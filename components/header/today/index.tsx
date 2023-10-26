@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 
 import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../../hooks/redux";
+import Trans from "../../trans";
 
 function Today() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Today() {
   return (
     <Link href={`/${mode}`}>
       <Button sx={sxStyle.btn} onClick={onClick}>
-        Today
+        <Trans word="today" />
       </Button>
     </Link>
   );

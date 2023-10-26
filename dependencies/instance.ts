@@ -2,7 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { MonthTypes } from "../store/reducer/types";
-import { Mode } from "./types";
+import { Mode, Months } from "./types";
 
 export const years = [
   ...Array(100)
@@ -219,18 +219,18 @@ export const next = (month: any, year: any) => ({
 });
 
 export const months = [
-  { title: "January", dayCount: 35, monthNumber: "01", id: 1 },
-  { title: "February", dayCount: 35, monthNumber: "02", id: 2 },
-  { title: "March", dayCount: 35, monthNumber: "03", id: 3 },
-  { title: "April", dayCount: 35, monthNumber: "04", id: 4 },
-  { title: "May", dayCount: 35, monthNumber: "05", id: 5 },
-  { title: "June", dayCount: 35, monthNumber: "06", id: 6 },
-  { title: "July", dayCount: 35, monthNumber: "07", id: 7 },
-  { title: "August", dayCount: 35, monthNumber: "08", id: 8 },
-  { title: "September", dayCount: 35, monthNumber: "09", id: 9 },
-  { title: "October", dayCount: 35, monthNumber: "10", id: 10 },
-  { title: "November", dayCount: 35, monthNumber: "11", id: 11 },
-  { title: "December", dayCount: 35, monthNumber: "12", id: 12 },
+  { title: Months.January, dayCount: 35, monthNumber: "01", id: 1 },
+  { title: Months.February, dayCount: 35, monthNumber: "02", id: 2 },
+  { title: Months.March, dayCount: 35, monthNumber: "03", id: 3 },
+  { title: Months.April, dayCount: 35, monthNumber: "04", id: 4 },
+  { title: Months.May, dayCount: 35, monthNumber: "05", id: 5 },
+  { title: Months.June, dayCount: 35, monthNumber: "06", id: 6 },
+  { title: Months.July, dayCount: 35, monthNumber: "07", id: 7 },
+  { title: Months.August, dayCount: 35, monthNumber: "08", id: 8 },
+  { title: Months.September, dayCount: 35, monthNumber: "09", id: 9 },
+  { title: Months.October, dayCount: 35, monthNumber: "10", id: 10 },
+  { title: Months.November, dayCount: 35, monthNumber: "11", id: 11 },
+  { title: Months.December, dayCount: 35, monthNumber: "12", id: 12 },
 ];
 
 export const currentMonth = (months.find(

@@ -1,16 +1,17 @@
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
-import { weekdaysMin } from "moment";
+import { weekdaysMin, weekdaysShort } from "moment";
 import { memo } from "react";
+import Trans from "../../trans";
 
 function WeekDays() {
-  const dayShort = weekdaysMin();
+  const dayShort = weekdaysShort();
 
   return (
     <Box sx={sxStyle.container}>
       {dayShort.map((day) => (
         <Box key={day} sx={sxStyle.item}>
-          {day}
+          <Trans word={`days.${day}`} />
         </Box>
       ))}
     </Box>

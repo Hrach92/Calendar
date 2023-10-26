@@ -9,6 +9,7 @@ import Title from "./title";
 import React, { FC, memo } from "react";
 import Support from "./support";
 import ModalContainer from "../modal";
+import Languages from "../../features/lang";
 
 import SmallCalendar from "../smallCalendar";
 import { Box } from "@mui/material";
@@ -47,6 +48,7 @@ function Header({ setToggle }: HeaderTypes): JSX.Element {
         <Search />
         <Support />
         <Settings />
+        <Languages />
         <SelectMode />
       </Box>
       {open && (

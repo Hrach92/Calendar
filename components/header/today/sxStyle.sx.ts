@@ -1,6 +1,5 @@
 const sxStyle = {
   btn: {
-    width: "65px",
     height: "32px",
     border: "1px solid rgba(151, 133, 133, 0.5)",
     borderRadius: "3px",

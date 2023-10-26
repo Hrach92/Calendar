@@ -59,7 +59,7 @@ export const Features = createSlice({
     },
     setDate: (state, action) => {
       const { day, month, year } = action.payload;
-      console.log(action.payload);
+      action.payload;
 
       state.month = getCurrentMonth(+month);
       state.day = day;
