@@ -2,7 +2,7 @@ const sxStyle = {
   mode: {
     lineHeight: "normal",
     borderRadius: "4px",
-    fontFamily: "Roboto, Arial, sans-serif",
+    fontFamily: "var(--font)",
     "&:hover": {
       backgroundColor: "rgba(0,0,0,0.032)",
       transition: "1s",

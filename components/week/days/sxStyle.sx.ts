@@ -15,10 +15,10 @@ const sxStyle = {
     borderRadius: "10px",
     paddingLeft: "10px",
     margin: "0 5px",
-    boxShadow: "0 0 5px rgba(0, 0, 0, 0.19)",
+    boxShadow: "var(--shadow)",
   },
   current: {
-    color: "white",
+    color: "var(--color)",
     backgroundColor: "rgb(117, 107, 192)",
   },
   name: {

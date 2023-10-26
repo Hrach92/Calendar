@@ -6,7 +6,7 @@ const sxStyle = {
     borderRadius: "6px",
     fontSize: "12px",
     padding: "4px 0 0 5px",
-    color: "white",
+    color: "var(--color)",
   },
 };
 export default sxStyle;

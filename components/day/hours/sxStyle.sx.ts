@@ -4,7 +4,7 @@ const sxStyle = {
   dayRow: {
     display: "flex",
     flexDirection: "row",
-    borderRight: "1px solid rgb(221, 221, 236)",
+    borderRight: "1px solid var(--border)",
   },
   hour: {
     boxSizing: "border-box",
@@ -14,14 +14,14 @@ const sxStyle = {
     paddingTop: "10px",
     height: "48px",
     width: "50px",
-    border: "1px solid rgb(221, 221, 236)",
+    border: "1px solid var(--border)",
     borderStyle: "none solid solid none",
   },
   hourNotes: {
     boxSizing: "border-box",
     height: "48px",
     width: "100%",
-    border: "1px solid rgb(221, 221, 236)",
+    border: "1px solid var(--border)",
     borderStyle: "none none solid none",
   },
   redLine: {

@@ -16,11 +16,11 @@ const sxStyle = {
   eventTime: {
     margin: "5px",
     fontSize: "12px",
-    fontFamily: "Cambria, Cochin, Georgia, Times,Times New Roman, serif",
+    fontFamily: "var(--font)",
   },
   eventDescription: {
     fontSize: "12px",
-    fontFamily: "Cambria, Cochin, Georgia, Times,Times New Roman, serif",
+    fontFamily: "var(--font)",
     margin: "5px",
     overflow: "hidden",
     height: "auto",

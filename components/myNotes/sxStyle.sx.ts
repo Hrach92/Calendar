@@ -6,7 +6,7 @@ const sxStyle = {
     margin: "100px auto",
     width: "200px",
     height: "200px",
-    background: "white",
+    background: "var(--color)",
     borderRadius: "10px",
   },
 };

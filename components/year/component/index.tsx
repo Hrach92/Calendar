@@ -1,6 +1,5 @@
 import moment from "moment";
 import React, { memo, useCallback, useMemo } from "react";
-import Link from "next/link";
 import { dayList } from "../../../dependencies/instance";
 import {
   SampleData,
@@ -12,10 +11,12 @@ import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
+import { useRouter } from "next/router";
 
 function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
-  const { month, year } = useSelector(SampleData);
+  const { month, year, day } = useSelector(SampleData);
   const dispatch = useDispatch();
+  const { push } = useRouter();
 
   const days = useMemo(() => {
     return dayList(year, numberOfMonth);
@@ -33,25 +34,22 @@ function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
     [year]
   );
 
+  const goToDayPage = useCallback(() => {
+    dispatch(setDate({ day, month: numberOfMonth, year }));
+    dispatch(setMode(Mode.MONTH));
+    push(`/${Mode.MONTH}/${year}/${numberOfMonth}`);
+  }, []);
+
   return (
-    <Box sx={sxStyle.container} key={key}>
+    <Box sx={sxStyle.container} key={key} onClick={goToDayPage}>
       <Box sx={sxStyle.title}>{title}</Box>
       <WeekDays />
       <Box sx={sxStyle.month}>
-        {days.map(({ dayNumber, id, monthId }) => {
+        {days.map(({ dayNumber, id }) => {
           const sx = dayStyle(id, dayNumber);
           return (
-            <Box
-              key={id}
-              onClick={() => {
-                dispatch(setDate({ day: dayNumber, month: +monthId, year }));
-                dispatch(setMode(Mode.DAY));
-              }}
-              sx={sx}
-            >
-              <Link href={`/day/${year}/${monthId}/${dayNumber}`}>
-                {dayNumber}
-              </Link>
+            <Box key={id} sx={sx}>
+              {dayNumber}
             </Box>
           );
         })}

@@ -8,8 +8,7 @@ const sxStyle = {
     fontWeight: "400",
     color: "rgb(60,64,67)",
     cursor: "pointer",
-    fontFamily: "Google Sans,'Roboto Arial',sans-serif",
-    gap: "5px",
+    fontFamily: "var(--font)",
   },
 };
 export default sxStyle;

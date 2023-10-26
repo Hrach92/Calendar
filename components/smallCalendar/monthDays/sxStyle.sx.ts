@@ -11,9 +11,9 @@ const sxStyle = {
     cursor: "pointer",
   },
   current: {
-    color: "white",
-    backgroundColor: "#1a73e8",
-    boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.2)",
+    color: "var(--color)",
+    backgroundColor: "var(--current)",
+    boxShadow: "var(--shadow)",
     borderRadius: "50%",
   },
   other: {

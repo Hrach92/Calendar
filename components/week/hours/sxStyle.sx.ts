@@ -23,7 +23,7 @@ const sxStyle = {
     paddingTop: "10px",
     height: "48px",
     width: "100%",
-    border: "1px solid rgb(221, 221, 236)",
+    border: "1px solid var(--border)",
     borderStyle: "none solid solid none",
   },
 };

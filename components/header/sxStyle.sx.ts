@@ -8,7 +8,7 @@ const sxStyle = {
     height: "50px",
     padding: "0 10px",
     justifyContent: "space-between",
-    borderBottom: "1px solid rgb(221, 221, 236)",
+    borderBottom: "1px solid var(--border)",
   },
   item: {
     display: "flex",
@@ -39,17 +39,17 @@ const sxStyle = {
     fontSize: "22px",
     lineHeight: "24px",
     color: "#5f6368",
-    fontFamily: '"Product Sans",Arial,sans-serif',
+    fontFamily: "var(--font)",
   },
 
   smallCalendar: {
     position: "absolute",
-    backgroundColor: "white",
+    backgroundColor: "var(--color)",
     zIndex: "12",
     top: "10px",
     left: "340px",
     borderRadius: "5px",
-    boxShadow: "0 0 5px rgba(0, 0, 0, 0.19)",
+    boxShadow: "var(--shadow)",
   },
 };
 export default sxStyle;

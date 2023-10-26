@@ -6,7 +6,7 @@ const sxStyle = {
     alignItems: "center",
     borderRadius: "10px",
     padding: "10px",
-    background: "white",
+    background: "var(--color)",
     marginTop: "5px",
     width: "100%",
   },
@@ -14,7 +14,7 @@ const sxStyle = {
     width: "15px",
     height: "15px",
     borderRadius: "50%",
-    background: "blue",
+    background: "var(--current)",
   },
   title: {
     fontSize: "16px",

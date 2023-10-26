@@ -1,5 +1,6 @@
-import { Modal } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import React, { JSXElementConstructor, ReactElement, memo } from "react";
+import sxStyle from "./sxStyle.sx";
 
 type ModalTypes = {
   open: boolean;
@@ -9,7 +10,7 @@ type ModalTypes = {
 const ModalContainer = ({ open, onClose = () => {}, children }: ModalTypes) => {
   return (
     <Modal open={open} onClose={onClose}>
-      {children}
+      <Box sx={sxStyle.box}> {children}</Box>
     </Modal>
   );
 };

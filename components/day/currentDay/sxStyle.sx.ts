@@ -8,11 +8,12 @@ const sxStyle = {
     margin: "0 0 0 20px",
     fontSize: "18px",
     paddingTop: "8px",
-    color: "white",
+    color: "var(--color)",
     backgroundColor: "rgb(117, 107, 192)",
   },
-  background: {
-    backgroundColor: "blue",
+  current: {
+    backgroundColor: "var(--current)",
+    boxShadow: "var(--shadow)",
   },
   dayName: {
     fontSize: "11px",

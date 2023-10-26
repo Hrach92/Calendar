@@ -21,8 +21,8 @@ function Day(): JSX.Element {
   const [descriptions, setDescriptions] = useState({});
 
   const { newId, currentDay, days } = useMemo(
-    dateConverter(year, month.monthNumber as string, day),
-    [year, month.monthNumber, day]
+    dateConverter(year, month.monthNumber, day),
+    []
   );
 
   const currentDate = useMemo(

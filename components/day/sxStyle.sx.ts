@@ -20,14 +20,13 @@ const sxStyle = {
     position: "absolute",
     top: "65px",
     right: "65px",
-    backgroundColor: "rgb(221, 221, 236)",
+    backgroundColor: "var(--border)",
     zIndex: "-5",
   },
   dayContainer: {
     position: "relative",
     marginTop: "60px",
     width: "100%",
-    borderRight: "1px solid rgb(221, 221, 236)",
     "&::-webkit-scrollbar": {
       width: "0px",
     },

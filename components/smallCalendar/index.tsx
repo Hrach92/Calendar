@@ -10,7 +10,7 @@ import WeekDays from "./weekDays";
 import MonthDays from "./monthDays";
 import { useSelector } from "../../hooks/redux";
 
-function SmallCalendar({ sx, onClose }: any) {
+function SmallCalendar({ sx, onClose }: any): JSX.Element {
   const { month, year } = useSelector(SampleData);
 
   const [date, setDate] = useState({
@@ -19,7 +19,7 @@ function SmallCalendar({ sx, onClose }: any) {
   });
 
   const days = useMemo(() => {
-    return dayList(date.year, date.month);
+    return dayList(date.year, +date.month);
   }, [date.year, date.month]);
 
   return (

@@ -25,11 +25,10 @@ const sxStyle = {
   },
   currentDay: {
     color: "rgb(208, 208, 230) !important",
-    backgroundColor: "#1a73e8",
-    boxShadow:
-      "0 0 2px 2px rgba(0, 0, 0, 0.2),0 3px 10px 0 rgba(0, 0, 0, 0.19)",
+    backgroundColor: "var(--current)",
+    boxShadow: "var(--shadow)",
     "&:hover": {
-      backgroundColor: "#1a73e8 !important",
+      backgroundColor: "var(--current) !important",
     },
   },
   dayContainer: {
@@ -43,7 +42,7 @@ const sxStyle = {
     display: "flex",
     justifyContent: "center",
     paddingTop: "4px",
-    border: "1px solid rgb(221, 221, 236)",
+    border: "1px solid var(--border)",
     borderStyle: "none solid solid none",
     textAlign: "center",
     fontSize: "0.9em",

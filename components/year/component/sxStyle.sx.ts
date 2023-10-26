@@ -1,7 +1,7 @@
 const sxStyle = {
   container: {
     borderRadius: "10px",
-    boxShadow: "0 0 2px 2px rgba(0, 0, 0, 0.2)",
+    boxShadow: "var(--shadow)",
     maxWidth: "210px",
     maxHeight: "185px",
   },
@@ -9,7 +9,6 @@ const sxStyle = {
     padding: "5px 0 0 10px",
     color: "rgb(92, 92, 95)",
     fontWeight: "600",
-    fontFamily: "Roboto,Helvetica,Arial,sans-serif",
   },
   month: {
     display: "grid",
@@ -20,7 +19,7 @@ const sxStyle = {
   currentDay: {
     textAlign: "center",
     fontSize: "12px",
-    color: "white",
+    color: "var(--color)",
     paddingTop: "5px",
     width: "24px",
     height: "24px",
