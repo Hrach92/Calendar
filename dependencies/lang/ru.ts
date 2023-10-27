@@ -45,5 +45,16 @@ const ru = {
     Nov: "Ноя",
     Dec: "Дек",
   },
+  lang: {
+    en: "ан",
+    ru: "ру",
+  },
+  settings: "Настройки",
+  support: "Поддержка",
+  language: "Язык",
+  signIn: "Войти",
+  signUp: "Зарегистрироваться",
+  emailSignUp: "Зарегистрируйтесь по электронной почте",
+  emailSignIn: "Войти с помощью электронной почты",
 };
 export default ru;

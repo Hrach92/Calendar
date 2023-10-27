@@ -10,7 +10,26 @@ const sxStyle = {
     alignItems: "center",
     gap: "15px",
     height: "auto",
-    paddingTop: "20px",
+    padding: "20px 5px",
+  },
+  options: {
+    width: "100%",
+    border: "10px",
+    boxShadow: "var(--shadow)",
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  lang: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  text: {
+    fontWeight: "400",
+    fontFamily: "var(--font)",
   },
   current: {
     color: "var(--color)",

@@ -16,6 +16,7 @@ import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import VisibleDate from "./date";
 import useBoolean from "../../hooks/useBoolean";
+import SignModal from "./sign";
 
 type HeaderTypes = {
   setToggle?: () => void;
@@ -46,11 +47,10 @@ function Header({ setToggle }: HeaderTypes): JSX.Element {
       </Box>
       <Box sx={sxStyle.item}>
         <Search />
-        <Support />
-        <Settings />
-        <Languages />
         <SelectMode />
+        <SignModal />
       </Box>
+
       {open && (
         <ModalContainer open={open} onClose={onClose}>
           <SmallCalendar onClose={onClose} />

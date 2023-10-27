@@ -16,9 +16,9 @@ function CurrentDay({ currentDay, newId }: DayTypes) {
 
   const style = useMemo(() => {
     return { ...sxStyle.day, ...(currentDay && sxStyle.current) };
-  }, []);
+  }, [currentDay]);
 
-  const dayName = useMemo(() => moment(newId).format("ddd"), []);
+  const dayName = useMemo(() => moment(newId).format("ddd"), [newId]);
 
   return (
     <Box sx={style}>

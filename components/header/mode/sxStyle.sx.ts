@@ -24,6 +24,7 @@ const sxStyle = {
     paddingRight: "1px",
     fontSize: "14px",
     fontWeight: "500",
+    paddingLeft: "5px",
     ">div": {
       paddingLeft: "0",
       ">p": {

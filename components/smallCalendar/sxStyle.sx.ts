@@ -1,7 +1,7 @@
 const sxStyle = {
   container: {
     boxSizing: "border-box",
-    width: "235px",
+    width: "100%",
     height: "auto",
     backgroundColor: "var(--color)",
     zIndex: "1",

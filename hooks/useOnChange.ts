@@ -3,7 +3,7 @@ import { Target } from "../dependencies/types";
 
 interface UseOnChangeTypes {
   text?: string;
-  onChange?: ({ target }: Target) => void;
+  onChange: ({ target }: Target) => void;
   setText: (state: string | ((initialState: string) => string)) => void;
 }
 

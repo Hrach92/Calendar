@@ -26,7 +26,6 @@ function Header({ date, setDate }: ButtonTypes) {
   }, [month, year]);
 
   const monthName = moment(`${year}${month}`).format("MMMM").toLowerCase();
-  console.log(monthName);
 
   return (
     <Box sx={sxStyle.container}>

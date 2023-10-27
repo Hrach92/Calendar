@@ -22,7 +22,7 @@ function Day(): JSX.Element {
 
   const { newId, currentDay, days } = useMemo(
     dateConverter(year, month.monthNumber, day),
-    []
+    [year, month.monthNumber, day]
   );
 
   const currentDate = useMemo(

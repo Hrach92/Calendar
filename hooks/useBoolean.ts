@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 
 interface UseBooleanTypes {
-  open?: boolean;
-  onOpen?: () => void;
-  onClose?: () => void;
+  open: boolean;
+  onOpen: () => void;
+  onClose: () => void;
   setToggle?: () => void;
 }
 

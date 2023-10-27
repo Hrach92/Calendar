@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import sxStyle from "./sxStyle.sx";
 import useLanguageTypes from "../../hooks/useLanguageTypes";
 import { Target } from "../../dependencies/types";
+import Trans from "../../components/trans";
 
 type LanguageType = {
   background?: string;
@@ -38,7 +39,7 @@ const Languages = ({ background, handleClose }: LanguageType): JSX.Element => {
               key={val}
               value={val}
             >
-              {val}
+              <Trans word={`lang.${val}`} />
             </MenuItem>
           ))}
         </Select>

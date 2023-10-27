@@ -18,7 +18,7 @@ function Today() {
 
   return (
     <Link href={`/${mode}`}>
-      <Button sx={sxStyle.btn} onClick={onClick}>
+      <Button variant="outlined" color="primary" onClick={onClick}>
         <Trans word="today" />
       </Button>
     </Link>

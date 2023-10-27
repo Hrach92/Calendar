@@ -1,10 +1,13 @@
 import React, { memo } from "react";
 
-import { Box, Button } from "@mui/material";
-import sxStyle from "./sxStyle.sx";
+import { Box, Button, Typography } from "@mui/material";
 import SmallCalendar from "../smallCalendar";
+import Languages from "../../features/lang";
 import Calendars from "./calendars";
 import Trans from "../trans";
+import Settings from "../header/settings";
+import Support from "../header/support";
+import sxStyle from "./sxStyle.sx";
 
 function LeftBar() {
   return (
@@ -14,6 +17,16 @@ function LeftBar() {
       </Button>
       <SmallCalendar sx={sxStyle.calendar} />
       <Calendars />
+      <Box sx={sxStyle.options}>
+        <Box sx={sxStyle.lang}>
+          <Typography sx={sxStyle.text}>
+            <Trans word="language" />
+          </Typography>
+          <Languages />
+        </Box>
+        <Support />
+        <Settings />
+      </Box>
     </Box>
   );
 }

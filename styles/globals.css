@@ -32,7 +32,7 @@ a {
 :root{
   --border: rgb(221, 221, 236);
   --color: white;
-  --font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  --font: Roboto,Helvetica,Arial,sans-serif;
   --current: #1a73e8;
   --shadow: 0 0 5px rgba(0, 0, 0, 0.19)
 }

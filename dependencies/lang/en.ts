@@ -45,5 +45,16 @@ const en = {
     Nov: "Nov",
     Dec: "Dec",
   },
+  lang: {
+    en: "en",
+    ru: "ru",
+  },
+  settings: "Settings",
+  support: "Support",
+  language: "Language",
+  signIn: "Sign in",
+  signUp: "Sign Up",
+  emailSignIn: "Sign in with email",
+  emailSignUp: "Sign Up with email",
 };
 export default en;

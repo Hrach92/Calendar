@@ -16,6 +16,7 @@
     "@mui/material": "^5.10.1",
     "@mui/x-date-pickers": "^5.0.5",
     "@mui/x-date-pickers-pro": "^5.0.5",
+    "@next/font": "^14.0.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@types/react": "^18.2.30",
     "@types/react-redux": "^7.1.28",
@@ -38,7 +39,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.5.1",
-    "ua-parser-js": "^1.0.36"
+    "ua-parser-js": "^1.0.36",
+    "universal-cookie": "^6.1.1"
   },
   "devDependencies": {
     "@types/ua-parser-js": "^0.7.38",
