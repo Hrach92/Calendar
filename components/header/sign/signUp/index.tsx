@@ -15,8 +15,8 @@ function SignUp({ setToggle }: SignTypes) {
       <Typography sx={sxStyle.text}>
         <Trans word="emailSignUp" />
       </Typography>
-      <BaseInput type="text" value={text} onChange={onChange} />
-      <BaseInput type="text" value={text} onChange={onChange} />
+      <BaseInput type="email" value={text} onChange={onChange} />
+      <BaseInput type="password" value={text} onChange={onChange} />
       <Button variant="outlined" color="primary">
         <Trans word="signUp" />
       </Button>
