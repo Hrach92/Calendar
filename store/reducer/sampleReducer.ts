@@ -54,13 +54,10 @@ export const Features = createSlice({
   name: "features",
   initialState,
   reducers: {
-    setMode: (state, action) => {
-      state.mode = action.payload;
+    setMode: (state, { payload }) => {
+      state.mode = payload;
     },
-    setDate: (state, action) => {
-      const { day, month, year } = action.payload;
-      action.payload;
-
+    setDate: (state, { payload: { day, month, year } = {} }) => {
       state.month = getCurrentMonth(+month);
       state.day = day;
       state.year = year;
@@ -70,9 +67,9 @@ export const Features = createSlice({
       state.year = new Date().getFullYear();
       state.day = new Date().getDate();
     },
-    addEvents: (state, action) => {
+    addEvents: (state, { payload }) => {
       let dayEvents: any[] = [];
-      let arr = action.payload.filter(
+      let arr = payload.filter(
         ({ hour_mode }: { hour_mode: boolean }) => hour_mode === false
       );
       arr.map((v: any) => {
@@ -84,7 +81,7 @@ export const Features = createSlice({
         });
         dayEvents.push(...eventWithId);
       });
-      let hourEvents: any[] = action.payload.filter(
+      let hourEvents: any[] = payload.filter(
         ({ hour_mode }: { hour_mode: boolean }) => hour_mode === true
       );
       state.events = {
@@ -92,23 +89,23 @@ export const Features = createSlice({
         hourEvents: hourEvents.length > 0 ? [...hourEvents] : [],
       };
     },
-    getEventDate: (state, action) => {
-      state.eventDate = action.payload;
+    getEventDate: (state, { payload }) => {
+      state.eventDate = payload;
     },
-    setNotesOpen: (state, action) => {
-      state.openNotes = action.payload;
+    setNotesOpen: (state, { payload }) => {
+      state.openNotes = payload;
     },
-    setTimeRange: (state, action) => {
-      state.time = action.payload;
+    setTimeRange: (state, { payload }) => {
+      state.time = payload;
     },
-    setColor: (state, action) => {
-      state.color = action.payload;
+    setColor: (state, { payload }) => {
+      state.color = payload;
     },
-    setColors: (state, action) => {
-      state.colors = action.payload;
+    setColors: (state, { payload }) => {
+      state.colors = payload;
     },
-    setHourMode: (state, action) => {
-      state.eventsWithoutHour = action.payload;
+    setHourMode: (state, { payload }) => {
+      state.eventsWithoutHour = payload;
     },
   },
 });
@@ -127,12 +124,12 @@ export const {
 export const SampleData = (state: RootState) => state.sampleData;
 export default Features.reducer;
 /* const sampleReducer = (state = initialState, action) => {
-    switch (action.type) {
+    switch (type) {
         case SET_MONTH:
             return {
                 ...state,
-                // month: {...state.months.find(v=>v.id===action.id)}
-                month: { ...state.months.find(v => v.id === action.id) }
+                // month: {...state.months.find(v=>v.id===id)}
+                month: { ...state.months.find(v => v.id === id) }
             }
 
         default:

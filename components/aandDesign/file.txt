@@ -1,0 +1,145 @@
+import type { FC } from "react";
+import styled from "styled-components";
+import { Modal as AntModal } from "antd";
+import type { ModalProps } from "antd/es/modal";
+
+import { colors } from "@/helpers/colors";
+
+export const Modal: FC<ModalProps> = styled(AntModal)`
+  width: fit-content !important;
+  /* min-width: 884px; */
+
+  .ant-modal-content {
+    background-color: ${colors.GrayF2};
+    padding: 32px;
+  }
+
+  .ant-modal-close {
+    top: 9px;
+    inset-inline-end: 7px;
+  }
+`;
+import { Select as AntSelect } from "antd";
+import type { SelectProps } from "antd/es/select";
+
+type I_SelectProps = SelectProps & {
+  isWhite?: boolean;
+  fullWidth?: boolean;
+};
+
+export const Select = styled((props: I_SelectProps) => {
+  const { isWhite, fullWidth, ...restProps } = props;
+  return <AntSelect {...restProps} />;
+})`
+  background-color: ${(p) => (p.isWhite ? colors.White : colors.GrayF2)};
+  border: 0;
+  height: 48px;
+  font-size: 16px;
+  padding: 0 16px;
+  border-radius: 6px;
+  padding: 0 !important;
+  border: 2px solid ${colors.Transparent};
+  ${(p) => (p.fullWidth ? "width: 100%" : "")};
+
+  &:hover {
+    background-color: ${colors.White};
+    border-color: ${colors.FoxYellow};
+  }
+
+  &.ant-select-disabled {
+    background-color: ${colors.GrayF2};
+    border-color: ${colors.Transparent};
+  }
+
+  .ant-select-selector {
+    height: 45px !important;
+    background-color: ${colors.Transparent}!important;
+    border: 0 !important;
+    padding: 0 28px 0 16px !important;
+    box-shadow: none !important;
+  }
+
+  .ant-select-selection-search {
+    inset-inline-start: 15px !important;
+    inset-inline-end: 15px !important;
+  }
+
+  .ant-select-selection-search-input {
+    height: 45px !important;
+    font-size: 16px !important;
+  }
+
+  .ant-select-selection-placeholder {
+    line-height: 45px !important;
+    color: ${colors.Gray80};
+    font-size: 16px;
+  }
+
+  .ant-select-selection-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+`;
+
+export const Checkbox = styled(AntCheckbox)`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+
+  &:hover .ant-checkbox-inner {
+    border-color: ${colors.FoxYellow}!important;
+  }
+
+  .ant-checkbox-inner {
+    width: 24px;
+    height: 24px;
+
+    &::after {
+      width: 10px;
+      height: 13px;
+    }
+  }
+
+  .ant-checkbox {
+    transform: none;
+    border-radius: 4px;
+    border-color: ${colors.Transparent}!important;
+
+    &::after {
+      display: none!important;
+    }
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: ${colors.FoxYellow}!important;
+    border-color: ${colors.FoxYellow}!important;
+  }
+`
+export const FormWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`
+interface I_FramesLineProps {
+  activeFrameNum: number
+  frameWidth: number
+  framesCount: number
+}
+export const FramesLine = styled.div<I_FramesLineProps>`
+  display: flex;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: left .3s ease-in-out;
+  left: ${(p) => {
+    if (p.activeFrameNum < 3) return 0
+
+    if (p.activeFrameNum >= 3 && p.activeFrameNum < p.framesCount - 2) {
+      return -((p.frameWidth + 16) * (p.activeFrameNum - 2)) + 'px'
+    }
+
+    return -((p.frameWidth + 16) * (p.activeFrameNum - 3)) + 'px'
+  }};
+`
