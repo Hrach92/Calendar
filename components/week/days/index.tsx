@@ -14,21 +14,23 @@ const Days = () => {
   const current = useCallback(
     (i: number) => {
       const dayShort = moment(
-        `${year}${month.monthNumber}${day > 9 ? day : `0${day}`}`
+        `${year}${month.monthNumber}${day > 9 ? day : `0${day}`}`,
       )
         .startOf(Mode.WEEK)
         .add(i, Mode.DAY)
         .date();
 
       const number = moment(
-        `${year}${month.monthNumber}${dayShort > 9 ? dayShort : `0${dayShort}`}`
+        `${year}${month.monthNumber}${
+          dayShort > 9 ? dayShort : `0${dayShort}`
+        }`,
       ).format("YYYYMMDD");
       return {
         currentDay: number === moment().format("YYYYMMDD"),
         day: dayShort,
       };
     },
-    [day, year, month]
+    [day, year, month],
   );
 
   const days = weekdaysShort();

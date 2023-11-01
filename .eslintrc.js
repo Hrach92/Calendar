@@ -61,7 +61,7 @@ module.exports = {
 
     "no-inline-styles/no-inline-styles": 2,
 
-    "prettier/prettier": ERROR,
+    "prettier/prettier": WARN,
 
     /**
      * Semicolons at the end of the statements

@@ -20,7 +20,7 @@ const ChangeEvent = ({ description }: any): JSX.Element => {
 
   const onCloseDesc = useCallback(
     () => dispatch(descriptionOpen(false)),
-    [dispatch]
+    [dispatch],
   );
 
   const onDeleteEvent = useCallback(async () => {

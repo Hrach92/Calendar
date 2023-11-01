@@ -16,7 +16,7 @@ const CurrentDay = ({ currentDay, newId }: DayTypes) => {
 
   const style = useMemo(
     () => ({ ...sxStyle.day, ...(currentDay && sxStyle.current) }),
-    [currentDay]
+    [currentDay],
   );
 
   const dayName = useMemo(() => moment(newId).format("ddd"), [newId]);

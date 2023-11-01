@@ -69,7 +69,7 @@ export const Features = createSlice({
     addEvents: (state, { payload }) => {
       const dayEvents: any[] = [];
       const arr = payload.filter(
-        ({ hourMode }: { hourMode: boolean }) => hourMode === false
+        ({ hourMode }: { hourMode: boolean }) => hourMode === false,
       );
       arr.map((v: any) => {
         const eventWithId = v.data.events.map((item: any, i: number) => {
@@ -81,7 +81,7 @@ export const Features = createSlice({
         dayEvents.push(...eventWithId);
       });
       const hourEvents: any[] = payload.filter(
-        ({ hourMode }: { hourMode: boolean }) => hourMode === true
+        ({ hourMode }: { hourMode: boolean }) => hourMode === true,
       );
       state.events = {
         dayEvents: arr.length > 0 ? [...dayEvents] : [],

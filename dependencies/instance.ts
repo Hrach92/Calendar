@@ -144,10 +144,10 @@ export function weekDays(year: number, month: number, day: number): any {
 export const dateConverter = (
   year: number,
   monthNumber: string,
-  day: number
+  day: number,
 ): { newId: string; currentDay: boolean; days: any } => {
   const newId = moment(
-    `${year}${monthNumber}${day > 9 ? day : `0${day}`}`
+    `${year}${monthNumber}${day > 9 ? day : `0${day}`}`,
   ).format("YYYYMMDD");
   const currentDay =
     moment(newId).format("YYYYMMDD") === moment().format("YYYYMMDD");
@@ -163,7 +163,7 @@ export const currentDay = (id: string): boolean =>
 
 export const prev = (
   month: any,
-  year: any
+  year: any,
 ): { year: string; month: string } => ({
   year: month === "01" ? year - 1 : year,
   month:
@@ -172,7 +172,7 @@ export const prev = (
 
 export const next = (
   month: string,
-  year: string
+  year: string,
 ): { year: string; month: string } => ({
   year: month === "12" ? year + 1 : year,
   month:
@@ -195,7 +195,7 @@ export const months = [
 ];
 
 export const currentMonth = (months.find(
-  ({ id }) => id === new Date().getMonth() + 1
+  ({ id }) => id === new Date().getMonth() + 1,
 ) || {}) as MonthTypes;
 
 export const getCurrentMonth = (monthId: number): MonthTypes =>

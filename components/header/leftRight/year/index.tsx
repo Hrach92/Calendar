@@ -13,11 +13,11 @@ const Year = (): JSX.Element => {
 
   const prev = useCallback(
     () => dispatch(setDate({ day, month, year: year - 1 })),
-    [dispatch, year, day, month]
+    [dispatch, year, day, month],
   );
   const next = useCallback(
     () => dispatch(setDate({ day, month, year: year + 1 })),
-    [dispatch, year, day, month]
+    [dispatch, year, day, month],
   );
 
   return (

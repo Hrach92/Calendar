@@ -10,7 +10,7 @@ const JWT_NAME = "firebase jwt";
 const getToken = (): string | undefined => cookies.get(JWT_NAME);
 const setToken = (
   token: string | undefined,
-  options: SetTokenOptions
+  options: SetTokenOptions,
 ): void => {
   cookies.set(JWT_NAME, token, options);
 };
@@ -33,7 +33,7 @@ const getCookie = (cookieData: any, dataName: string): string => {
 
 const getHeaders = (
   cookie?: string,
-  options?: any
+  options?: any,
 ): { headers: { Authorization: string } } => {
   const jwt = cookie ? getCookie(cookie, JWT_NAME) : getToken();
 

@@ -13,17 +13,17 @@ const Week = (): JSX.Element => {
 
   const prevDate = useMemo(
     () => new Date(year, month.id - 1, day - 7).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
 
   const nextDate = useMemo(
     () => new Date(year, month.id - 1, day + 7).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
 
   const currentDate = useMemo(
     () => new Date(year, month.id - 1, day).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
 
   return (

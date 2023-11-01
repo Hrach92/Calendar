@@ -29,7 +29,7 @@ const MonthDays: FC<DayTypes> = ({
       dispatch(setMode(Mode.DAY));
       onClose();
     },
-    [dispatch, onClose, year]
+    [dispatch, onClose, year],
   );
 
   return (

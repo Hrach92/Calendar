@@ -13,7 +13,7 @@ const Hours = () => {
 
   const hours = useMemo(
     () => weekDays(year, +month.monthNumber, day),
-    [year, month.monthNumber, day]
+    [year, month.monthNumber, day],
   );
 
   const dayTime = useCallback(
@@ -21,7 +21,7 @@ const Hours = () => {
       hour === moment().format("h") &&
       format === moment().format("A") &&
       currentDay === moment().format("YYYYMMDD"),
-    []
+    [],
   );
 
   const title = moment().format("hh:mm");

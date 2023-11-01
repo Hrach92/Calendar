@@ -25,7 +25,7 @@ const YearComponent = ({ numberOfMonth, title, key }: any): JSX.Element => {
 
   const days = useMemo(
     (): DayTypes[] => dayList(year, numberOfMonth),
-    [year, numberOfMonth]
+    [year, numberOfMonth],
   );
 
   const dayStyle = useCallback(
@@ -37,7 +37,7 @@ const YearComponent = ({ numberOfMonth, title, key }: any): JSX.Element => {
         ? sxStyle.currentDay
         : sxStyle.monthDay;
     },
-    [year]
+    [year],
   );
 
   const goToDayPage = useCallback(() => {

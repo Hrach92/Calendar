@@ -13,7 +13,7 @@ const useTranslation = (): { t: (word: string) => any } => {
         .reduce((acc, key) => acc?.[key] || "", words);
       return text;
     },
-    [lang]
+    [lang],
   );
 
   return { t };

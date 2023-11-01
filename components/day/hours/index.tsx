@@ -19,7 +19,7 @@ const Hours = ({ hours, currentDay }: HourTypes) => {
       `${hour}` === moment().format("h") &&
       format === moment().format("A") &&
       currentDay,
-    [currentDay]
+    [currentDay],
   );
 
   return (

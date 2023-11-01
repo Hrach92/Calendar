@@ -11,7 +11,7 @@ type EventTypes = {
 function Events({ events = [], newId = "" }: EventTypes): JSX.Element {
   const filteredEvents = useMemo(
     () => events.filter(({ dateId }: any) => dateId === newId),
-    [events, newId]
+    [events, newId],
   );
 
   return filteredEvents.map(({ title, id }: { title: string; id: string }) => (

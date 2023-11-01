@@ -28,7 +28,7 @@ const Month = (): JSX.Element => {
                   day: new Date(year, month.id - 1, 0).getDate(),
                   month: month.id - 1,
                   year,
-                })
+                }),
               );
             } else {
               dispatch(setDate({ day, month: month.id - 1, year }));
@@ -54,7 +54,7 @@ const Month = (): JSX.Element => {
                   day: new Date(year, month.id + 1, 0).getDate(),
                   month: month.id + 1,
                   year,
-                })
+                }),
               );
             } else {
               return dispatch(setDate({ day, month: month.id + 1, year }));

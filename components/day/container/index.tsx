@@ -10,7 +10,7 @@ type DayEventsTypes = {
 const DayEvents = ({ events, newId, color }: DayEventsTypes) => {
   const filtered = useMemo(
     () => events.filter(({ dateId }: any) => dateId === newId),
-    [events, newId]
+    [events, newId],
   );
 
   const style = (eventStart: any, time: any) => ({

@@ -17,7 +17,7 @@ const Day = (): JSX.Element => {
 
   const { newId, currentDay } = useMemo(
     () => dateConverter(year, month.monthNumber, day),
-    [year, month.monthNumber, day]
+    [year, month.monthNumber, day],
   );
 
   return (

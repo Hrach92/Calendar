@@ -25,7 +25,7 @@ export const setEventData = (
   options: {
     userId: string | undefined;
     phoneNumber: string | undefined;
-  }
+  },
 ): void => {
   const analytics = getAnalytics();
   setUserProperties(analytics, options);
@@ -37,7 +37,7 @@ export const setEventData = (
 export const basicEventSender = (
   action: string,
   type: string,
-  from = ""
+  from = "",
 ): void => {
   const options = { action, from };
   sendEvent(type, options);
@@ -60,7 +60,7 @@ export const changeLang = (lang: string): void => {
 export const modalOpenedActions = (
   action: string,
   type: string,
-  from: string
+  from: string,
 ): void => {
   const options = { action, from };
   sendEvent(type, options);

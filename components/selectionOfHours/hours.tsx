@@ -26,7 +26,7 @@ const SelectHour = (): JSX.Element => {
             leftId: str.slice(-2) === "AM" ? 0 : 12,
             leftFormat: str.slice(-2),
             hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
-          })
+          }),
         )
       );
     }
@@ -40,7 +40,7 @@ const SelectHour = (): JSX.Element => {
             leftId: parseInt(str, 10),
             leftFormat: str.slice(-2, 10),
             hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
-          })
+          }),
         )
       );
     }
@@ -53,7 +53,7 @@ const SelectHour = (): JSX.Element => {
           leftId: parseInt(str, 10),
           leftFormat: str.slice(-2),
           hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
-        })
+        }),
       )
     );
   };

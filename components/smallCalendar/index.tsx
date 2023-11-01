@@ -18,7 +18,7 @@ const SmallCalendar = ({ sx, onClose }: any): JSX.Element => {
 
   const days = useMemo(
     () => dayList(date.year, date.month),
-    [date.year, date.month]
+    [date.year, date.month],
   );
 
   return (

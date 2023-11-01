@@ -29,7 +29,7 @@ const Month = (): JSX.Element => {
       dispatch(setDate({ day: dayNumber, month: monthId, currentYear }));
       dispatch(setMode(Mode.DAY));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
@@ -66,7 +66,7 @@ const Month = (): JSX.Element => {
                 </Link>
               </Box>
             );
-          }
+          },
         )}
       </Box>
     </Box>
