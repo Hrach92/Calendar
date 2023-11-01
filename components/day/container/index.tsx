@@ -6,7 +6,6 @@ type DayEventsTypes = {
   events?: any;
   newId?: string;
   color?: string;
-  setDescriptions?: (event: any) => void;
 };
 const DayEvents = ({ events, newId, color }: DayEventsTypes) => {
   const filtered = useMemo(

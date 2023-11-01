@@ -47,3 +47,11 @@ export type HourTypes = {
   day: string;
   id: number;
 };
+
+export type DayTypes = {
+  dayNumber: number;
+  id: string;
+  month: any;
+  monthId: string;
+  year: string;
+};
