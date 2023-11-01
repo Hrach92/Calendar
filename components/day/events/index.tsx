@@ -1,8 +1,8 @@
 import { memo, useCallback, useMemo } from "react";
+import { Box } from "@mui/material";
 import { Tabs, descriptionOpen } from "../../../store/reducer/tabReducer";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import sxStyle from "./sxStyle.sx";
-import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 
 type EventTypes = {
@@ -24,11 +24,12 @@ function Events({
     description
       ? (setDescriptions({}), dispatch(descriptionOpen(false)))
       : (setDescriptions(event), dispatch(descriptionOpen(true)));
-  }, []);
+  }, [dispatch, description, setDescriptions]);
 
-  const filteredEvents = useMemo(() => {
-    return events.filter(({ date_id }: any) => date_id === newId);
-  }, [events.dayEvents]);
+  const filteredEvents = useMemo(
+    () => events.filter(({ dateId }: any) => dateId === newId),
+    [events, newId]
+  );
 
   return filteredEvents.map(({ title, id }: { title: string; id: string }) => (
     <Box

@@ -40,3 +40,10 @@ export enum Days {
 export type Options = {
   [key: string]: string;
 };
+
+export type HourTypes = {
+  hour: string;
+  format: string;
+  day: string;
+  id: number;
+};

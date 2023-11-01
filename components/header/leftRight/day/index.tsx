@@ -2,11 +2,11 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo, useMemo } from "react";
-import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import sxStyle from "../sxStyle.sx";
 import { useDispatch, useSelector } from "../../../../hooks/redux";
-import { MonthTypes, ObjectTypes } from "../../../../store/reducer/types";
+import { MonthTypes } from "../../../../store/reducer/types";
 
 const Day = (): JSX.Element => {
   const { day, month, mode, year } = useSelector(SampleData);

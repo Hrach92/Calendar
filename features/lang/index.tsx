@@ -5,7 +5,6 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import sxStyle from "./sxStyle.sx";
 import useLanguageTypes from "../../hooks/useLanguageTypes";
 import { Target } from "../../dependencies/types";

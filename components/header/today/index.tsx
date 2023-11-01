@@ -1,20 +1,19 @@
 import Link from "next/link";
 import React, { useCallback } from "react";
+import { Button } from "@mui/material";
 import {
   SampleData,
   getLocaleDate,
 } from "../../../store/reducer/sampleReducer";
-import { Button } from "@mui/material";
 
-import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 import Trans from "../../trans";
 
-function Today() {
+const Today = (): JSX.Element => {
   const dispatch = useDispatch();
   const { mode } = useSelector(SampleData);
 
-  const onClick = useCallback(() => dispatch(getLocaleDate()), [getLocaleDate]);
+  const onClick = useCallback(() => dispatch(getLocaleDate()), [dispatch]);
 
   return (
     <Link href={`/${mode}`}>
@@ -23,6 +22,6 @@ function Today() {
       </Button>
     </Link>
   );
-}
+};
 
 export default Today;

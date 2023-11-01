@@ -1,14 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { memo, useCallback } from "react";
-import sxStyle from "./sxStyle.sx";
 import moment, { weekdaysShort } from "moment";
+import sxStyle from "./sxStyle.sx";
 
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import { useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
 import Trans from "../../trans";
 
-function Days() {
+const Days = () => {
   const { year, day, month } = useSelector(SampleData);
 
   const current = useCallback(
@@ -52,5 +52,5 @@ function Days() {
       })}
     </Box>
   );
-}
+};
 export default memo(Days);

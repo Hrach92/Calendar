@@ -7,11 +7,9 @@ type ModalTypes = {
   onClose?: () => void;
   children: ReactElement<any, string | JSXElementConstructor<any>>;
 };
-const ModalContainer = ({ open, onClose = () => {}, children }: ModalTypes) => {
-  return (
-    <Modal open={open} onClose={onClose}>
-      <Box sx={sxStyle.box}> {children}</Box>
-    </Modal>
-  );
-};
+const ModalContainer = ({ open, onClose = () => {}, children }: ModalTypes) => (
+  <Modal open={open} onClose={onClose}>
+    <Box sx={sxStyle.box}> {children}</Box>
+  </Modal>
+);
 export default memo(ModalContainer);

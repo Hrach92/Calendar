@@ -1,26 +1,25 @@
+import { createSlice } from "@reduxjs/toolkit";
 import {
   count,
   currentMonth,
   dayCount,
   getCurrentMonth,
   hoursOfDay,
-  months,
   years,
 } from "../../dependencies/instance";
-import { createSlice } from "@reduxjs/toolkit";
 import { SampleReducerTypes } from "./types";
 import { RootState } from "../store";
 import { Mode } from "../../dependencies/types";
 
 const initialState: SampleReducerTypes = {
-  years: years,
+  years,
   year: new Date().getFullYear(),
   month: currentMonth,
-  count: count,
+  count,
   mode: Mode.MONTH,
   day: new Date().getDate(),
-  hoursOfDay: hoursOfDay,
-  dayCount: dayCount,
+  hoursOfDay,
+  dayCount,
   notes: [
     { img: "/google.png", title: "Keep", id: 1 },
     { img: "/notes.png", title: "Notes", id: 2 },
@@ -68,12 +67,12 @@ export const Features = createSlice({
       state.day = new Date().getDate();
     },
     addEvents: (state, { payload }) => {
-      let dayEvents: any[] = [];
-      let arr = payload.filter(
-        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === false
+      const dayEvents: any[] = [];
+      const arr = payload.filter(
+        ({ hourMode }: { hourMode: boolean }) => hourMode === false
       );
       arr.map((v: any) => {
-        let eventWithId = v.data.events.map((item: any, i: number) => {
+        const eventWithId = v.data.events.map((item: any, i: number) => {
           if (i === 0) {
             return { ...item, title: v.title, id: v.id, mainTitle: v.title };
           }
@@ -81,8 +80,8 @@ export const Features = createSlice({
         });
         dayEvents.push(...eventWithId);
       });
-      let hourEvents: any[] = payload.filter(
-        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === true
+      const hourEvents: any[] = payload.filter(
+        ({ hourMode }: { hourMode: boolean }) => hourMode === true
       );
       state.events = {
         dayEvents: arr.length > 0 ? [...dayEvents] : [],

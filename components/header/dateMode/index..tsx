@@ -3,12 +3,11 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import styles from "./styles.module.css";
 import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import { Mode } from "../../../dependencies/types";
 
-function StaticDatePickerDemo(): JSX.Element {
+const StaticDatePickerDemo = (): JSX.Element => {
   const [value, setValue] = useState<Date | null>(new Date());
 
   return (
@@ -26,6 +25,6 @@ function StaticDatePickerDemo(): JSX.Element {
       </LocalizationProvider>
     </Box>
   );
-}
+};
 
 export default memo(StaticDatePickerDemo);

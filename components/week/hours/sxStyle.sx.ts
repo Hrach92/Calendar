@@ -12,7 +12,7 @@ const sxStyle = {
   },
   current: {
     position: "absolute",
-    marginTop: `${parseInt(moment().format("mm")) * 0.8}px`,
+    marginTop: `${parseInt(moment().format("mm"), 10) * 0.8}px`,
     height: "1px",
   },
   hour: {

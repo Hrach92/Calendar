@@ -1,7 +1,7 @@
 import { memo, useCallback } from "react";
-import { setNotesOpen } from "../../../store/reducer/sampleReducer";
 import moment from "moment";
 import { Box } from "@mui/material";
+import { setNotesOpen } from "../../../store/reducer/sampleReducer";
 import sxStyle from "./sxStyle.sx";
 import { useDispatch } from "../../../hooks/redux";
 
@@ -9,22 +9,16 @@ type HourTypes = {
   hours?: any;
   currentDay?: any;
 };
-function Hours({ hours, currentDay }: HourTypes) {
+const Hours = ({ hours, currentDay }: HourTypes) => {
   const dispatch = useDispatch();
 
-  const onClick = useCallback(
-    () => dispatch(setNotesOpen(true)),
-    [setNotesOpen]
-  );
+  const onClick = useCallback(() => dispatch(setNotesOpen(true)), [dispatch]);
 
   const hourFormat = useCallback(
-    (hour: string, format: string) => {
-      return (
-        `${hour}` === moment().format("h") &&
-        format === moment().format("A") &&
-        currentDay
-      );
-    },
+    (hour: string, format: string) =>
+      `${hour}` === moment().format("h") &&
+      format === moment().format("A") &&
+      currentDay,
     [currentDay]
   );
 
@@ -36,11 +30,11 @@ function Hours({ hours, currentDay }: HourTypes) {
             {id === 0 ? "GMT+04" : `${hour}${format}`}
           </Box>
           <Box sx={sxStyle.hourNotes}>
-            {hourFormat(hour, format) && <Box sx={sxStyle.redLine}></Box>}
+            {hourFormat(hour, format) && <Box sx={sxStyle.redLine} />}
           </Box>
         </Box>
       ))}
     </>
   );
-}
+};
 export default memo(Hours);

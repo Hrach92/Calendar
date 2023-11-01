@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { LocaleContext } from "../features/providers/localProvider";
 import { useRouter } from "next/router";
+import { LocaleContext } from "../features/providers/localProvider";
 
 type UseLanguageTypeReturnTypes = { langs: string[]; lang: string };
 

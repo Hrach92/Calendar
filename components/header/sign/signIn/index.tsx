@@ -8,7 +8,7 @@ type SignTypes = {
   setToggle?: () => void;
 };
 
-function SignIn({ setToggle = () => {} }: SignTypes): JSX.Element {
+const SignIn = ({ setToggle = () => {} }: SignTypes): JSX.Element => {
   const { text, onChange } = useOnChange();
   return (
     <>
@@ -25,5 +25,5 @@ function SignIn({ setToggle = () => {} }: SignTypes): JSX.Element {
       </Button>
     </>
   );
-}
+};
 export default SignIn;

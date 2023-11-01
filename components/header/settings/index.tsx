@@ -4,14 +4,12 @@ import { Box, Typography } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import Trans from "../../trans";
 
-function Settings(): JSX.Element {
-  return (
-    <Box sx={sxStyle.container}>
-      <Typography sx={sxStyle.text}>
-        <Trans word="settings" />
-      </Typography>
-      <SettingsIcon sx={sxStyle.settings} />
-    </Box>
-  );
-}
+const Settings = (): JSX.Element => (
+  <Box sx={sxStyle.container}>
+    <Typography sx={sxStyle.text}>
+      <Trans word="settings" />
+    </Typography>
+    <SettingsIcon sx={sxStyle.settings} />
+  </Box>
+);
 export default memo(Settings);

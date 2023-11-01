@@ -2,8 +2,8 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo } from "react";
-import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import sxStyle from "../sxStyle.sx";
 import { useSelector, useDispatch } from "../../../../hooks/redux";
 

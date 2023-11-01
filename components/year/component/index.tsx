@@ -1,5 +1,7 @@
 import moment from "moment";
 import React, { memo, useCallback, useMemo } from "react";
+import { Box } from "@mui/material";
+import { useRouter } from "next/router";
 import { dayList } from "../../../dependencies/instance";
 import {
   SampleData,
@@ -7,21 +9,24 @@ import {
   setMode,
 } from "../../../store/reducer/sampleReducer";
 import WeekDays from "../../smallCalendar/weekDays";
-import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
-import { useRouter } from "next/router";
 import Trans from "../../trans";
 
-function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
-  const { month, year, day } = useSelector(SampleData);
+type DayTypes = {
+  dayNumber: number;
+  id: string;
+};
+const YearComponent = ({ numberOfMonth, title, key }: any): JSX.Element => {
+  const { year, day } = useSelector(SampleData);
   const dispatch = useDispatch();
   const { push } = useRouter();
 
-  const days = useMemo(() => {
-    return dayList(year, numberOfMonth);
-  }, [month, numberOfMonth]);
+  const days = useMemo(
+    (): DayTypes[] => dayList(year, numberOfMonth),
+    [year, numberOfMonth]
+  );
 
   const dayStyle = useCallback(
     (id: string, dayNumber: number) => {
@@ -39,7 +44,7 @@ function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
     dispatch(setDate({ day, month: numberOfMonth, year }));
     dispatch(setMode(Mode.MONTH));
     push(`/${Mode.MONTH}/${year}/${numberOfMonth}`);
-  }, []);
+  }, [day, numberOfMonth, year, dispatch, push]);
 
   return (
     <Box sx={sxStyle.container} key={key} onClick={goToDayPage}>
@@ -59,6 +64,6 @@ function YearComponent({ numberOfMonth, title, key }: any): JSX.Element {
       </Box>
     </Box>
   );
-}
+};
 
 export default memo(YearComponent);

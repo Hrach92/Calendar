@@ -1,4 +1,5 @@
 "use client";
+
 import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
 import { memo } from "react";
@@ -11,25 +12,23 @@ type InputTypes = {
   onChange: (target: Target) => void;
   sx?: object;
 };
-function BaseInput({
+const BaseInput = ({
   type,
   value,
   onChange,
   sx = {},
-}: InputTypes): JSX.Element {
-  return (
-    <FormControl sx={[sxStyle.field, sx]}>
-      <Input
-        sx={sxStyle.input}
-        type={type}
-        name={type}
-        value={value}
-        placeholder={type}
-        onChange={onChange}
-        disableUnderline
-        fullWidth
-      />
-    </FormControl>
-  );
-}
+}: InputTypes): JSX.Element => (
+  <FormControl sx={[sxStyle.field, sx]}>
+    <Input
+      sx={sxStyle.input}
+      type={type}
+      name={type}
+      value={value}
+      placeholder={type}
+      onChange={onChange}
+      disableUnderline
+      fullWidth
+    />
+  </FormControl>
+);
 export default memo(BaseInput);

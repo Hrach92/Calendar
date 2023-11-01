@@ -5,12 +5,11 @@
 import { GetServerSidePropsContext } from "next";
 import Month from "../components/month";
 import withCSR from "../dependencies/with-CSR";
+
 export default Month;
 
 export const getServerSideProps = withCSR(
-  async (ctx: GetServerSidePropsContext) => {
-    return {
-      props: {},
-    };
-  }
+  async (ctx: GetServerSidePropsContext) => ({
+    props: {},
+  })
 );

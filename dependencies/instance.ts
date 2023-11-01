@@ -1,6 +1,5 @@
 import axios from "axios";
 import moment from "moment";
-import { useState } from "react";
 import { MonthTypes } from "../store/reducer/types";
 import { Mode, Months } from "./types";
 
@@ -17,6 +16,7 @@ export const dayCount = Array(35)
     item.id = i;
     return { ...item };
   });
+
 export const hoursOfDay = [
   ...Array(24)
     .fill({})
@@ -51,9 +51,9 @@ export const count = {
       .fill("")
       .map((item, i) => {
         if (i > 12) {
-          item = `${i}:` + "AM";
+          item = `${i}:AM`;
         } else if (i > 0) {
-          item = `${i} ` + "PM";
+          item = `${i} PM`;
         }
         item = i;
       }),
@@ -71,12 +71,12 @@ export const count = {
 export const host = axios.create({
   baseURL: "http://localhost:3001",
 });
-export function dayList(year: number, month: string) {
+export function dayList(year: number, month: string): any {
   const startDay = moment(`${year}${month}`)
-      .startOf(Mode.MONTH)
-      .startOf(Mode.WEEK),
-    endDay = moment(`${year}${month}`).endOf(Mode.MONTH).endOf(Mode.WEEK),
-    arr = [];
+    .startOf(Mode.MONTH)
+    .startOf(Mode.WEEK);
+  const endDay = moment(`${year}${month}`).endOf(Mode.MONTH).endOf(Mode.WEEK);
+  const arr = [];
   while (!startDay.isAfter(endDay)) {
     arr.push({
       dayNumber: startDay.date(),
@@ -91,9 +91,9 @@ export function dayList(year: number, month: string) {
   }
   return arr;
 }
-export function weekDays(year: number, month: number, day: number) {
-  let format = "",
-    hour = "";
+export function weekDays(year: number, month: number, day: number): any {
+  let format = "";
+  let hour = "";
   const dayHours = Array(192)
     .fill({})
     .map((item, i) => {
@@ -115,7 +115,8 @@ export function weekDays(year: number, month: number, day: number) {
         item.day = "";
         item.id = i;
         return { ...item };
-      } else if (i % 8 === 0) {
+      }
+      if (i % 8 === 0) {
         item.hour = i / 8;
         if (i === 0) {
           item.hour = 12;
@@ -139,83 +140,43 @@ export function weekDays(year: number, month: number, day: number) {
     });
   return dayHours;
 }
-export function setEvents(post: any) {
-  let arr1 = null;
-  if (!post.hour_mode) {
-    arr1 = Array(post.date_range)
-      .fill(post)
-      .map((v, i, w) => {
-        if (i === 0) {
-          v.date_id = moment(v.date_id).add(0, Mode.DAY).format("YYYYMMDD");
-          v.eventDayStart = true;
-          return { ...v };
-        } else if (i === w.length - 1) {
-          v.date_id = moment(v.date_id).add(1, Mode.DAY).format("YYYYMMDD");
-          v.eventDayStart = false;
-          v.eventDayEnd = true;
-          return { ...v, title: "" };
-        }
-        v.date_id = moment(v.date_id).add(1, Mode.DAY).format("YYYYMMDD");
-        v.eventDayStart = false;
-        return { ...v, title: "" };
-      });
-    return { ...post, data: { events: [...arr1] } };
-  } else {
-    return { ...post };
-  }
-}
-export const useInput = (initialInput: any) => {
-  const [value, setValue] = useState(initialInput);
-  const onChange = (event: any) => {
-    return setValue(event.target.value);
-  };
-  return {
-    value,
-    onChange,
-  };
-};
-
-export const onOpenBar = (state?: boolean) => {
-  return !state;
-};
 
 export const dateConverter = (
   year: number,
   monthNumber: string,
   day: number
-) => {
-  return () => {
-    const newId = moment(
-      `${year}${monthNumber}${day > 9 ? day : `0${day}`}`
-    ).format("YYYYMMDD");
-    const currentDay =
-      moment(newId).format("YYYYMMDD") === moment().format("YYYYMMDD");
-    const days = dayList(year, `${monthNumber}`);
+): { newId: string; currentDay: boolean; days: any } => {
+  const newId = moment(
+    `${year}${monthNumber}${day > 9 ? day : `0${day}`}`
+  ).format("YYYYMMDD");
+  const currentDay =
+    moment(newId).format("YYYYMMDD") === moment().format("YYYYMMDD");
+  const days = dayList(year, `${monthNumber}`);
 
-    return { newId, currentDay, days };
-  };
+  return { newId, currentDay, days };
 };
 
-export const margin = `${parseInt(moment().format("mm")) * 0.8}px`;
+export const margin = `${parseInt(moment().format("mm"), 10) * 0.8}px`;
 
-export const currentDay = (id: string) => {
-  return moment(`${id}`).format("YYYYMMDD") === moment().format("YYYYMMDD");
-};
+export const currentDay = (id: string): boolean =>
+  moment(`${id}`).format("YYYYMMDD") === moment().format("YYYYMMDD");
 
-export const prev = (month: any, year: any) => ({
+export const prev = (
+  month: any,
+  year: any
+): { year: string; month: string } => ({
   year: month === "01" ? year - 1 : year,
   month:
-    month === "01"
-      ? "12"
-      : `${+month - 1 > 9 ? +month - 1 : "0" + (+month - 1)}`,
+    month === "01" ? "12" : `${+month - 1 > 9 ? +month - 1 : `0${+month - 1}`}`,
 });
 
-export const next = (month: any, year: any) => ({
+export const next = (
+  month: string,
+  year: string
+): { year: string; month: string } => ({
   year: month === "12" ? year + 1 : year,
   month:
-    month === "12"
-      ? "01"
-      : `${+month + 1 > 9 ? +month + 1 : "0" + (+month + 1)}`,
+    month === "12" ? "01" : `${+month + 1 > 9 ? +month + 1 : `0${+month + 1}`}`,
 });
 
 export const months = [
@@ -237,6 +198,5 @@ export const currentMonth = (months.find(
   ({ id }) => id === new Date().getMonth() + 1
 ) || {}) as MonthTypes;
 
-export const getCurrentMonth = (monthId: number) => {
-  return months.find(({ id }) => id === monthId) || currentMonth;
-};
+export const getCurrentMonth = (monthId: number): MonthTypes =>
+  months.find(({ id }) => id === monthId) || currentMonth;

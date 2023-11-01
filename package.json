@@ -6,8 +6,8 @@
     "dev": "NODE_ENV=development next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./pages",
-    "lint-fix": "eslint ./pages --fix"
+    "lint": "eslint . --ext .js,.jsx,.tsx,.ts --color",
+    "lint:fix": "eslint . --ext .js,.jsx,.tsx,.ts --fix --color"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -20,7 +20,9 @@
     "@reduxjs/toolkit": "^1.8.6",
     "@types/react": "^18.2.30",
     "@types/react-redux": "^7.1.28",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
     "axios": "^0.27.2",
+    "eslint-plugin-no-inline-styles": "^1.0.5",
     "firebase": "^10.5.2",
     "i18next": "^23.6.0",
     "luxon": "^2.5.0",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@types/ua-parser-js": "^0.7.38",
+    "@typescript-eslint/parser": "^6.9.1",
     "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.5",

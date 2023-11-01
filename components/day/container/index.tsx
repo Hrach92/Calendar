@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useMemo } from "react";
 import sxStyle from "./sxStyle.sx";
-import { Tabs, descriptionOpen } from "../../../store/reducer/tabReducer";
-import { useDispatch, useSelector } from "../../../hooks/redux";
 
 type DayEventsTypes = {
   events?: any;
@@ -10,22 +8,15 @@ type DayEventsTypes = {
   color?: string;
   setDescriptions?: (event: any) => void;
 };
-function DayEvents({
-  events,
-  newId,
-  color,
-  setDescriptions = () => {},
-}: DayEventsTypes) {
-  const dispatch = useDispatch();
-  const { description } = useSelector(Tabs);
+const DayEvents = ({ events, newId, color }: DayEventsTypes) => {
+  const filtered = useMemo(
+    () => events.filter(({ dateId }: any) => dateId === newId),
+    [events, newId]
+  );
 
-  const filtered = useMemo(() => {
-    return events.filter(({ date_id }: any) => date_id === newId);
-  }, [events, newId]);
-
-  const style = (eventstart: any, time: any) => ({
+  const style = (eventStart: any, time: any) => ({
     backgroundColor: color,
-    marginTop: `${eventstart * 48}px`,
+    marginTop: `${eventStart * 48}px`,
     height: `${48 * time}px`,
   });
 
@@ -33,15 +24,15 @@ function DayEvents({
     <Box sx={sxStyle.eventContainer}>
       {events.length !== 0 &&
         filtered.map((event: any) => {
-          const { end_time, start_time, eventstart, time, title, id } = event;
+          const { endTime, startTime, eventStart, time, title, id } = event;
           return (
             <Box
               key={id}
               sx={sxStyle.hourEvents}
-              style={style(eventstart, time)}
+              style={style(eventStart, time)}
             >
               <Box sx={sxStyle.eventTime}>
-                {start_time} - {end_time}
+                {startTime} - {endTime}
               </Box>
               <Box
                 sx={sxStyle.eventDescription}
@@ -54,5 +45,5 @@ function DayEvents({
         })}
     </Box>
   );
-}
+};
 export default memo(DayEvents);

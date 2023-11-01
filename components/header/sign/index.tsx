@@ -1,20 +1,20 @@
 import { Box, Button } from "@mui/material";
+import { useCallback } from "react";
 import useBoolean from "../../../hooks/useBoolean";
 import Modal from "../../modal";
 import SignIn from "./signIn";
 import sxStyle from "./sxStyle.sx";
 import SignUp from "./signUp";
-import { useCallback } from "react";
 import Trans from "../../trans";
 
-function SignModal() {
+const SignModal = (): JSX.Element => {
   const { open, onClose, onOpen } = useBoolean();
   const { open: signInPage, setToggle, onOpen: setSignInPage } = useBoolean();
 
   const onCloseModal = useCallback(() => {
     onClose();
     setSignInPage();
-  }, []);
+  }, [onClose, setSignInPage]);
 
   return (
     <>
@@ -37,5 +37,5 @@ function SignModal() {
       </Modal>
     </>
   );
-}
+};
 export default SignModal;

@@ -1,12 +1,12 @@
-import LeftBar from "../leftBar";
 import React, { memo } from "react";
+import { Box } from "@mui/material";
+import LeftBar from "../leftBar";
 import Header from "../header";
 import RightBar from "../rightBar";
 import useBoolean from "../../hooks/useBoolean";
-import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 
-function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const { open, setToggle } = useBoolean();
   return (
     <>
@@ -18,6 +18,6 @@ function Layout({ children }: { children: React.ReactNode }) {
       </Box>
     </>
   );
-}
+};
 
 export default memo(Layout);

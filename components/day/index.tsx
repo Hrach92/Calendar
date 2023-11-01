@@ -1,11 +1,11 @@
 import { memo, useMemo, useState } from "react";
 
+import { Box } from "@mui/material";
 import { dateConverter } from "../../dependencies/instance";
 import { SampleData } from "../../store/reducer/sampleReducer";
 import { Tabs } from "../../store/reducer/tabReducer";
 import MyNotes from "../myNotes";
 import ChangeEvents from "../changeEvents";
-import { Box } from "@mui/material";
 import sxStyle from "./sxStyle.sx";
 import Events from "./events";
 import CurrentDay from "./currentDay";
@@ -13,21 +13,16 @@ import DayEvents from "./container";
 import Hours from "./hours";
 import { useSelector } from "../../hooks/redux";
 
-function Day(): JSX.Element {
+const Day = (): JSX.Element => {
   const { day, month, year, events, openNotes, color, hoursOfDay } =
     useSelector(SampleData);
   const { description } = useSelector(Tabs);
 
   const [descriptions, setDescriptions] = useState({});
 
-  const { newId, currentDay, days } = useMemo(
-    dateConverter(year, month.monthNumber, day),
+  const { newId, currentDay } = useMemo(
+    () => dateConverter(year, month.monthNumber, day),
     [year, month.monthNumber, day]
-  );
-
-  const currentDate = useMemo(
-    () => days.find((v) => v.id === newId) || {},
-    [days, newId]
   );
 
   return (
@@ -55,6 +50,6 @@ function Day(): JSX.Element {
       {description && <ChangeEvents description={descriptions} />}
     </Box>
   );
-}
+};
 
 export default memo(Day);

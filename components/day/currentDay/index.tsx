@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { memo, useMemo } from "react";
+import moment from "moment";
 import sxStyle from "./sxStyle.sx";
 
-import moment from "moment";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 import { useSelector } from "../../../hooks/redux";
 import Trans from "../../trans";
@@ -11,12 +11,13 @@ type DayTypes = {
   currentDay?: boolean;
   newId?: string;
 };
-function CurrentDay({ currentDay, newId }: DayTypes) {
+const CurrentDay = ({ currentDay, newId }: DayTypes) => {
   const { day } = useSelector(SampleData);
 
-  const style = useMemo(() => {
-    return { ...sxStyle.day, ...(currentDay && sxStyle.current) };
-  }, [currentDay]);
+  const style = useMemo(
+    () => ({ ...sxStyle.day, ...(currentDay && sxStyle.current) }),
+    [currentDay]
+  );
 
   const dayName = useMemo(() => moment(newId).format("ddd"), [newId]);
 
@@ -28,5 +29,5 @@ function CurrentDay({ currentDay, newId }: DayTypes) {
       <Box>{day}</Box>
     </Box>
   );
-}
+};
 export default memo(CurrentDay);

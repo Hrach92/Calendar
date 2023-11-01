@@ -1,4 +1,6 @@
 import { memo, useCallback, useMemo, useState } from "react";
+import Link from "next/link";
+import { Box } from "@mui/material";
 import { currentDay, dayList } from "../../dependencies/instance";
 import {
   SampleData,
@@ -6,10 +8,8 @@ import {
   setMode,
 } from "../../store/reducer/sampleReducer";
 import { Tabs } from "../../store/reducer/tabReducer";
-import Link from "next/link";
 import MyNotes from "../myNotes";
 import ChangeEvents from "../changeEvents";
-import { Box } from "@mui/material";
 import WeekDays from "./weekDays";
 import sxStyle from "./sxStyle.sx";
 import { useDispatch, useSelector } from "../../hooks/redux";
@@ -17,7 +17,15 @@ import { MonthTypes } from "../../store/reducer/types";
 import { Mode } from "../../dependencies/types";
 import Trans from "../trans";
 
-function Month(): JSX.Element {
+type DayTypes = {
+  dayNumber: number;
+  id: string;
+  month: any;
+  monthId: string;
+  year: string;
+};
+
+const Month = (): JSX.Element => {
   const { openNotes, year, month } = useSelector(SampleData);
   const dispatch = useDispatch();
 
@@ -26,16 +34,14 @@ function Month(): JSX.Element {
   const [dayDate] = useState({});
   const { monthNumber }: MonthTypes = month;
 
-  const days = useMemo(() => {
-    return dayList(year, monthNumber);
-  }, [year, monthNumber]);
+  const days = useMemo(() => dayList(year, monthNumber), [year, monthNumber]);
 
   const setChoseDate = useCallback(
-    (dayNumber: number, monthId: string, year: string) => {
+    (dayNumber: number, monthId: string, year: string): void => {
       dispatch(setDate({ day: dayNumber, month: monthId, year }));
       dispatch(setMode(Mode.DAY));
     },
-    []
+    [dispatch]
   );
 
   return (
@@ -43,30 +49,36 @@ function Month(): JSX.Element {
       {openNotes && dayDate && <MyNotes />}
       <WeekDays />
       <Box sx={sxStyle.box}>
-        {days.map(({ dayNumber, id, month, monthId, year }) => {
-          let current = currentDay(id);
+        {days.map(
+          ({ dayNumber, id, month, monthId, year: currentYear }: DayTypes) => {
+            const current = currentDay(id);
 
-          return (
-            <Box key={id} sx={sxStyle.day}>
-              <Link href={`/day/${year}/${+monthId}/${dayNumber}`}>
-                <Box
-                  sx={sxStyle.dayContainer}
-                  onClick={() => setChoseDate(dayNumber, monthId, year)}
-                >
-                  <Box sx={[current && sxStyle.currentDay, sxStyle.number]}>
-                    {dayNumber === 1 && <Trans word={`monthsShort.${month}`} />}
-                    {dayNumber}
+            return (
+              <Box key={id} sx={sxStyle.day}>
+                <Link href={`/day/${currentYear}/${+monthId}/${dayNumber}`}>
+                  <Box
+                    sx={sxStyle.dayContainer}
+                    onClick={() =>
+                      setChoseDate(dayNumber, monthId, currentYear)
+                    }
+                  >
+                    <Box sx={[current && sxStyle.currentDay, sxStyle.number]}>
+                      {dayNumber === 1 && (
+                        <Trans word={`monthsShort.${month}`} />
+                      )}
+                      {dayNumber}
+                    </Box>
                   </Box>
-                </Box>
-              </Link>
-            </Box>
-          );
-        })}
+                </Link>
+              </Box>
+            );
+          }
+        )}
       </Box>
 
       {description && <ChangeEvents description={descriptions} />}
     </Box>
   );
-}
+};
 
 export default memo(Month);
