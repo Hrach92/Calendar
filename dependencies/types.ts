@@ -36,3 +36,7 @@ export enum Days {
   Fri = "Fri",
   Sat = "Sat",
 }
+
+export type Options = {
+  [key: string]: string;
+};

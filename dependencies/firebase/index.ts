@@ -8,13 +8,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBYP-M1wYqsYCrqZdQzSydBFMxCotfogr8",
-  authDomain: "calendar-4a7c8.firebaseapp.com",
-  projectId: "calendar-4a7c8",
-  storageBucket: "calendar-4a7c8.appspot.com",
-  messagingSenderId: "380843061490",
-  appId: "1:380843061490:web:c7c3e51d36886abf33a06b",
-  measurementId: "G-FKS79WXP5R",
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
 // Initialize Firebase

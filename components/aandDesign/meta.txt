@@ -1,0 +1,60 @@
+    function addProductJsonLd() {
+        const jsonLdData = {
+            "@context": "https://schema.org/",
+            "@type": "ItemList",
+            name: pageName,
+            itemListElement: productList?.map(({url, options, images}, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                item: {
+                    "@type": "Product",
+                    name: textTransform(options, images),
+                    url: `${baseUrl}${url}${(options as SaleOption[])[0]?.id || ""}`,
+                    image: [`${process.env.NEXT_PUBLIC_API_URL}${images[0]?.photo370 || ""}`],
+                    offers: {
+                        "@type": "Offer",
+                        price: (options as SaleOption[])[0]?.price as string
+                    }
+                }
+            }))
+        };
+
+        return {
+            __html: JSON.stringify(jsonLdData, null, 2)
+        };
+    }
+
+    const metaUrl = router.query.name ? `catalog/${router.query.name}` : "";
+
+
+        pageNode = (
+            <Page
+                title={catalogName}
+                head={
+                    <>
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={addProductJsonLd()}
+                            key="product-jsonld"
+                        />
+                        <meta property="og:type" content="website" />
+                        <meta
+                            property="og:url"
+                            content={`${process.env.NEXT_PUBLIC_SITE_URL}${metaUrl}`}
+                        />
+                        <meta property="og:title" content={catalogName} />
+                        <meta property="og:image" content="" />
+                        <meta property="og:locale" content="ru_RU" />
+
+                        <link rel="canonical" href={`${baseUrl}${router.asPath}`} />
+                    </>
+                }
+            >
+                <CatalogSection>
+                    <CatalogHead />
+                    <CatalogBody />
+                </CatalogSection>
+            </Page>
+        );
+
+  

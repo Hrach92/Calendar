@@ -10,6 +10,7 @@ import sxStyle from "./sxStyle.sx";
 import useLanguageTypes from "../../hooks/useLanguageTypes";
 import { Target } from "../../dependencies/types";
 import Trans from "../../components/trans";
+import { changeLang } from "../../dependencies/events";
 
 type LanguageType = {
   background?: string;
@@ -26,6 +27,7 @@ const Languages = ({ background, handleClose }: LanguageType): JSX.Element => {
       scroll: false,
       locale: target.value,
     });
+    changeLang(target.value);
   };
 
   return (
