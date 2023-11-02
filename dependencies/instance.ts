@@ -56,6 +56,7 @@ export const count = {
           item = `${i} PM`;
         }
         item = i;
+        return item;
       }),
   ],
   month: [

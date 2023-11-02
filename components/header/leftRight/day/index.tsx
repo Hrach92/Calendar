@@ -22,6 +22,9 @@ const Day = (): JSX.Element => {
     [day, id, year],
   );
 
+  const prev = id === 1 ? 12 : id - 1;
+  const next = id === 12 ? 1 : id + 1;
+
   return (
     <Box sx={sxStyle.leftRight}>
       <Link
@@ -30,7 +33,7 @@ const Day = (): JSX.Element => {
           new Date(year, id - 1, day).getDate() === 1
             ? year - 1
             : year
-        }/${day === 1 ? (id === 1 ? 12 : id - 1) : id}/${
+        }/${day === 1 ? prev : id}/${
           day === 1 ? new Date(year, id - 1, 0).getDate() : day - 1
         }`}
       >
@@ -66,7 +69,7 @@ const Day = (): JSX.Element => {
       </Link>
       <Link
         href={`/${mode}/${nextMonth === 0 && nextDay === 1 ? year + 1 : year}/${
-          nextDay === 1 ? (id === 12 ? 1 : id + 1) : id
+          nextDay === 1 ? next : id
         }/${nextDay === 1 ? 1 : day + 1}`}
       >
         <Box

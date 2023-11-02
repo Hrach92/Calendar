@@ -8,7 +8,7 @@ import {
   years,
 } from "../../dependencies/instance";
 import { SampleReducerTypes } from "./types";
-import { RootState } from "../store";
+import type { RootState } from "../store";
 import { Mode } from "../../dependencies/types";
 
 const initialState: SampleReducerTypes = {
@@ -66,28 +66,6 @@ export const Features = createSlice({
       state.year = new Date().getFullYear();
       state.day = new Date().getDate();
     },
-    addEvents: (state, { payload }) => {
-      const dayEvents: any[] = [];
-      const arr = payload.filter(
-        ({ hourMode }: { hourMode: boolean }) => hourMode === false,
-      );
-      arr.map((v: any) => {
-        const eventWithId = v.data.events.map((item: any, i: number) => {
-          if (i === 0) {
-            return { ...item, title: v.title, id: v.id, mainTitle: v.title };
-          }
-          return { ...item, title: "", id: v.id, mainTitle: v.title };
-        });
-        dayEvents.push(...eventWithId);
-      });
-      const hourEvents: any[] = payload.filter(
-        ({ hourMode }: { hourMode: boolean }) => hourMode === true,
-      );
-      state.events = {
-        dayEvents: arr.length > 0 ? [...dayEvents] : [],
-        hourEvents: hourEvents.length > 0 ? [...hourEvents] : [],
-      };
-    },
     getEventDate: (state, { payload }) => {
       state.eventDate = payload;
     },
@@ -112,7 +90,6 @@ export const {
   setMode,
   setDate,
   getLocaleDate,
-  addEvents,
   getEventDate,
   setNotesOpen,
   setTimeRange,
@@ -120,7 +97,8 @@ export const {
   setColors,
   setHourMode,
 } = Features.actions;
-export const SampleData = (state: RootState) => state.sampleData;
+export const SampleData = (state: RootState): SampleReducerTypes =>
+  state.sampleData;
 export default Features.reducer;
 /* const sampleReducer = (state = initialState, action) => {
     switch (type) {

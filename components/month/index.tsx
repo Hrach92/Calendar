@@ -26,7 +26,7 @@ const Month = (): JSX.Element => {
 
   const setChoseDate = useCallback(
     (dayNumber: number, monthId: string, currentYear: string): void => {
-      dispatch(setDate({ day: dayNumber, month: monthId, currentYear }));
+      dispatch(setDate({ day: dayNumber, month: monthId, year: currentYear }));
       dispatch(setMode(Mode.DAY));
     },
     [dispatch],

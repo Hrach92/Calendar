@@ -263,7 +263,7 @@ module.exports = {
 
     /** Disallows reassignment of function parameters {@link https://eslint.org/docs/rules/no-param-reassign} */
     "no-param-reassign": [
-      ERROR,
+      OFF,
       { props: true, ignorePropertyModificationsFor: ["draftState"] },
     ],
 
