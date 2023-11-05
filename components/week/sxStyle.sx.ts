@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const sxStyle = {
   container: {
     boxSizing: "border-box",

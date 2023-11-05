@@ -1,17 +1,11 @@
-import sxStyle from "./sxStyle.sx";
 import { Box } from "@mui/material";
 import { weekdaysShort } from "moment";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
+import sxStyle from "./sxStyle.sx";
 import Trans from "../../trans";
 
-function WeekDaysShort() {
+const WeekDaysShort = () => {
   const days = weekdaysShort();
-
-  const [x, setX] = useState(0);
-
-  useEffect(() => {
-    setX(x + 1);
-  }, [setX]);
 
   return (
     <Box sx={sxStyle.weekdays}>
@@ -22,5 +16,5 @@ function WeekDaysShort() {
       ))}
     </Box>
   );
-}
+};
 export default memo(WeekDaysShort);

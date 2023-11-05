@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
+import { memo } from "react";
 import { SampleData } from "../../../store/reducer/sampleReducer";
 
 import sxStyle from "./sxStyle.sx";
-import { memo } from "react";
 import { useSelector } from "../../../hooks/redux";
 import Trans from "../../trans";
 
 type CalendarTypes = {
   onOpen?: () => void;
 };
-function VisibleDate({ onOpen = () => {} }: CalendarTypes) {
+const VisibleDate = ({ onOpen = () => {} }: CalendarTypes) => {
   const {
     day,
     month: { title } = { title: "" },
@@ -25,5 +25,5 @@ function VisibleDate({ onOpen = () => {} }: CalendarTypes) {
       <Typography>{year}</Typography>
     </Box>
   );
-}
+};
 export default memo(VisibleDate);

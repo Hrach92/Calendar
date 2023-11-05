@@ -6,11 +6,9 @@ import sxStyle from "./sxStyle.sx";
 type MenuTypes = {
   setToggle?: () => void;
 };
-function MenuBar({ setToggle = () => {} }: MenuTypes) {
-  return (
-    <Box sx={sxStyle.menu} onClick={setToggle}>
-      <MenuOutlinedIcon />
-    </Box>
-  );
-}
+const MenuBar = ({ setToggle = () => {} }: MenuTypes): JSX.Element => (
+  <Box sx={sxStyle.menu} onClick={setToggle}>
+    <MenuOutlinedIcon />
+  </Box>
+);
 export default MenuBar;

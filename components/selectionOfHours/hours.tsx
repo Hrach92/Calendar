@@ -7,15 +7,15 @@ import { hoursOfDay } from "../../dependencies/instance";
 import { SampleData, setTimeRange } from "../../store/reducer/sampleReducer";
 import { useDispatch, useSelector } from "../../hooks/redux";
 
-export default function SelectHour() {
+const SelectHour = (): JSX.Element => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const { time } = useSelector(SampleData);
   const handleChange = (e: any) => {
     const str = e.target.value;
     if (
-      (str.slice(-2) === "AM" && parseInt(str) === 12) ||
-      (str.slice(-2) === "AM" && parseInt(str) === 12)
+      (str.slice(-2) === "AM" && parseInt(str, 10) === 12) ||
+      (str.slice(-2) === "AM" && parseInt(str, 10) === 12)
     ) {
       return (
         setValue(e.target.value),
@@ -25,21 +25,22 @@ export default function SelectHour() {
             left: "12",
             leftId: str.slice(-2) === "AM" ? 0 : 12,
             leftFormat: str.slice(-2),
-            hour: Math.abs(parseInt(str) - time.rightId),
-          })
+            hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
+          }),
         )
       );
-    } else if (parseInt(str) > 12) {
+    }
+    if (parseInt(str, 10) > 12) {
       return (
         setValue(e.target.value),
         dispatch(
           setTimeRange({
             ...time,
-            left: `${parseInt(str) - 12}`,
-            leftId: parseInt(str),
-            leftFormat: str.slice(-2),
-            hour: Math.abs(parseInt(str) - time.rightId),
-          })
+            left: `${parseInt(str, 10) - 12}`,
+            leftId: parseInt(str, 10),
+            leftFormat: str.slice(-2, 10),
+            hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
+          }),
         )
       );
     }
@@ -48,11 +49,11 @@ export default function SelectHour() {
       dispatch(
         setTimeRange({
           ...time,
-          left: `${parseInt(str)}`,
-          leftId: parseInt(str),
+          left: `${parseInt(str, 10)}`,
+          leftId: parseInt(str, 10),
           leftFormat: str.slice(-2),
-          hour: Math.abs(parseInt(str) - time.rightId),
-        })
+          hour: Math.abs(parseInt(str, 10) - (time.rightId as number)),
+        }),
       )
     );
   };
@@ -76,7 +77,7 @@ export default function SelectHour() {
             fontSize: "10px",
             fontWeight: "500",
           }}
-          value={value ? value : ""}
+          value={value || ""}
         >
           {hoursOfDay.map((item) => (
             <MenuItem key={item.id} value={`${item.id}${item.format}`}>
@@ -88,4 +89,5 @@ export default function SelectHour() {
       </FormControl>
     </div>
   );
-}
+};
+export default SelectHour;

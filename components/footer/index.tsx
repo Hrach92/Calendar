@@ -1,5 +1,4 @@
 import React from "react";
-function Footer(): JSX.Element {
-  return <footer>footer</footer>;
-}
+
+const Footer = (): JSX.Element => <footer>footer</footer>;
 export default Footer;

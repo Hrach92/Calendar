@@ -2,8 +2,8 @@ import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import Link from "next/link";
 import React, { memo, useMemo } from "react";
-import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import { Box } from "@mui/material";
+import { SampleData, setDate } from "../../../../store/reducer/sampleReducer";
 import sxStyle from "../sxStyle.sx";
 import { useSelector, useDispatch } from "../../../../hooks/redux";
 
@@ -13,28 +13,27 @@ const Week = (): JSX.Element => {
 
   const prevDate = useMemo(
     () => new Date(year, month.id - 1, day - 7).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
 
   const nextDate = useMemo(
     () => new Date(year, month.id - 1, day + 7).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
 
   const currentDate = useMemo(
     () => new Date(year, month.id - 1, day).getDate(),
-    [day, month, year]
+    [day, month, year],
   );
+
+  const prev = month.id === 1 && day - 7 <= 0 ? 12 : month.id - 1;
+  const next = month.id === 12 ? 1 : month.id + 1;
 
   return (
     <Box sx={sxStyle.leftRight}>
       <Link
         href={`/${mode}/${month.id === 1 && prevDate > 24 ? year - 1 : year}/${
-          prevDate >= 24
-            ? month.id === 1 && day - 7 <= 0
-              ? 12
-              : month.id - 1
-            : month.id
+          prevDate >= 24 ? prev : month.id
         }/${prevDate >= 24 ? prevDate : day - 7}`}
       >
         <Box
@@ -57,7 +56,7 @@ const Week = (): JSX.Element => {
       <Link
         href={`/${mode}/${
           currentDate > 24 && month.id === 12 ? year + 1 : year
-        }/${nextDate <= 7 ? (month.id === 12 ? 1 : month.id + 1) : month.id}/${
+        }/${nextDate <= 7 ? next : month.id}/${
           nextDate <= 7 ? nextDate : day + 7
         }`}
       >

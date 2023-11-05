@@ -1,26 +1,25 @@
+import { createSlice } from "@reduxjs/toolkit";
 import {
   count,
   currentMonth,
   dayCount,
   getCurrentMonth,
   hoursOfDay,
-  months,
   years,
 } from "../../dependencies/instance";
-import { createSlice } from "@reduxjs/toolkit";
 import { SampleReducerTypes } from "./types";
-import { RootState } from "../store";
+import type { RootState } from "../store";
 import { Mode } from "../../dependencies/types";
 
 const initialState: SampleReducerTypes = {
-  years: years,
+  years,
   year: new Date().getFullYear(),
   month: currentMonth,
-  count: count,
+  count,
   mode: Mode.MONTH,
   day: new Date().getDate(),
-  hoursOfDay: hoursOfDay,
-  dayCount: dayCount,
+  hoursOfDay,
+  dayCount,
   notes: [
     { img: "/google.png", title: "Keep", id: 1 },
     { img: "/notes.png", title: "Notes", id: 2 },
@@ -67,28 +66,6 @@ export const Features = createSlice({
       state.year = new Date().getFullYear();
       state.day = new Date().getDate();
     },
-    addEvents: (state, { payload }) => {
-      let dayEvents: any[] = [];
-      let arr = payload.filter(
-        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === false
-      );
-      arr.map((v: any) => {
-        let eventWithId = v.data.events.map((item: any, i: number) => {
-          if (i === 0) {
-            return { ...item, title: v.title, id: v.id, mainTitle: v.title };
-          }
-          return { ...item, title: "", id: v.id, mainTitle: v.title };
-        });
-        dayEvents.push(...eventWithId);
-      });
-      let hourEvents: any[] = payload.filter(
-        ({ hour_mode }: { hour_mode: boolean }) => hour_mode === true
-      );
-      state.events = {
-        dayEvents: arr.length > 0 ? [...dayEvents] : [],
-        hourEvents: hourEvents.length > 0 ? [...hourEvents] : [],
-      };
-    },
     getEventDate: (state, { payload }) => {
       state.eventDate = payload;
     },
@@ -113,7 +90,6 @@ export const {
   setMode,
   setDate,
   getLocaleDate,
-  addEvents,
   getEventDate,
   setNotesOpen,
   setTimeRange,
@@ -121,7 +97,8 @@ export const {
   setColors,
   setHourMode,
 } = Features.actions;
-export const SampleData = (state: RootState) => state.sampleData;
+export const SampleData = (state: RootState): SampleReducerTypes =>
+  state.sampleData;
 export default Features.reducer;
 /* const sampleReducer = (state = initialState, action) => {
     switch (type) {

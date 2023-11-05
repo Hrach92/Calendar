@@ -7,7 +7,7 @@ import Year from "./year";
 import { useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
 
-function LeftNRight(): JSX.Element {
+const LeftNRight = (): JSX.Element => {
   const { mode } = useSelector(SampleData);
 
   switch (mode) {
@@ -22,6 +22,6 @@ function LeftNRight(): JSX.Element {
     default:
       return <Month />;
   }
-}
+};
 
 export default memo(LeftNRight);

@@ -1,9 +1,6 @@
-import { memo, useCallback, useMemo } from "react";
-import { Tabs, descriptionOpen } from "../../../store/reducer/tabReducer";
-import { SampleData } from "../../../store/reducer/sampleReducer";
-import sxStyle from "./sxStyle.sx";
+import { memo, useMemo } from "react";
 import { Box } from "@mui/material";
-import { useDispatch, useSelector } from "../../../hooks/redux";
+import sxStyle from "./sxStyle.sx";
 
 type EventTypes = {
   events?: any;
@@ -11,32 +8,14 @@ type EventTypes = {
   setDescriptions?: (event: any) => void;
 };
 
-function Events({
-  events = [],
-  newId = "",
-  setDescriptions = () => {},
-}: EventTypes): JSX.Element {
-  const { description } = useSelector(Tabs);
-  const { color: { color } = { color: "" } } = useSelector(SampleData);
-  const dispatch = useDispatch();
-
-  const onClick = useCallback(() => {
-    description
-      ? (setDescriptions({}), dispatch(descriptionOpen(false)))
-      : (setDescriptions(event), dispatch(descriptionOpen(true)));
-  }, []);
-
-  const filteredEvents = useMemo(() => {
-    return events.filter(({ date_id }: any) => date_id === newId);
-  }, [events.dayEvents]);
+function Events({ events = [], newId = "" }: EventTypes): JSX.Element {
+  const filteredEvents = useMemo(
+    () => events.filter(({ dateId }: any) => dateId === newId),
+    [events, newId],
+  );
 
   return filteredEvents.map(({ title, id }: { title: string; id: string }) => (
-    <Box
-      key={id}
-      onClick={onClick}
-      sx={sxStyle.event}
-      style={{ backgroundColor: color as string }}
-    >
+    <Box key={id} sx={sxStyle.event}>
       {title}
     </Box>
   ));

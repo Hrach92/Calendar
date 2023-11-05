@@ -1,26 +1,25 @@
-import { SampleData } from "../../store/reducer/sampleReducer";
-
-import React, { memo, useState } from "react";
+import React, { memo, useState, useMemo } from "react";
+import { Box } from "@mui/material";
 import { dayList } from "../../dependencies/instance";
-import { useMemo } from "react";
-import { Box, Modal } from "@mui/material";
+import { SampleData } from "../../store/reducer/sampleReducer";
 import Header from "./header";
 import sxStyle from "./sxStyle.sx";
 import WeekDays from "./weekDays";
 import MonthDays from "./monthDays";
 import { useSelector } from "../../hooks/redux";
 
-function SmallCalendar({ sx, onClose }: any): JSX.Element {
+const SmallCalendar = ({ sx, onClose }: any): JSX.Element => {
   const { month, year } = useSelector(SampleData);
 
   const [date, setDate] = useState({
-    year: year,
+    year,
     month: month.monthNumber,
   });
 
-  const days = useMemo(() => {
-    return dayList(date.year, date.month);
-  }, [date.year, date.month]);
+  const days = useMemo(
+    () => dayList(date.year, date.month),
+    [date.year, date.month],
+  );
 
   return (
     <Box sx={[sxStyle.container, sx]}>
@@ -31,5 +30,5 @@ function SmallCalendar({ sx, onClose }: any): JSX.Element {
       </Box>
     </Box>
   );
-}
+};
 export default memo(SmallCalendar);

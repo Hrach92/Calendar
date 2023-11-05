@@ -8,7 +8,10 @@ const cookies = new Cookies();
 const JWT_NAME = "firebase jwt";
 
 const getToken = (): string | undefined => cookies.get(JWT_NAME);
-const setToken = (token: string | undefined, options: SetTokenOptions) => {
+const setToken = (
+  token: string | undefined,
+  options: SetTokenOptions,
+): void => {
   cookies.set(JWT_NAME, token, options);
 };
 const deleteToken = (): void => cookies.remove(JWT_NAME, { path: "/" });
@@ -30,7 +33,7 @@ const getCookie = (cookieData: any, dataName: string): string => {
 
 const getHeaders = (
   cookie?: string,
-  options?: any
+  options?: any,
 ): { headers: { Authorization: string } } => {
   const jwt = cookie ? getCookie(cookie, JWT_NAME) : getToken();
 

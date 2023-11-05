@@ -1,16 +1,17 @@
 import { Provider } from "react-redux";
 import "../styles/globals.css";
-import { store } from "../store/store";
 import React, { useEffect } from "react";
 import { AppProps } from "next/app";
+import { ThemeProvider } from "@mui/material";
+import { useRouter } from "next/router";
+import { store } from "../store/store";
 import Layout from "../components/layout";
 import LocalProvider from "../features/providers/localProvider";
-import { ThemeProvider } from "@mui/material";
 import theme from "../dependencies/utils/mui";
 import { pageView } from "../dependencies/events";
-import { useRouter } from "next/router";
+import GoogleAnalytics from "../components/googleAnalytics";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps): React.JSX.Element => {
   const { locale, locales, defaultLocale } = pageProps;
   const { events, asPath } = useRouter();
 
@@ -20,20 +21,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [asPath, events]);
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <LocalProvider
-          locale={locale}
-          locales={locales}
-          defaultLocale={defaultLocale}
-        >
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </LocalProvider>
-      </ThemeProvider>
-    </Provider>
+    <main>
+      <GoogleAnalytics
+        measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID}
+      />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <LocalProvider
+            locale={locale}
+            locales={locales}
+            defaultLocale={defaultLocale}
+          >
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </LocalProvider>
+        </ThemeProvider>
+      </Provider>
+    </main>
   );
-}
+};
 
 export default MyApp;

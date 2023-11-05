@@ -16,7 +16,7 @@ const useOnChange = (defaultValue = ""): UseOnChangeTypes => {
 
   const onChange = useCallback(
     ({ target }: Target) => setText(target.value),
-    []
+    [],
   );
 
   return {

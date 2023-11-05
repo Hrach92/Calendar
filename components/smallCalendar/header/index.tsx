@@ -3,8 +3,8 @@ import { memo, useCallback } from "react";
 
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
-import sxStyle from "./sxStyle.sx";
 import moment from "moment";
+import sxStyle from "./sxStyle.sx";
 import { next, prev } from "../../../dependencies/instance";
 import Trans from "../../trans";
 
@@ -12,18 +12,18 @@ type ButtonTypes = {
   date?: any;
   setDate?: any;
 };
-function Header({ date, setDate }: ButtonTypes) {
+const Header = ({ date, setDate }: ButtonTypes) => {
   const { month, year } = date;
 
   const prevMonth = useCallback(() => {
     const state = prev(month, year);
     setDate(state);
-  }, [month, year]);
+  }, [setDate, month, year]);
 
   const nextMonth = useCallback(() => {
     const state = next(month, year);
     setDate(state);
-  }, [month, year]);
+  }, [setDate, month, year]);
 
   const monthName = moment(`${year}${month}`).format("MMMM").toLowerCase();
 
@@ -43,5 +43,5 @@ function Header({ date, setDate }: ButtonTypes) {
       </Box>
     </Box>
   );
-}
+};
 export default memo(Header);

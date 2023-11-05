@@ -1,0 +1,45 @@
+name: build
+on:
+  pull_request:
+    branches: ["main", "develop"]
+  workflow_dispatch:
+jobs:
+  building:
+    needs: linting
+    continue-on-error: true
+    strategy:
+      matrix:
+        node-version: [18]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+
+            - name: Install Node.js dependencies
+        run: npm install --legacy-peer-deps
+      - name: Build
+        run: npm run build
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true

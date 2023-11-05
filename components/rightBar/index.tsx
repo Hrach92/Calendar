@@ -6,7 +6,7 @@ import useBoolean from "../../hooks/useBoolean";
 import sxStyle from "./sxStyle.sx";
 import Images from "./images";
 
-function RightBar() {
+const RightBar = () => {
   const { open, setToggle } = useBoolean();
   return (
     <Box sx={sxStyle.bar}>
@@ -16,5 +16,5 @@ function RightBar() {
       </Box>
     </Box>
   );
-}
+};
 export default memo(RightBar);

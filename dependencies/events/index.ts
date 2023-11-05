@@ -7,7 +7,6 @@ import {
   SELECT_LANGUAGE,
 } from "./actions";
 import { Options } from "../types";
-import { app } from "../firebase";
 
 export const pageView = (url: string): void => {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID;
@@ -26,7 +25,7 @@ export const setEventData = (
   options: {
     userId: string | undefined;
     phoneNumber: string | undefined;
-  }
+  },
 ): void => {
   const analytics = getAnalytics();
   setUserProperties(analytics, options);
@@ -38,7 +37,7 @@ export const setEventData = (
 export const basicEventSender = (
   action: string,
   type: string,
-  from = ""
+  from = "",
 ): void => {
   const options = { action, from };
   sendEvent(type, options);
@@ -55,15 +54,13 @@ export const redirectedToErrorPage = (): void => {
 
 export const changeLang = (lang: string): void => {
   const options = { SELECT_LANGUAGE, lang };
-  console.log(options);
-
   sendEvent(LANGUAGE_CHANGING, options);
 };
 
 export const modalOpenedActions = (
   action: string,
   type: string,
-  from: string
+  from: string,
 ): void => {
   const options = { action, from };
   sendEvent(type, options);

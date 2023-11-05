@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "../../../hooks/redux";
 import { Mode } from "../../../dependencies/types";
 import Trans from "../../trans";
 
-function SelectMode() {
+const SelectMode = (): JSX.Element => {
   const { mode, day, month, year } = useSelector(SampleData);
   const dispatch = useDispatch();
   const { text: value, setText } = useOnChange(mode);
@@ -67,5 +67,5 @@ function SelectMode() {
       </FormControl>
     </Box>
   );
-}
+};
 export default SelectMode;

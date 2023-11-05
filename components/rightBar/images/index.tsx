@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import sxStyle from "./sxStyle.sx";
 import { memo } from "react";
+import Image from "next/image";
+import sxStyle from "./sxStyle.sx";
 
 import { SampleData } from "../../../store/reducer/sampleReducer";
-import Image from "next/image";
 import { useSelector } from "../../../hooks/redux";
 
 const Images = () => {
@@ -11,13 +11,11 @@ const Images = () => {
 
   return (
     <Box sx={sxStyle.bar}>
-      {notes.map(({ img, title, id }: any) => {
-        return (
-          <Box title={title} key={id} sx={sxStyle.item}>
-            <Image src={img} height={30} width={30} />
-          </Box>
-        );
-      })}
+      {notes.map(({ img, title, id }: any) => (
+        <Box title={title} key={id} sx={sxStyle.item}>
+          <Image src={img} height={30} width={30} alt="image" />
+        </Box>
+      ))}
     </Box>
   );
 };
